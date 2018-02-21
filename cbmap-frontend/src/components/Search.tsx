@@ -120,7 +120,6 @@ class Search extends Component<PropsWithStyles> {
     @autobind
     private renderInput(inputProps: InputProps<Location>) {
         const { classes, ref, ...other } = inputProps;
-        console.log(other);
         const {isWaitingForLocation} = this.state;
         return (
             <Card className={classes.card}>
