@@ -26,10 +26,19 @@ interface StateProps {
     district: District;
 }
 
-type Props = OwnProps & StateProps;
+type ClassKey =
+    | 'card'
+    | 'cardHeader'
+    | 'cardContent'
+    | 'list'
+    | 'listLink'
+    | 'title'
+    | 'eventAddress'
+    | 'eventDate'
+    | 'eventsHeader';
 
-type PropsWithStyles = Props
-    & WithStyles<'card' | 'cardHeader' | 'cardContent' | 'list' | 'listLink' | 'title' | 'eventsHeader'>;
+type Props = OwnProps & StateProps;
+type PropsWithStyles = Props & WithStyles<ClassKey>;
 
 interface State {
     events?: CalendarEvent[];
@@ -166,22 +175,28 @@ class DistrictInfo extends Component<PropsWithStyles, State> {
 
     private renderCalendarTab() {
         const { events } = this.state;
+        const { classes } = this.props;
         return (
             <List>
                 { events && events.length > 0 && (
                     _(events)
-                        .groupBy((event) => moment(event.date).format('MMMM'))
+                        .groupBy((event) => moment(event.date).format('MMMM YYYY'))
                         .map((monthEvents, month) => (
                             <React.Fragment key={`fragment-${month}`}>
                                 <ListSubheader key={`header-${month}`}>{month}</ListSubheader>
                                 { monthEvents.map((event: CalendarEvent) => (
                                     <ListItem key={`item-${event.id}`}>
-                                        <div>
-                                            23
-                                            <br/>
-                                            Weds
+                                        <div className={classes.eventDate}>
+                                            <div>{moment(event.date).format('D')}</div>
+                                            <div>{moment(event.date).format('ddd')}</div>
                                         </div>
-                                        <ListItemText primary={event.title}/>
+                                        <ListItemText
+                                            classes={{
+                                                secondary: classes.eventAddress
+                                            }}
+                                            primary={event.title}
+                                            secondary={event.address.join('\n')}
+                                        />
                                     </ListItem>)
                                 )}
                             </React.Fragment>)
@@ -200,33 +215,41 @@ class DistrictInfo extends Component<PropsWithStyles, State> {
     }
 }
 
-const styles = (theme: Theme) => ({
-    card: {
-        marginBottom: theme.spacing.unit
-    },
-    cardHeader: {
-        paddingBottom: 0
-    },
-    cardContent: {
-        padding: 0,
-        paddingBottom: [theme.spacing.unit, '!important']
-    },
-    list: {
-        overflow: 'hidden' as 'hidden'
-    },
-    listLink: {
-        display: 'flex' as 'flex',
-        alignItems: 'center' as 'center'
-    },
-    title: {
-        marginBottom: 16,
-        fontSize: 14,
-        color: theme.palette.text.secondary
-    },
-    eventsHeader: {
-        color: theme.palette.text.secondary
+const styles = (theme: Theme) => (
+    {
+        card: {
+            marginBottom: theme.spacing.unit
+        },
+        cardHeader: {
+            paddingBottom: 0
+        },
+        cardContent: {
+            padding: 0,
+            paddingBottom: [theme.spacing.unit, '!important']
+        },
+        list: {
+            overflow: 'hidden' as 'hidden'
+        },
+        listLink: {
+            display: 'flex' as 'flex',
+            alignItems: 'center' as 'center'
+        },
+        title: {
+            marginBottom: 16,
+            fontSize: 14,
+            color: theme.palette.text.secondary
+        },
+        eventsHeader: {
+            color: theme.palette.text.secondary
+        },
+        eventAddress: {
+            whiteSpace: 'pre' as 'pre'
+        },
+        eventDate: {
+            alignSelf: 'flex-start' as 'flex-start'
+        }
     }
-});
+);
 
 const mapStateToProps = (state: GlobalState): StateProps => {
     return {
