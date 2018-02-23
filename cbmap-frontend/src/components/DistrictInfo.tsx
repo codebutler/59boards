@@ -200,7 +200,8 @@ class DistrictInfo extends Component<PropsWithStyles, State> {
                                     </ListItem>)
                                 )}
                             </React.Fragment>)
-                        ).value()
+                        )
+                        .value()
                 )}
                 { events && events.length === 0 && (
                     <ListItem>
@@ -225,7 +226,9 @@ const styles = (theme: Theme) => (
         },
         cardContent: {
             padding: 0,
-            paddingBottom: [theme.spacing.unit, '!important']
+            '&:last-child': {
+                paddingBottom: theme.spacing.unit
+            }
         },
         list: {
             overflow: 'hidden' as 'hidden'

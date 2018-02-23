@@ -39,19 +39,20 @@ interface SearchProps {
     onLocationSelected: (location: Location) => void;
 }
 
-type PropsWithStyles = SearchProps & WithStyles<
-    'card' |
-    'container' |
-    'suggestionsContainerOpen' |
-    'suggestion' |
-    'suggestionsList' |
-    'cardContent' |
-    'root' |
-    'gridTextField' |
-    'myLocationAdornment' |
-    'myLocationIcon' |
-    'myLocationProgress'
-    >;
+type ClassKey =
+    | 'card'
+    | 'container'
+    | 'suggestionsContainerOpen'
+    | 'suggestion'
+    | 'suggestionsList'
+    | 'cardContent'
+    | 'root'
+    | 'gridTextField'
+    | 'myLocationAdornment'
+    | 'myLocationIcon'
+    | 'myLocationProgress';
+
+type PropsWithStyles = SearchProps & WithStyles<ClassKey>;
 
 class Search extends Component<PropsWithStyles> {
 
@@ -123,7 +124,7 @@ class Search extends Component<PropsWithStyles> {
         const {isWaitingForLocation} = this.state;
         return (
             <Card className={classes.card}>
-                <CardContent className={classes.cardContent}>
+                <CardContent classes={{root: classes.cardContent}}>
                     <Grid container={true} spacing={0} alignItems="center" className={classes.root}>
                         <Grid item={true}>
                             <IconButton color="inherit" aria-label="Menu" disabled={true}>
@@ -141,9 +142,15 @@ class Search extends Component<PropsWithStyles> {
                                                 <CircularProgress size={18} />
                                             </div>
                                         ) : (
-                                            <InputAdornment position="end" className={classes.myLocationAdornment}>
+                                            <InputAdornment
+                                                position="end"
+                                                classes={{root: classes.myLocationAdornment}}
+                                            >
                                                 <IconButton onClick={this.onMyLocationClicked}>
-                                                    <MyLocationIcon className={classes.myLocationIcon} color="primary"/>
+                                                    <MyLocationIcon
+                                                        className={classes.myLocationIcon}
+                                                        color="primary"
+                                                    />
                                                 </IconButton>
                                             </InputAdornment>
                                         ),
@@ -262,7 +269,10 @@ const styles = (theme: Theme) => ({
         listStyleType: 'none',
     },
     cardContent: {
-        padding: [ 0, '!important' ] // FIXME: Gross
+        padding: 0,
+        '&:last-child': {
+            paddingBottom: 0,
+        }
     },
     root: {
         flexGrow: 1
@@ -271,7 +281,7 @@ const styles = (theme: Theme) => ({
         flexGrow: 1
     },
     myLocationAdornment: {
-        maxHeight: ['inherit', '!important']
+        maxHeight: 'inherit'
     },
     myLocationIcon: {
         width: 18,
