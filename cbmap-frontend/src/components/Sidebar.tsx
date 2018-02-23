@@ -2,8 +2,8 @@ import autobind from 'autobind-decorator';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { Action, clearSelection } from '../actions';
-import { GlobalState } from '../models/GlobalState';
+import { RootAction, clearSelection } from '../actions';
+import { RootState } from '../models/RootState';
 import DistrictInfo from './DistrictInfo';
 import Intro from './Intro';
 import Search from './Search';
@@ -56,13 +56,13 @@ class Sidebar extends Component<Props> {
     }
 }
 
-const mapStateToProps = (state: GlobalState): StateProps => {
+const mapStateToProps = (state: RootState): StateProps => {
     return {
         selectedDistrictId: state.selectedDistrictId
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
+const mapDispatchToProps = (dispatch: Dispatch<RootAction>): DispatchProps => {
     return {
         onClearSelection: () => {
             dispatch(clearSelection());

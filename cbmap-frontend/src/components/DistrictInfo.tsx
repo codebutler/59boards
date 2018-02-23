@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { CircularProgress, List, ListItem, ListItemIcon, ListItemText, ListSubheader, WithStyles } from 'material-ui';
 import CloseIcon from 'material-ui-icons/Close';
 import EmailIcon from 'material-ui-icons/Email';
@@ -11,12 +12,13 @@ import withStyles from 'material-ui/styles/withStyles';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import moment from 'moment';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect, Dispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { RootAction } from '../actions';
+import { fetchEvents } from '../actions/fetch-events';
 import DISTRICTS from '../data/boards.json';
 import District from '../models/District';
-import { GlobalState } from '../models/GlobalState';
-import _ from 'lodash';
+import { RootState } from '../models/RootState';
 
 interface OwnProps {
     onCloseInfoClicked: () => void;
@@ -24,6 +26,11 @@ interface OwnProps {
 
 interface StateProps {
     district: District;
+    events?: CalendarEvent[];
+}
+
+interface DispatchProps {
+    fetchCalendarEvents: (districtId: number) => void;
 }
 
 type ClassKey =
@@ -37,11 +44,10 @@ type ClassKey =
     | 'eventDate'
     | 'eventsHeader';
 
-type Props = OwnProps & StateProps;
+type Props = OwnProps & StateProps & DispatchProps;
 type PropsWithStyles = Props & WithStyles<ClassKey>;
 
 interface State {
-    events?: CalendarEvent[];
     selectedTab: number;
 }
 
@@ -53,19 +59,7 @@ class DistrictInfo extends Component<PropsWithStyles, State> {
 
     constructor(props: PropsWithStyles) {
         super(props);
-
-        // FIXME fetch(`/data/events/${props.district.id}.json`)
-        fetch ('/data/events/sample.json')
-            .then((resp) => resp.json())
-            .then((events: CalendarEvent[]) => {
-                this.setState({ events });
-            })
-            .catch((err) => {
-                console.log(err);
-                this.setState({
-                    events: []
-                });
-            });
+        this.props.fetchCalendarEvents(props.district.id);
     }
 
     render() {
@@ -174,8 +168,7 @@ class DistrictInfo extends Component<PropsWithStyles, State> {
     }
 
     private renderCalendarTab() {
-        const { events } = this.state;
-        const { classes } = this.props;
+        const { classes, events } = this.props;
         return (
             <List>
                 { events && events.length > 0 && (
@@ -254,12 +247,22 @@ const styles = (theme: Theme) => (
     }
 );
 
-const mapStateToProps = (state: GlobalState): StateProps => {
+const mapStateToProps = (state: RootState): StateProps => {
     return {
-        district: DISTRICTS[state.selectedDistrictId!]
+        district: DISTRICTS[state.selectedDistrictId!],
+        events: state.events
+    };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch<RootAction>): DispatchProps => {
+    return {
+        fetchCalendarEvents: (districtId: number) => {
+            dispatch(fetchEvents(districtId));
+        }
     };
 };
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(withStyles(styles)<Props>(DistrictInfo));

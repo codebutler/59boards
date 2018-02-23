@@ -26,10 +26,10 @@ import Autosuggest, {
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Response } from 'rest';
-import { Action, selectLocation } from '../actions';
+import { RootAction, selectLocation } from '../actions';
 import { AppContext } from '../App';
 import { NYC_BOUNDING_BOX, NYC_CENTER } from '../constants';
-import { GlobalState } from '../models/GlobalState';
+import { RootState } from '../models/RootState';
 import Location from '../models/Location';
 import CarmenLocation = mapbox.CarmenLocation;
 import flatten from 'array-flatten';
@@ -297,13 +297,13 @@ const styles = (theme: Theme) => ({
     }
 });
 
-const mapStateToProps = (state: GlobalState) => {
+const mapStateToProps = (state: RootState) => {
     return {
         selectedLocation: state.selectedLocation
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
+const mapDispatchToProps = (dispatch: Dispatch<RootAction>) => {
     return {
         onLocationSelected: (location: Location) => {
             dispatch(selectLocation(location));

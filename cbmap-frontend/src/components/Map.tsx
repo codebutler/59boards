@@ -6,9 +6,9 @@ import mapboxgl from 'mapbox-gl';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { Action, clearSelection, selectDistrict } from '../actions';
+import { RootAction, clearSelection, selectDistrict } from '../actions';
 import { DUMMY_BORO_IDS, MAPBOX_TOKEN, NYC_BOUNDING_BOX } from '../constants';
-import { GlobalState } from '../models/GlobalState';
+import { RootState } from '../models/RootState';
 import Location from '../models/Location';
 import EventData = mapboxgl.EventData;
 import MapMouseEvent = mapboxgl.MapMouseEvent;
@@ -247,14 +247,14 @@ class Map extends Component<Props, State> {
     }
 }
 
-const mapStateToProps = (state: GlobalState): StateProps => {
+const mapStateToProps = (state: RootState): StateProps => {
     return {
         selectedLocation: state.selectedLocation!,
         selectedDistrictId: state.selectedDistrictId!
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps => {
+const mapDispatchToProps = (dispatch: Dispatch<RootAction>): DispatchProps => {
     return {
         onDistrictSelected: (districtId: number) => {
             dispatch(selectDistrict(districtId));

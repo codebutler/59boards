@@ -9,11 +9,16 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import logger from 'redux-logger';
 import { BrowserRouter } from 'react-router-dom';
+import thunk from 'redux-thunk';
 
 const LOGGING = true;
 const CACHING = false;
 
-const middlewares = LOGGING ? [logger] : [];
+const middlewares = [];
+middlewares.push(thunk);
+if (LOGGING) {
+    middlewares.push(logger);
+}
 
 const store = createStore(
     reducer,

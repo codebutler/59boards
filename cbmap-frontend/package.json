@@ -29,6 +29,7 @@
     "react-scripts-ts": "^2.13.0",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0",
     "typeface-roboto": "0.0.54",
     "typescript": "^2.7.2",
     "whatwg-fetch": "^2.0.3"
