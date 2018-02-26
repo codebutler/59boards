@@ -11,7 +11,7 @@ def parse_date(text: str) -> int:
 
 
 class BrooklynCb6Spider(scrapy.Spider):
-    name = "brooklyncb6"
+    name = "brooklyn-cb6"
     start_urls = [
         'http://www1.nyc.gov/site/brooklyncb6/calendar/calendar.page'
     ]

@@ -9,6 +9,8 @@ name = "pypi"
 
 bleach = "*"
 scrapy = "*"
+"bs4" = "*"
+parsedatetime = "*"
 
 
 [dev-packages]
