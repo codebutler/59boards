@@ -2,11 +2,11 @@ import autobind from 'autobind-decorator';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { RootAction, clearSelection } from '../actions';
-import { RootState } from '../models/RootState';
-import DistrictInfo from './DistrictInfo';
-import Intro from './Intro';
-import Search from './Search';
+import { RootAction, clearSelection } from '../../shared/actions/index';
+import { RootState } from '../../shared/models/RootState';
+import DistrictInfo from '../district_info/DistrictInfo';
+import Intro from '../intro/Intro';
+import Search from '../search/Search';
 
 interface StateProps {
     selectedDistrictId?: number;

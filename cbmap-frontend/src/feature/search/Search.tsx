@@ -26,11 +26,11 @@ import Autosuggest, {
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Response } from 'rest';
-import { RootAction, selectLocation } from '../actions';
-import { AppContext } from '../App';
-import { NYC_BOUNDING_BOX, NYC_CENTER } from '../constants';
-import { RootState } from '../models/RootState';
-import Location from '../models/Location';
+import { RootAction, selectLocation } from '../../shared/actions/index';
+import { AppContext } from '../app/App';
+import { NYC_BOUNDING_BOX, NYC_CENTER } from '../../shared/constants';
+import { RootState } from '../../shared/models/RootState';
+import Location from '../../shared/models/Location';
 import CarmenLocation = mapbox.CarmenLocation;
 import flatten from 'array-flatten';
 

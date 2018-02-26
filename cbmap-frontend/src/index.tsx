@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import 'typeface-roboto';
-import reducer from './reducers/index';
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore } from 'redux';
-import logger from 'redux-logger';
 import { BrowserRouter } from 'react-router-dom';
+import { applyMiddleware, createStore } from 'redux';
+import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
+import 'typeface-roboto';
+import App from './feature/app/App';
+import './index.css';
+import reducer from './shared/reducers/index';
+import registerServiceWorker from './feature/app/registerServiceWorker';
 
 const LOGGING = true;
 const CACHING = false;
@@ -17,7 +17,9 @@ const CACHING = false;
 const middlewares = [];
 middlewares.push(thunk);
 if (LOGGING) {
-    middlewares.push(logger);
+    middlewares.push(createLogger({
+        diff: true
+    }));
 }
 
 const store = createStore(

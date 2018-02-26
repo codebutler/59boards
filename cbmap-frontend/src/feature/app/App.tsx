@@ -3,9 +3,9 @@ import Reboot from 'material-ui/Reboot';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import './App.css';
-import Map from './components/Map';
-import Sidebar from './components/Sidebar';
-import { MAPBOX_TOKEN } from './constants';
+import Map from '../map/Map';
+import Sidebar from '../sidebar/Sidebar';
+import { MAPBOX_TOKEN } from '../../shared/constants';
 
 const mapboxClient = new MapboxClient(MAPBOX_TOKEN);
 

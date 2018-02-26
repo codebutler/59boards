@@ -14,11 +14,11 @@ import moment from 'moment';
 import React, { Component } from 'react';
 import { connect, Dispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { RootAction } from '../actions';
-import { fetchEvents } from '../actions/fetch-events';
-import DISTRICTS from '../data/boards.json';
-import District from '../models/District';
-import { RootState } from '../models/RootState';
+import { fetchEvents } from '../../shared/actions/fetch-events';
+import { RootAction } from '../../shared/actions/index';
+import DISTRICTS from '../../shared/data/boards.json';
+import District from '../../shared/models/District';
+import { RootState } from '../../shared/models/RootState';
 
 interface OwnProps {
     onCloseInfoClicked: () => void;
