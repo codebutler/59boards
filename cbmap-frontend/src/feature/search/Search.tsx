@@ -249,12 +249,9 @@ class Search extends Component<PropsWithStyles> {
 }
 
 const styles = (theme: Theme) => ({
-    card: {
-        // marginBottom: theme.spacing.unit
-    },
+    card: { },
     container: { },
     suggestionsContainerOpen: {
-        position: 'absolute' as 'absolute',
         left: 0,
         right: 0,
         marginTop: 0,

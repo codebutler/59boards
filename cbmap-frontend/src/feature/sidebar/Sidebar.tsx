@@ -23,11 +23,9 @@ class Sidebar extends Component<Props> {
     render() {
         return (
             <div className="Sidebar">
-                <div className="Sidebar-search">
-                    {this.renderIntro()}
-                    {this.renderCbInfo()}
-                    {this.renderSearch()}
-                </div>
+                {this.renderIntro()}
+                {this.renderCbInfo()}
+                {this.renderSearch()}
             </div>
         );
     }
