@@ -6,11 +6,12 @@ import mapboxgl from 'mapbox-gl';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { RootAction, clearSelection, selectDistrict } from '../../shared/actions/index';
+import { clearSelection, RootAction, selectDistrict } from '../../shared/actions/index';
 import { DUMMY_BORO_IDS, MAPBOX_TOKEN, NYC_BOUNDING_BOX } from '../../shared/constants';
-import { RootState } from '../../shared/models/RootState';
 import Location from '../../shared/models/Location';
+import { RootState } from '../../shared/models/RootState';
 import EventData = mapboxgl.EventData;
+import LngLatLike = mapboxgl.LngLatLike;
 import MapMouseEvent = mapboxgl.MapMouseEvent;
 import Marker = mapboxgl.Marker;
 import Point = mapboxgl.Point;
@@ -32,12 +33,14 @@ type Props = StateProps & DispatchProps;
 interface State {
     hoveredFeature?: Feature<Polygon, GeoJsonProperties>;
     hoveredPoint?: Point;
+    hoveredLngLat?: LngLatLike;
 }
 
 class Map extends Component<Props, State> {
 
     state: State = {};
     map: mapboxgl.Map;
+    popup: mapboxgl.Popup;
     mapContainer: HTMLDivElement | null;
     locationMarker: Marker;
 
@@ -56,6 +59,11 @@ class Map extends Component<Props, State> {
             zoom: 11
         });
 
+        this.popup = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false
+        });
+
         map.on('load', this.onMapLoad);
 
         map.on('mouseenter', 'district-fills', () => {
@@ -69,17 +77,26 @@ class Map extends Component<Props, State> {
         map.on('mousemove', 'district-fills', (e: MapMouseEvent) => {
             this.setState({
                 hoveredFeature: e.features[0],
-                hoveredPoint: e.point
+                hoveredPoint: e.point,
+                hoveredLngLat: e.lngLat
             });
         });
 
         map.on('mouseleave', 'district-fills', () => {
             this.setState({
-                hoveredFeature: undefined
+                hoveredFeature: undefined,
+                hoveredPoint: undefined,
+                hoveredLngLat: undefined,
             });
         });
 
         map.on('click', 'district-fills', (e: MapMouseEvent) => {
+            this.setState({
+                hoveredFeature: undefined,
+                hoveredPoint: undefined,
+                hoveredLngLat: undefined,
+            });
+
             const districtId = e.features[0].properties!.BoroCD;
             this.props.onDistrictSelected(districtId);
         });
@@ -88,7 +105,7 @@ class Map extends Component<Props, State> {
     }
 
     componentDidUpdate() {
-        const {hoveredFeature} = this.state;
+        const { hoveredFeature, hoveredLngLat } = this.state;
         if (hoveredFeature) {
             const boroCd = hoveredFeature.properties!.BoroCD;
             this.map.setFilter('district-fills-hover', ['==', 'BoroCD', boroCd]);
@@ -107,6 +124,15 @@ class Map extends Component<Props, State> {
         const filter = ['==', 'BoroCD', selectedDistrictId ? selectedDistrictId : ''];
         this.map.setFilter('district-borders-selected', filter);
         this.map.setFilter('district-fills-selected', filter);
+
+        if (hoveredFeature && hoveredLngLat) {
+            this.popup
+                .setLngLat(hoveredLngLat)
+                .setHTML(Map.boroDisplayText(hoveredFeature.properties!.BoroCD))
+                .addTo(this.map);
+        } else {
+            this.popup.remove();
+        }
     }
 
     componentWillReceiveProps(newProps: Props) {
@@ -150,9 +176,7 @@ class Map extends Component<Props, State> {
 
     render() {
         return (
-            <div ref={el => this.mapContainer = el} className="absolute top right left bottom">
-                {this.renderTooltip()}
-            </div>
+            <div ref={el => this.mapContainer = el} className="absolute top right left bottom" />
         );
     }
 
@@ -234,16 +258,6 @@ class Map extends Component<Props, State> {
         });
 
         this.zoomToCity();
-    }
-
-    @autobind
-    private renderTooltip() {
-        const {hoveredFeature, hoveredPoint} = this.state;
-        return hoveredFeature && (
-            <div className="tooltip" style={{left: hoveredPoint!.x, top: hoveredPoint!.y}}>
-                <div>{Map.boroDisplayText(hoveredFeature.properties!.BoroCD)}</div>
-            </div>
-        );
     }
 }
 
