@@ -10,10 +10,10 @@
     "@turf/helpers": "^6.0.1",
     "@types/lodash": "^4.14.104",
     "array-flatten": "^2.1.1",
-    "autobind-decorator": "^2.1.0",
     "autosuggest-highlight": "^3.1.1",
     "immutable": "^3.8.2",
     "lodash": "^4.17.5",
+    "lodash-decorators": "latest",
     "mapbox": "^1.0.0-beta9",
     "mapbox-gl": "^0.44.1",
     "material-ui": "^1.0.0-beta.33",
@@ -34,8 +34,7 @@
     "redux-thunk": "^2.2.0",
     "typeface-roboto": "0.0.54",
     "typescript": "^2.7.2",
-    "whatwg-fetch": "^2.0.3",
-    "lodash-decorators": "latest"
+    "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
     "start": "react-app-rewired start --scripts-version react-scripts-ts",

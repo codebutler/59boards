@@ -1,5 +1,4 @@
 import flatten, { NestedArray } from 'array-flatten';
-import autobind from 'autobind-decorator';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
 import MapboxClient from 'mapbox';
@@ -33,6 +32,7 @@ import { AppContext } from '../app/App';
 import { NYC_BOUNDING_BOX, NYC_CENTER } from '../../shared/constants';
 import { RootState } from '../../shared/models/RootState';
 import Location from '../../shared/models/Location';
+import { bind } from 'lodash-decorators';
 import CarmenLocation = mapbox.CarmenLocation;
 
 interface SearchProps {
@@ -119,7 +119,7 @@ class Search extends Component<PropsWithStyles> {
         );
     }
 
-    @autobind
+    @bind()
     private renderInput(inputProps: InputProps<Location>) {
         const { classes, ref, ...other } = inputProps;
         const {isWaitingForLocation} = this.state;
@@ -169,12 +169,12 @@ class Search extends Component<PropsWithStyles> {
         );
     }
 
-    @autobind
+    @bind()
     private onChange(event: React.FormEvent<object>, { newValue }: ChangeEvent) {
         this.setState({ inputValue: newValue});
     }
 
-    @autobind
+    @bind()
     private onSuggestionsFetchRequested({ value }: SuggestionsFetchRequestedParams) {
         this.context.mapboxClient.geocodeForward(value, {
             autocomplete: true,
@@ -192,19 +192,19 @@ class Search extends Component<PropsWithStyles> {
             });
     }
 
-    @autobind
+    @bind()
     private onSuggestionsClearRequested() {
         this.setState({
             suggestions: []
         });
     }
 
-    @autobind
+    @bind()
     private onSuggestionSelected(event: FormEvent<object>, { suggestion }: SuggestionSelectedEventData<Location>) {
         this.props.onLocationSelected(suggestion);
     }
 
-    @autobind
+    @bind()
     private onMyLocationClicked() {
         const locator = new PromisedLocation({
             enableHighAccuracy: true,

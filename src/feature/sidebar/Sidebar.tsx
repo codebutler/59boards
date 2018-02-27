@@ -1,4 +1,4 @@
-import autobind from 'autobind-decorator';
+import { bind } from 'lodash-decorators';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -62,7 +62,7 @@ class Sidebar extends Component<PropsWithStyles> {
         );
     }
 
-    @autobind
+    @bind()
     private onCloseClicked() {
         this.props.onClearSelection();
     }

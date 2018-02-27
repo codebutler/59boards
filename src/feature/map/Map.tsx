@@ -1,6 +1,5 @@
 import bbox from '@turf/bbox';
 import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
-import autobind from 'autobind-decorator';
 import { Feature, GeoJsonProperties, Polygon } from 'geojson';
 import mapboxgl from 'mapbox-gl';
 import React, { Component } from 'react';
@@ -219,16 +218,15 @@ class Map extends Component<PropsWithStyles, State> {
     }
 
     @bind()
-    @debounce(500)
+    @debounce(100)
     private fitMapBounds(bounds: LngLatBoundsLike, props: PropsWithStyles) {
-        console.log('fit bounds!!', props.width, props.sidebarSize, Map.getMapPadding(props.width, props.sidebarSize));
         this.map.fitBounds(bounds, {
             padding: Map.getMapPadding(props.width, props.sidebarSize),
             duration: 500
         });
     }
 
-    @autobind
+    @bind()
     private onMapLoad(event: EventData) {
         const map = event.target;
 
