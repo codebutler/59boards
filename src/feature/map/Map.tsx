@@ -15,12 +15,15 @@ import LngLatLike = mapboxgl.LngLatLike;
 import MapMouseEvent = mapboxgl.MapMouseEvent;
 import Marker = mapboxgl.Marker;
 import Point = mapboxgl.Point;
+import withWidth, { WithWidthProps } from 'material-ui/utils/withWidth';
+import { Breakpoint } from 'material-ui/styles/createBreakpoints';
 
 mapboxgl.accessToken = MAPBOX_TOKEN;
 
 interface StateProps {
     selectedLocation: Location;
     selectedDistrictId: number;
+    sidebarSize?: Size;
 }
 
 interface DispatchProps {
@@ -29,6 +32,7 @@ interface DispatchProps {
 }
 
 type Props = StateProps & DispatchProps;
+type PropsWithStyles = Props & WithWidthProps;
 
 interface State {
     hoveredFeature?: Feature<Polygon, GeoJsonProperties>;
@@ -36,10 +40,11 @@ interface State {
     hoveredLngLat?: LngLatLike;
 }
 
-class Map extends Component<Props, State> {
+class Map extends Component<PropsWithStyles, State> {
 
     state: State = {};
     map: mapboxgl.Map;
+    mapLoaded = false;
     popup: mapboxgl.Popup;
     mapContainer: HTMLDivElement | null;
     locationMarker: Marker;
@@ -49,6 +54,19 @@ class Map extends Component<Props, State> {
         const boroIndex = boroCD.toString()[0];
         const boroNames = { 1: 'Manhattan', 2: 'Bronx', 3: 'Brooklyn', 4: 'Queens', 5: 'Staten Island'};
         return `${boroNames[boroIndex]} CB${districtNum}`;
+    }
+
+    private static getMapPadding(width: Breakpoint, sidebarSize?: Size): mapboxgl.PaddingOptions {
+        const defaultPadding = 20;
+        const topPadding = (width === 'xs' && sidebarSize)
+            ? defaultPadding + sidebarSize.height
+            : defaultPadding;
+        return {
+            top: topPadding,
+            right: defaultPadding,
+            bottom: defaultPadding,
+            left: defaultPadding
+        };
     }
 
     componentDidMount() {
@@ -105,6 +123,9 @@ class Map extends Component<Props, State> {
     }
 
     componentDidUpdate() {
+        if (!this.mapLoaded) {
+            return;
+        }
         const { hoveredFeature, hoveredLngLat } = this.state;
         if (hoveredFeature) {
             const boroCd = hoveredFeature.properties!.BoroCD;
@@ -135,10 +156,10 @@ class Map extends Component<Props, State> {
         }
     }
 
-    componentWillReceiveProps(newProps: Props) {
-        const {selectedDistrictId, selectedLocation} = newProps;
-
+    componentWillReceiveProps(newProps: PropsWithStyles) {
         const oldSelectedLocation = this.props.selectedLocation;
+        const selectedLocation = newProps.selectedLocation;
+
         if (selectedLocation && selectedLocation !== oldSelectedLocation) {
             const districtFeature = this.map.querySourceFeatures('districts')
                 .find((feature: Feature<Polygon, GeoJsonProperties>) => {
@@ -151,26 +172,39 @@ class Map extends Component<Props, State> {
             return; // Will get called again with selectedDistrictId set.
         }
 
+        const oldSidebarSize = this.props.sidebarSize;
+        const sidebarSize = newProps.sidebarSize;
+
+        const oldWidth = this.props.width;
+        const width = newProps.width;
+
         const oldSelectedDistrictId = this.props.selectedDistrictId;
-        if (selectedDistrictId && selectedDistrictId !== oldSelectedDistrictId) {
-            const districtFeatures = this.map.querySourceFeatures('districts')
-                .filter((feature: Feature<Polygon, GeoJsonProperties>) => {
-                    return feature.properties!.BoroCD === selectedDistrictId;
+        const selectedDistrictId = newProps.selectedDistrictId;
+
+        if (selectedDistrictId !== oldSelectedDistrictId ||
+            sidebarSize !== oldSidebarSize ||
+            width !== oldWidth) {
+
+            if (selectedDistrictId) {
+                const districtFeatures = this.map.querySourceFeatures('districts')
+                    .filter((feature: Feature<Polygon, GeoJsonProperties>) => {
+                        return feature.properties!.BoroCD === selectedDistrictId;
+                    });
+                if (districtFeatures.length <= 0) {
+                    return;
+                }
+                const bounds = new mapboxgl.LngLatBounds();
+                districtFeatures.forEach((feature: Feature<Polygon, GeoJsonProperties>) => {
+                    const [minX, minY, maxX, maxY] = bbox(feature);
+                    bounds.extend(new mapboxgl.LngLatBounds([minX, minY], [maxX, maxY]));
                 });
-            if (districtFeatures.length <= 0) {
-                return;
+                this.map.fitBounds(bounds, {
+                    padding: Map.getMapPadding(width, sidebarSize),
+                    duration: 500
+                });
+            } else {
+                this.zoomToCity(width, sidebarSize);
             }
-            const bounds = new mapboxgl.LngLatBounds();
-            districtFeatures.forEach((feature: Feature<Polygon, GeoJsonProperties>) => {
-                const [minX, minY, maxX, maxY] = bbox(feature);
-                bounds.extend(new mapboxgl.LngLatBounds([minX, minY], [maxX, maxY]));
-            });
-            this.map.fitBounds(bounds, {
-                padding: 20,
-                duration: 500
-            });
-        } else {
-            this.zoomToCity();
         }
     }
 
@@ -181,9 +215,9 @@ class Map extends Component<Props, State> {
     }
 
     @autobind
-    private zoomToCity(animate: boolean = true) {
+    private zoomToCity(width: Breakpoint, sidebarSize?: Size, animate: boolean = true) {
         this.map.fitBounds(NYC_BOUNDING_BOX, {
-            padding: 20,
+            padding: Map.getMapPadding(width, sidebarSize),
             duration: animate ? 500 : 0
         });
     }
@@ -257,14 +291,16 @@ class Map extends Component<Props, State> {
             'filter': ['==', 'BoroCD', '']
         });
 
-        this.zoomToCity();
+        this.zoomToCity(this.props.width, this.props.sidebarSize);
+        this.mapLoaded = true;
     }
 }
 
 const mapStateToProps = (state: RootState): StateProps => {
     return {
         selectedLocation: state.selectedLocation!,
-        selectedDistrictId: state.selectedDistrictId!
+        selectedDistrictId: state.selectedDistrictId!,
+        sidebarSize: state.sidebarSize
     };
 };
 
@@ -282,4 +318,4 @@ const mapDispatchToProps = (dispatch: Dispatch<RootAction>): DispatchProps => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Map);
+)(withWidth()<Props>(Map));

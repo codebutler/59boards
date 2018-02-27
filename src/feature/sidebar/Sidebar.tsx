@@ -2,11 +2,15 @@ import autobind from 'autobind-decorator';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { RootAction, clearSelection } from '../../shared/actions/index';
+import { clearSelection, RootAction, sidebarResized } from '../../shared/actions';
 import { RootState } from '../../shared/models/RootState';
 import DistrictInfo from '../district_info/DistrictInfo';
 import Intro from '../intro/Intro';
 import Search from '../search/Search';
+import withStyles from 'material-ui/styles/withStyles';
+import { Theme } from 'material-ui/styles';
+import { WithStyles } from 'material-ui';
+import ReactResizeDetector from 'react-resize-detector';
 
 interface StateProps {
     selectedDistrictId?: number;
@@ -14,18 +18,28 @@ interface StateProps {
 
 interface DispatchProps {
     onClearSelection: () => void;
+    onResize: (width: number, height: number) => void;
 }
 
-type Props = StateProps & DispatchProps;
+type ClassKey = 'sidebar';
 
-class Sidebar extends Component<Props> {
+type Props = StateProps & DispatchProps;
+type PropsWithStyles = Props & WithStyles<ClassKey>;
+
+class Sidebar extends Component<PropsWithStyles> {
 
     render() {
+        const { classes, onResize } = this.props;
         return (
-            <div className="Sidebar">
+            <div className={classes.sidebar}>
                 {this.renderIntro()}
                 {this.renderCbInfo()}
                 {this.renderSearch()}
+                <ReactResizeDetector
+                    handleWidth={true}
+                    handleHeight={true}
+                    onResize={onResize}
+                />
             </div>
         );
     }
@@ -64,11 +78,29 @@ const mapDispatchToProps = (dispatch: Dispatch<RootAction>): DispatchProps => {
     return {
         onClearSelection: () => {
             dispatch(clearSelection());
+        },
+        onResize: (width: number, height: number) => {
+            dispatch(sidebarResized(width, height));
         }
     };
 };
 
+const styles = (theme: Theme) => ({
+    sidebar: {
+        position: 'absolute' as 'absolute',
+        maxHeight: '100%',
+        overflow: 'scroll' as 'scroll',
+        zIndex: 1,
+        width: 392,
+        maxWidth: '100%',
+        padding: 8,
+        [theme.breakpoints.down('xs')]: {
+            width: '100%'
+        }
+    }
+});
+
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Sidebar);
+)(withStyles(styles)<Props>(Sidebar));

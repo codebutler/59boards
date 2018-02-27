@@ -27,17 +27,6 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.Sidebar {
-  position: absolute;
-  max-height: 100%;
-  overflow: scroll;
-  z-index: 1;
-  width: 392px;
-  max-width: 100%;
-  padding: 8px;
+.mapboxgl-popup-content {
+    pointer-events: none !important;
 }

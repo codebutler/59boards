@@ -11,7 +11,7 @@ import './index.css';
 import reducer from './shared/reducers/index';
 import registerServiceWorker from './feature/app/registerServiceWorker';
 
-const LOGGING = true;
+const LOGGING = false;
 const CACHING = false;
 
 const middlewares = [];
