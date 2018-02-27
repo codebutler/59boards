@@ -15,10 +15,11 @@ import React, { Component } from 'react';
 import { connect, Dispatch } from 'react-redux';
 import { fetchEvents } from '../../shared/actions/fetch-events';
 import { RootAction } from '../../shared/actions';
-import DISTRICTS from '../../shared/data/boards.json';
+import DISTRICTS from '../../shared/data/districts-info.json';
 import District from '../../shared/models/District';
 import { RootState } from '../../shared/models/RootState';
 import SwipeableViews from 'react-swipeable-views';
+import districtIdFromRoute from '../../shared/selectors/district-id-from-route';
 
 interface OwnProps {
     onCloseInfoClicked: () => void;
@@ -271,8 +272,9 @@ const styles = (theme: Theme) => (
 );
 
 const mapStateToProps = (state: RootState): StateProps => {
+    const selectedDistrictId = districtIdFromRoute(state)!;
     return {
-        district: DISTRICTS[state.selectedDistrictId!],
+        district: DISTRICTS[selectedDistrictId],
         events: state.events
     };
 };

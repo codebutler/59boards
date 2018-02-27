@@ -11,6 +11,9 @@ import withStyles from 'material-ui/styles/withStyles';
 import { Theme } from 'material-ui/styles';
 import { WithStyles } from 'material-ui';
 import ReactResizeDetector from 'react-resize-detector';
+import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
+import Status from '../status/Status';
+import districtIdFromRoute from '../../shared/selectors/district-id-from-route';
 
 interface StateProps {
     selectedDistrictId?: number;
@@ -24,7 +27,8 @@ interface DispatchProps {
 type ClassKey = 'sidebar';
 
 type Props = StateProps & DispatchProps;
-type PropsWithStyles = Props & WithStyles<ClassKey>;
+type PropsWithRoute = Props & RouteComponentProps<{}>;
+type PropsWithStyles = PropsWithRoute & WithStyles<ClassKey>;
 
 class Sidebar extends Component<PropsWithStyles> {
 
@@ -32,9 +36,20 @@ class Sidebar extends Component<PropsWithStyles> {
         const { classes, onResize } = this.props;
         return (
             <div className={classes.sidebar}>
-                {this.renderIntro()}
-                {this.renderCbInfo()}
-                {this.renderSearch()}
+                <Switch>
+                    <Route exact={true} path="/status" component={Status} />
+                    <Route
+                        children={
+                            (
+                                <>
+                                    {this.renderIntro()}
+                                    {this.renderCbInfo()}
+                                    {this.renderSearch()}
+                                </>
+                            )
+                        }
+                    />
+                </Switch>
                 <ReactResizeDetector
                     handleWidth={true}
                     handleHeight={true}
@@ -70,7 +85,7 @@ class Sidebar extends Component<PropsWithStyles> {
 
 const mapStateToProps = (state: RootState): StateProps => {
     return {
-        selectedDistrictId: state.selectedDistrictId
+        selectedDistrictId: districtIdFromRoute(state)
     };
 };
 
@@ -100,7 +115,11 @@ const styles = (theme: Theme) => ({
     }
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(withStyles(styles)<Props>(Sidebar));
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(
+        withStyles(styles)<PropsWithRoute>(Sidebar)
+    )
+);

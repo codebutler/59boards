@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
 import { applyMiddleware, createStore } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
@@ -10,12 +9,18 @@ import App from './feature/app/App';
 import './index.css';
 import reducer from './shared/reducers/index';
 import registerServiceWorker from './feature/app/registerServiceWorker';
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import createHashHistory from 'history/createHashHistory';
 
 const LOGGING = false;
 const CACHING = false;
 
+const history = createHashHistory();
+
 const middlewares = [];
 middlewares.push(thunk);
+middlewares.push(routerMiddleware(history));
 if (LOGGING) {
     middlewares.push(createLogger({
         diff: true
@@ -23,15 +28,15 @@ if (LOGGING) {
 }
 
 const store = createStore(
-    reducer,
+    reducer, composeWithDevTools(
     applyMiddleware(...middlewares)
-);
+));
 
 ReactDOM.render(
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+        <ConnectedRouter history={history}>
+            <App />
+        </ConnectedRouter>
     </Provider>,
     document.getElementById('root')
 );

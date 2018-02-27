@@ -10,6 +10,8 @@ import ReactResizeDetector from 'react-resize-detector';
 import { connect } from 'react-redux';
 import { componentResized, RootAction } from '../../shared/actions';
 import { Dispatch } from 'redux';
+import { Route, RouteComponentProps, withRouter } from 'react-router';
+import About from '../about/About';
 
 const mapboxClient = new MapboxClient(MAPBOX_TOKEN);
 
@@ -22,14 +24,15 @@ interface DispatchProps {
 }
 
 type Props = DispatchProps;
+type PropsWithRoute = Props & RouteComponentProps<{}>;
 
-class App extends Component<Props> {
+class App extends Component<PropsWithRoute> {
 
     static childContextTypes = {
         mapboxClient: PropTypes.instanceOf(MapboxClient).isRequired
     };
 
-    constructor(props: Props) {
+    constructor(props: PropsWithRoute) {
         super(props);
         this.state = {};
     }
@@ -44,6 +47,7 @@ class App extends Component<Props> {
                 <Reboot/>
                 <Sidebar/>
                 <Map/>
+                <Route exact={true} path="/about" component={About} />
                 <ReactResizeDetector
                     handleWidth={true}
                     handleHeight={true}
@@ -62,7 +66,7 @@ const mapDispatchToProps = (dispatch: Dispatch<RootAction>): DispatchProps => {
     };
 };
 
-export default connect(
+export default withRouter(connect(
     null,
     mapDispatchToProps
-)<Props>(App);
+)<PropsWithRoute>(App));

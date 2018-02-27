@@ -1,9 +1,10 @@
 import Location from './Location';
 import { ComponentSizes } from './ComponentSizes';
+import { RouterState } from 'react-router-redux';
 
 export interface RootState {
     selectedLocation?: Location;
-    selectedDistrictId?: number;
     events?: CalendarEvent[];
     componentSizes: ComponentSizes;
+    routing?: RouterState;
 }

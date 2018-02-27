@@ -1,26 +1,21 @@
 import Location from '../models/Location';
 import { FetchedEventsAction } from './fetch-events';
+import { push } from 'react-router-redux';
+import { Dispatch } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+import booleanPointInPolygon from '@turf/boolean-point-in-polygon';
+import { Feature, FeatureCollection, GeoJsonProperties, Polygon } from 'geojson';
+import DISTRICTS_GEOJSON from '../../shared/data/districts-geo.json';
 
 export enum ActionType {
-    SELECT_DISTRICT = 'SELECT_DISTRICT',
     SELECT_LOCATION = 'SELECT_LOCATION',
-    CLEAR_SELECTION = 'CLEAR_SELECTION',
     FETCHED_EVENTS = 'FETCHED_EVENTS',
-    COMPONENT_RESIZED = 'COMPONENT_RESIZED'
-}
-
-interface SelectDistrictAction {
-    type: ActionType.SELECT_DISTRICT;
-    id: number;
+    COMPONENT_RESIZED = 'COMPONENT_RESIZED',
 }
 
 interface SelectLocationAction {
     type: ActionType.SELECT_LOCATION;
-    location: Location;
-}
-
-interface ClearSelectionAction {
-    type: ActionType.CLEAR_SELECTION;
+    location: Location | null;
 }
 
 interface ComponentResizedAction {
@@ -30,29 +25,37 @@ interface ComponentResizedAction {
 }
 
 export type RootAction =
-    | SelectDistrictAction
     | SelectLocationAction
-    | ClearSelectionAction
     | FetchedEventsAction
     | ComponentResizedAction;
 
-export const selectDistrict = (districtId: number): SelectDistrictAction => {
-    return {
-        type: ActionType.SELECT_DISTRICT,
-        id: districtId
+export const selectDistrict = (districtId: number) => {
+    return push('/districts/' + districtId);
+};
+
+export const selectLocation = (location: Location | null): ThunkAction<void, SelectLocationAction, null> => {
+    return (dispatch: Dispatch<SelectLocationAction>) => {
+        dispatch({
+            type: ActionType.SELECT_LOCATION,
+            location: location
+        });
+        if (location !== null) {
+            const featureCollection = DISTRICTS_GEOJSON as FeatureCollection<Polygon, GeoJsonProperties>;
+            const districtFeature = featureCollection.features
+                .find((feature: Feature<Polygon, GeoJsonProperties>) => {
+                    return booleanPointInPolygon(location.center, feature.geometry!);
+                });
+            const districtId = (districtFeature && districtFeature.properties)
+                ? districtFeature.properties.BoroCD : null;
+            dispatch(selectDistrict(districtId));
+        }
     };
 };
 
-export const selectLocation = (location: Location): SelectLocationAction => {
-    return {
-        type: ActionType.SELECT_LOCATION,
-        location: location
-    };
-};
-
-export const clearSelection = (): ClearSelectionAction => {
-    return {
-        type: ActionType.CLEAR_SELECTION
+export const clearSelection = () => {
+    return (dispatch: Dispatch<RootAction>) => {
+        dispatch(push('/'));
+        dispatch(selectLocation(null));
     };
 };
 

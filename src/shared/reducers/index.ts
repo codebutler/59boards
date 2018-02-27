@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 import events from './fetched-events';
-import selectedDistrictId from './selected-district';
 import selectedLocation from './selected-location';
 import componentSizes from './component-sizes';
+import { routerReducer } from 'react-router-redux';
 
 const allReducers = combineReducers({
     events,
-    selectedDistrictId,
     selectedLocation,
-    componentSizes
+    componentSizes,
+    routing: routerReducer
 });
 
 export default allReducers;

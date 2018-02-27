@@ -1,4 +1,4 @@
-import { ActionType, RootAction } from '../actions/index';
+import { ActionType, RootAction } from '../actions';
 
 export default (state = null, action: RootAction) => {
     switch (action.type) {
