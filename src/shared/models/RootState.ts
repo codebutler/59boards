@@ -5,6 +5,5 @@ export interface RootState {
     selectedLocation?: Location;
     selectedDistrictId?: number;
     events?: CalendarEvent[];
-    sidebarSize?: Size;
     componentSizes: ComponentSizes;
 }

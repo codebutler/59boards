@@ -12,7 +12,6 @@ import Location from '../../shared/models/Location';
 import { RootState } from '../../shared/models/RootState';
 import withWidth, { WithWidthProps } from 'material-ui/utils/withWidth';
 import { Breakpoint } from 'material-ui/styles/createBreakpoints';
-import { ComponentSizes } from '../../shared/models/ComponentSizes';
 import { bind, debounce } from 'lodash-decorators';
 import EventData = mapboxgl.EventData;
 import LngLatLike = mapboxgl.LngLatLike;
@@ -26,8 +25,8 @@ mapboxgl.accessToken = MAPBOX_TOKEN;
 interface StateProps {
     selectedLocation: Location;
     selectedDistrictId: number;
+    appSize: Size;
     sidebarSize?: Size;
-    componentSizes: ComponentSizes;
 }
 
 interface DispatchProps {
@@ -185,8 +184,8 @@ class Map extends Component<PropsWithStyles, State> {
         const oldSelectedDistrictId = this.props.selectedDistrictId;
         const selectedDistrictId = newProps.selectedDistrictId;
 
-        const oldAppHeight = this.props.componentSizes.app.height;
-        const appHeight = newProps.componentSizes.app.height;
+        const oldAppHeight = this.props.appSize.height;
+        const appHeight = newProps.appSize.height;
 
         if (selectedDistrictId !== oldSelectedDistrictId ||
             sidebarSize !== oldSidebarSize ||
@@ -222,6 +221,7 @@ class Map extends Component<PropsWithStyles, State> {
     @bind()
     @debounce(500)
     private fitMapBounds(bounds: LngLatBoundsLike, props: PropsWithStyles) {
+        console.log('fit bounds!!', props.width, props.sidebarSize, Map.getMapPadding(props.width, props.sidebarSize));
         this.map.fitBounds(bounds, {
             padding: Map.getMapPadding(props.width, props.sidebarSize),
             duration: 500
@@ -306,8 +306,8 @@ const mapStateToProps = (state: RootState): StateProps => {
     return {
         selectedLocation: state.selectedLocation!,
         selectedDistrictId: state.selectedDistrictId!,
-        sidebarSize: state.sidebarSize,
-        componentSizes: state.componentSizes
+        appSize: state.componentSizes.app,
+        sidebarSize: state.componentSizes.sidebar
     };
 };
 

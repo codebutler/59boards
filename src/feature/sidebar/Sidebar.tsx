@@ -2,7 +2,7 @@ import autobind from 'autobind-decorator';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { clearSelection, RootAction, sidebarResized } from '../../shared/actions';
+import { clearSelection, componentResized, RootAction } from '../../shared/actions';
 import { RootState } from '../../shared/models/RootState';
 import DistrictInfo from '../district_info/DistrictInfo';
 import Intro from '../intro/Intro';
@@ -80,7 +80,7 @@ const mapDispatchToProps = (dispatch: Dispatch<RootAction>): DispatchProps => {
             dispatch(clearSelection());
         },
         onResize: (width: number, height: number) => {
-            dispatch(sidebarResized(width, height));
+            dispatch(componentResized('sidebar', { width, height }));
         }
     };
 };
