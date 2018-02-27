@@ -6,7 +6,8 @@ export enum ActionType {
     SELECT_LOCATION = 'SELECT_LOCATION',
     CLEAR_SELECTION = 'CLEAR_SELECTION',
     FETCHED_EVENTS = 'FETCHED_EVENTS',
-    SIDEBAR_RESIZED = 'SIDEBAR_RESIZED'
+    SIDEBAR_RESIZED = 'SIDEBAR_RESIZED',
+    COMPONENT_RESIZED = 'COMPONENT_RESIZED'
 }
 
 interface SelectDistrictAction {
@@ -29,12 +30,19 @@ interface SidebarResizedAction {
     height: number;
 }
 
+interface ComponentResizedAction {
+    type: ActionType.COMPONENT_RESIZED;
+    id: string;
+    size: Size;
+}
+
 export type RootAction =
     | SelectDistrictAction
     | SelectLocationAction
     | ClearSelectionAction
     | FetchedEventsAction
-    | SidebarResizedAction;
+    | SidebarResizedAction
+    | ComponentResizedAction;
 
 export const selectDistrict = (districtId: number): SelectDistrictAction => {
     return {
@@ -61,5 +69,13 @@ export const sidebarResized = (width: number, height: number): SidebarResizedAct
         type: ActionType.SIDEBAR_RESIZED,
         width: width,
         height: height
+    };
+};
+
+export const componentResized = (id: string, size: Size): ComponentResizedAction => {
+    return {
+        type: ActionType.COMPONENT_RESIZED,
+        id: id,
+        size: size
     };
 };

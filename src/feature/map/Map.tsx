@@ -6,17 +6,20 @@ import mapboxgl from 'mapbox-gl';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { clearSelection, RootAction, selectDistrict } from '../../shared/actions/index';
+import { clearSelection, RootAction, selectDistrict } from '../../shared/actions';
 import { DUMMY_BORO_IDS, MAPBOX_TOKEN, NYC_BOUNDING_BOX } from '../../shared/constants';
 import Location from '../../shared/models/Location';
 import { RootState } from '../../shared/models/RootState';
+import withWidth, { WithWidthProps } from 'material-ui/utils/withWidth';
+import { Breakpoint } from 'material-ui/styles/createBreakpoints';
+import { ComponentSizes } from '../../shared/models/ComponentSizes';
+import { bind, debounce } from 'lodash-decorators';
 import EventData = mapboxgl.EventData;
 import LngLatLike = mapboxgl.LngLatLike;
 import MapMouseEvent = mapboxgl.MapMouseEvent;
 import Marker = mapboxgl.Marker;
 import Point = mapboxgl.Point;
-import withWidth, { WithWidthProps } from 'material-ui/utils/withWidth';
-import { Breakpoint } from 'material-ui/styles/createBreakpoints';
+import LngLatBoundsLike = mapboxgl.LngLatBoundsLike;
 
 mapboxgl.accessToken = MAPBOX_TOKEN;
 
@@ -24,6 +27,7 @@ interface StateProps {
     selectedLocation: Location;
     selectedDistrictId: number;
     sidebarSize?: Size;
+    componentSizes: ComponentSizes;
 }
 
 interface DispatchProps {
@@ -181,9 +185,13 @@ class Map extends Component<PropsWithStyles, State> {
         const oldSelectedDistrictId = this.props.selectedDistrictId;
         const selectedDistrictId = newProps.selectedDistrictId;
 
+        const oldAppHeight = this.props.componentSizes.app.height;
+        const appHeight = newProps.componentSizes.app.height;
+
         if (selectedDistrictId !== oldSelectedDistrictId ||
             sidebarSize !== oldSidebarSize ||
-            width !== oldWidth) {
+            width !== oldWidth ||
+            oldAppHeight !== appHeight) {
 
             if (selectedDistrictId) {
                 const districtFeatures = this.map.querySourceFeatures('districts')
@@ -198,12 +206,9 @@ class Map extends Component<PropsWithStyles, State> {
                     const [minX, minY, maxX, maxY] = bbox(feature);
                     bounds.extend(new mapboxgl.LngLatBounds([minX, minY], [maxX, maxY]));
                 });
-                this.map.fitBounds(bounds, {
-                    padding: Map.getMapPadding(width, sidebarSize),
-                    duration: 500
-                });
+                this.fitMapBounds(bounds, newProps);
             } else {
-                this.zoomToCity(width, sidebarSize);
+                this.fitMapBounds(NYC_BOUNDING_BOX, newProps);
             }
         }
     }
@@ -214,11 +219,12 @@ class Map extends Component<PropsWithStyles, State> {
         );
     }
 
-    @autobind
-    private zoomToCity(width: Breakpoint, sidebarSize?: Size, animate: boolean = true) {
-        this.map.fitBounds(NYC_BOUNDING_BOX, {
-            padding: Map.getMapPadding(width, sidebarSize),
-            duration: animate ? 500 : 0
+    @bind()
+    @debounce(500)
+    private fitMapBounds(bounds: LngLatBoundsLike, props: PropsWithStyles) {
+        this.map.fitBounds(bounds, {
+            padding: Map.getMapPadding(props.width, props.sidebarSize),
+            duration: 500
         });
     }
 
@@ -291,7 +297,7 @@ class Map extends Component<PropsWithStyles, State> {
             'filter': ['==', 'BoroCD', '']
         });
 
-        this.zoomToCity(this.props.width, this.props.sidebarSize);
+        this.fitMapBounds(NYC_BOUNDING_BOX, this.props);
         this.mapLoaded = true;
     }
 }
@@ -300,7 +306,8 @@ const mapStateToProps = (state: RootState): StateProps => {
     return {
         selectedLocation: state.selectedLocation!,
         selectedDistrictId: state.selectedDistrictId!,
-        sidebarSize: state.sidebarSize
+        sidebarSize: state.sidebarSize,
+        componentSizes: state.componentSizes
     };
 };
 

@@ -34,7 +34,8 @@
     "redux-thunk": "^2.2.0",
     "typeface-roboto": "0.0.54",
     "typescript": "^2.7.2",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^2.0.3",
+    "lodash-decorators": "latest"
   },
   "scripts": {
     "start": "react-app-rewired start --scripts-version react-scripts-ts",
