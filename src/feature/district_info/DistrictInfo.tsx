@@ -18,6 +18,7 @@ import { RootAction } from '../../shared/actions';
 import DISTRICTS from '../../shared/data/boards.json';
 import District from '../../shared/models/District';
 import { RootState } from '../../shared/models/RootState';
+import SwipeableViews from 'react-swipeable-views';
 
 interface OwnProps {
     onCloseInfoClicked: () => void;
@@ -87,8 +88,14 @@ class DistrictInfo extends Component<PropsWithStyles, State> {
                             <Tab label="Contact" />
                             <Tab label="Calendar" />
                         </Tabs>
-                        {this.state.selectedTab === 0 && this.renderContactTab()}
-                        {this.state.selectedTab === 1 && this.renderCalendarTab()}
+                        <SwipeableViews
+                            animateHeight={true}
+                            index={this.state.selectedTab}
+                            onChangeIndex={(index) => { this.setState({selectedTab: index}); }}
+                        >
+                            {this.renderContactTab()}
+                            {this.renderCalendarTab()}
+                        </SwipeableViews>
                     </CardContent>
                 </Card>
             );
