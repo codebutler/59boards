@@ -13,9 +13,8 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 import moment from 'moment';
 import React, { Component } from 'react';
 import { connect, Dispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { fetchEvents } from '../../shared/actions/fetch-events';
-import { RootAction } from '../../shared/actions/index';
+import { RootAction } from '../../shared/actions';
 import DISTRICTS from '../../shared/data/boards.json';
 import District from '../../shared/models/District';
 import { RootState } from '../../shared/models/RootState';
@@ -37,8 +36,8 @@ type ClassKey =
     | 'card'
     | 'cardHeader'
     | 'cardContent'
-    | 'list'
-    | 'listLink'
+    | 'contactList'
+    | 'contactListItemText'
     | 'title'
     | 'eventAddress'
     | 'eventDate'
@@ -112,55 +111,72 @@ class DistrictInfo extends Component<PropsWithStyles, State> {
     private renderContactTab() {
         const { classes, district } = this.props;
         return (
-            <List dense={true} className={classes.list}>
+            <List
+                dense={true}
+                classes={{root: classes.contactList}}
+                component="div"
+            >
                 {district.address && (
-                    <ListItem button={true} component="li">
-                        <Link
-                            className={classes.listLink}
-                            to={`https://maps.google.com?q=${encodeURIComponent(district.address)}`}
-                            target="_blank"
-                        >
-                            <ListItemIcon>
-                                <PlaceIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary={district.address}/>
-                        </Link>
+                    <ListItem
+                        button={true}
+                        component="a"
+                        href={`https://maps.google.com?q=${encodeURIComponent(district.address)}`}
+                        target={'_blank'}
+                    >
+                        <ListItemIcon>
+                            <PlaceIcon/>
+                        </ListItemIcon>
+                        <ListItemText
+                            classes={{root: classes.contactListItemText}}
+                            primary={district.address}
+                        />
                     </ListItem>
                 )}
                 { district.website && (
-                    <ListItem button={true} component="li">
-                        <Link
-                            className={classes.listLink}
-                            to={district.website}
-                            target="_blank"
-                        >
-                            <ListItemIcon>
-                                <LinkIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary={district.website}/>
-                        </Link>
+                    <ListItem
+                        button={true}
+                        component="a"
+                        href={district.website}
+                        target="_blank"
+                    >
+                        <ListItemIcon>
+                            <LinkIcon/>
+                        </ListItemIcon>
+                        <ListItemText
+                            classes={{root: classes.contactListItemText}}
+                            primary={district.website}
+                        />
                     </ListItem>
                 )}
                 { district.email && (
-                    <ListItem button={true} component="li">
-                        <Link
-                            className={classes.listLink}
-                            to={`mailto:${encodeURIComponent(district.email)}`}
-                            target="_blank"
-                        >
-                            <ListItemIcon>
-                                <EmailIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary={district.email}/>
-                        </Link>
+                    <ListItem
+                        button={true}
+                        component="a"
+                        href={`mailto:${encodeURIComponent(district.email)}`}
+                        target="_blank"
+                    >
+                        <ListItemIcon>
+                            <EmailIcon/>
+                        </ListItemIcon>
+                        <ListItemText
+                            classes={{root: classes.contactListItemText}}
+                            primary={district.email}
+                        />
                     </ListItem>
                 )}
                 { district.phone && (
-                    <ListItem button={true}>
+                    <ListItem
+                        button={true}
+                        component="a"
+                        href={`tel:${encodeURIComponent(district.phone)}`}
+                    >
                         <ListItemIcon>
                             <PhoneIcon/>
                         </ListItemIcon>
-                        <ListItemText primary={district.phone}/>
+                        <ListItemText
+                            classes={{root: classes.contactListItemText}}
+                            primary={district.phone}
+                        />
                     </ListItem>
                 )}
             </List>
@@ -223,12 +239,12 @@ const styles = (theme: Theme) => (
                 paddingBottom: theme.spacing.unit
             }
         },
-        list: {
-            overflow: 'hidden' as 'hidden'
+        contactList: {
+            overflow: 'hidden' as 'hidden',
+            whiteSpace: 'nowrap' as 'nonowrap',
         },
-        listLink: {
-            display: 'flex' as 'flex',
-            alignItems: 'center' as 'center'
+        contactListItemText: {
+            maskImage: 'linear-gradient(left, white 80%, rgba(255,255,255,0) 100%)'
         },
         title: {
             marginBottom: 16,

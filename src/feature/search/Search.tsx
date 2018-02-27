@@ -1,4 +1,4 @@
-import { NestedArray } from 'array-flatten';
+import flatten, { NestedArray } from 'array-flatten';
 import autobind from 'autobind-decorator';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
@@ -19,20 +19,21 @@ import PropTypes from 'prop-types';
 import React, { Component, CSSProperties, FormEvent } from 'react';
 import Autosuggest, {
     ChangeEvent,
-    InputProps, RenderSuggestionParams,
-    RenderSuggestionsContainerParams, SuggestionSelectedEventData,
+    InputProps,
+    RenderSuggestionParams,
+    RenderSuggestionsContainerParams,
+    SuggestionSelectedEventData,
     SuggestionsFetchRequestedParams
 } from 'react-autosuggest';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Response } from 'rest';
-import { RootAction, selectLocation } from '../../shared/actions/index';
+import { RootAction, selectLocation } from '../../shared/actions';
 import { AppContext } from '../app/App';
 import { NYC_BOUNDING_BOX, NYC_CENTER } from '../../shared/constants';
 import { RootState } from '../../shared/models/RootState';
 import Location from '../../shared/models/Location';
 import CarmenLocation = mapbox.CarmenLocation;
-import flatten from 'array-flatten';
 
 interface SearchProps {
     selectedLocation: Location;
