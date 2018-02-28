@@ -3,15 +3,15 @@ import Reboot from 'material-ui/Reboot';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import './App.css';
-import Map from '../map/Map';
-import Sidebar from '../sidebar/Sidebar';
-import { MAPBOX_TOKEN } from '../../shared/constants';
+import Map from '../feature/map/Map';
+import Sidebar from '../feature/sidebar/Sidebar';
+import { MAPBOX_TOKEN } from '../shared/constants';
 import ReactResizeDetector from 'react-resize-detector';
 import { connect } from 'react-redux';
-import { componentResized, RootAction } from '../../shared/actions';
+import { componentResized, RootAction } from '../shared/actions';
 import { Dispatch } from 'redux';
 import { Route, RouteComponentProps, withRouter } from 'react-router';
-import About from '../about/About';
+import About from '../feature/about/About';
 
 const mapboxClient = new MapboxClient(MAPBOX_TOKEN);
 

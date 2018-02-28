@@ -3,7 +3,7 @@ import { CardContent, CardHeader } from 'material-ui';
 import IconButton from 'material-ui/IconButton';
 import Card from 'material-ui/Card';
 import CloseIcon from 'material-ui-icons/Close';
-import { RootAction } from '../../shared/actions';
+import { RootAction } from '../../../shared/actions';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';

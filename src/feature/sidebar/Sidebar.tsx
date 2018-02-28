@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { clearSelection, componentResized, RootAction } from '../../shared/actions';
 import { RootState } from '../../shared/models/RootState';
-import DistrictInfo from '../district_info/DistrictInfo';
-import Intro from '../intro/Intro';
-import Search from '../search/Search';
+import DistrictInfo from './district_info/DistrictInfo';
+import Intro from './intro/Intro';
+import Search from './search/Search';
 import withStyles from 'material-ui/styles/withStyles';
 import { Theme } from 'material-ui/styles';
 import { WithStyles } from 'material-ui';
 import ReactResizeDetector from 'react-resize-detector';
 import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
-import Status from '../status/Status';
+import Status from './status/Status';
 import districtIdFromRoute from '../../shared/selectors/district-id-from-route';
 
 interface StateProps {
@@ -43,7 +43,7 @@ class Sidebar extends Component<PropsWithStyles> {
                             (
                                 <>
                                     {this.renderIntro()}
-                                    {this.renderCbInfo()}
+                                    {this.renderDistrictInfo()}
                                     {this.renderSearch()}
                                 </>
                             )
@@ -65,7 +65,7 @@ class Sidebar extends Component<PropsWithStyles> {
         );
     }
 
-    private renderCbInfo() {
+    private renderDistrictInfo() {
         return this.props.selectedDistrictId && (
             <DistrictInfo onCloseInfoClicked={this.onCloseClicked} />
         );

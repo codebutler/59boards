@@ -2,7 +2,7 @@ import { Component, default as React } from 'react';
 import Dialog, { DialogActions, DialogContent, DialogContentText, DialogTitle } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
 import { connect } from 'react-redux';
-import { RootAction } from '../../shared/actions';
+import { RootAction } from '../../shared/actions/index';
 import { Dispatch } from 'redux';
 import { push } from 'react-router-redux';
 import { bind } from 'lodash-decorators/bind';
