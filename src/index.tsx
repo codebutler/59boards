@@ -13,6 +13,9 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createHashHistory from 'history/createHashHistory';
 
+// Pollyfills
+import 'core-js/es7/promise';
+
 const LOGGING = false;
 const CACHING = false;
 

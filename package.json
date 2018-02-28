@@ -11,6 +11,7 @@
     "@types/lodash": "^4.14.104",
     "array-flatten": "^2.1.1",
     "autosuggest-highlight": "^3.1.1",
+    "core-js": "^2.5.3",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
     "lodash": "^4.17.5",

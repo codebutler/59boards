@@ -62,11 +62,14 @@ class Map extends Component<PropsWithStyles, State> {
         const topPadding = (width === 'xs' && sidebarSize)
             ? defaultPadding + sidebarSize.height
             : defaultPadding;
+        const leftPadding = (width !== 'xs' && sidebarSize)
+            ? defaultPadding + sidebarSize.width
+            : defaultPadding;
         return {
             top: topPadding,
             right: defaultPadding,
             bottom: defaultPadding,
-            left: defaultPadding
+            left: leftPadding
         };
     }
 
@@ -91,31 +94,9 @@ class Map extends Component<PropsWithStyles, State> {
             closeOnClick: false
         });
 
+        this.locationMarker = new mapboxgl.Marker(null!!, {});
+
         map.on('load', this.onMapLoad);
-
-        map.on('mouseenter', 'district-fills', () => {
-            map.getCanvas().style.cursor = 'pointer';
-        });
-
-        map.on('mouseleave', 'district-fills', () => {
-            map.getCanvas().style.cursor = '';
-        });
-
-        map.on('mousemove', 'district-fills', (e: MapMouseEvent) => {
-            this.setState({
-                hoveredFeature: e.features[0],
-                hoveredPoint: e.point,
-                hoveredLngLat: e.lngLat
-            });
-        });
-
-        map.on('mouseleave', 'district-fills', () => {
-            this.setState({
-                hoveredFeature: undefined,
-                hoveredPoint: undefined,
-                hoveredLngLat: undefined,
-            });
-        });
 
         map.on('click', 'district-fills', (e: MapMouseEvent) => {
             this.setState({
@@ -128,7 +109,34 @@ class Map extends Component<PropsWithStyles, State> {
             this.props.onDistrictSelected(districtId);
         });
 
-        this.locationMarker = new mapboxgl.Marker(null!!, {});
+        // https://stackoverflow.com/a/46051711
+        const userAgent = window.navigator.userAgent;
+        const isMobileSafari = userAgent.match(/Mobile/i) && userAgent.match(/Safari/i);
+        if (!isMobileSafari) {
+            map.on('mouseenter', 'district-fills', () => {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+
+            map.on('mouseleave', 'district-fills', () => {
+                map.getCanvas().style.cursor = '';
+            });
+
+            map.on('mousemove', 'district-fills', (e: MapMouseEvent) => {
+                this.setState({
+                    hoveredFeature: e.features[0],
+                    hoveredPoint: e.point,
+                    hoveredLngLat: e.lngLat
+                });
+            });
+
+            map.on('mouseleave', 'district-fills', (e: MapMouseEvent) => {
+                this.setState({
+                    hoveredFeature: undefined,
+                    hoveredPoint: undefined,
+                    hoveredLngLat: undefined,
+                });
+            });
+        }
     }
 
     componentWillUpdate(nextProps: PropsWithStyles, nextState: State) {
