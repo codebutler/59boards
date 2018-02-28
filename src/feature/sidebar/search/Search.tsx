@@ -15,7 +15,7 @@ import { Theme, withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import PromisedLocation from 'promised-location';
 import PropTypes from 'prop-types';
-import React, { Component, CSSProperties, FormEvent } from 'react';
+import React, { Component, CSSProperties, FocusEvent, FormEvent } from 'react';
 import Autosuggest, {
     ChangeEvent,
     InputProps,
@@ -27,7 +27,7 @@ import Autosuggest, {
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Response } from 'rest';
-import { RootAction, selectLocation } from '../../../shared/actions/index';
+import { RootAction, selectLocation } from '../../../shared/actions';
 import { AppContext } from '../../../app/App';
 import { NYC_BOUNDING_BOX, NYC_CENTER } from '../../../shared/constants';
 import { RootState } from '../../../shared/models/RootState';
@@ -35,10 +35,19 @@ import Location from '../../../shared/models/Location';
 import { bind } from 'lodash-decorators';
 import CarmenLocation = mapbox.CarmenLocation;
 
-interface SearchProps {
-    selectedLocation: Location;
+interface OwnProps {
+    onSearchFocusChanged: (isFocused: boolean) => void;
+}
+
+interface StateProps {
+    selectedLocation?: Location;
+}
+
+interface DispatchProps {
     onLocationSelected: (location: Location) => void;
 }
+
+type Props = OwnProps & StateProps & DispatchProps;
 
 type ClassKey =
     | 'card'
@@ -53,7 +62,7 @@ type ClassKey =
     | 'myLocationIcon'
     | 'myLocationProgress';
 
-type PropsWithStyles = SearchProps & WithStyles<ClassKey>;
+type PropsWithStyles = Props & WithStyles<ClassKey>;
 
 class Search extends Component<PropsWithStyles> {
 
@@ -88,6 +97,10 @@ class Search extends Component<PropsWithStyles> {
         if (selectedLocation) {
             this.setState({ inputValue: selectedLocation.place_name });
         }
+    }
+
+    componentWillUnmount() {
+        this.props.onSearchFocusChanged(false);
     }
 
     render() {
@@ -136,6 +149,10 @@ class Search extends Component<PropsWithStyles> {
                             <TextField
                                 fullWidth={true}
                                 inputRef={ref}
+                                inputProps={{
+                                    onFocus: this.onFocus,
+                                    onBlur: this.onBlur,
+                                }}
                                 InputProps={{
                                     endAdornment: isWaitingForLocation
                                         ? (
@@ -230,6 +247,16 @@ class Search extends Component<PropsWithStyles> {
             });
     }
 
+    @bind()
+    private onFocus() {
+        this.props.onSearchFocusChanged(true);
+    }
+
+    @bind()
+    private onBlur(event: FocusEvent<HTMLElement>) {
+        setTimeout(() => { this.props.onSearchFocusChanged(false); }, 0);
+    }
+
     private renderSuggestion(suggestion: Location, { query, isHighlighted }: RenderSuggestionParams) {
         const text = suggestion.place_name!;
 
@@ -295,13 +322,13 @@ const styles = (theme: Theme) => ({
     }
 });
 
-const mapStateToProps = (state: RootState) => {
+const mapStateToProps = (state: RootState): StateProps => {
     return {
         selectedLocation: state.selectedLocation
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<RootAction>) => {
+const mapDispatchToProps = (dispatch: Dispatch<RootAction>): DispatchProps => {
     return {
         onLocationSelected: (location: Location) => {
             dispatch(selectLocation(location));
@@ -312,4 +339,4 @@ const mapDispatchToProps = (dispatch: Dispatch<RootAction>) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(withStyles(styles)<SearchProps>(Search));
+)(withStyles(styles)<Props>(Search));

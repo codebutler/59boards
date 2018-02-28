@@ -14,6 +14,7 @@ import ReactResizeDetector from 'react-resize-detector';
 import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
 import Status from './status/Status';
 import districtIdFromRoute from '../../shared/selectors/district-id-from-route';
+import withWidth, { WithWidthProps } from 'material-ui/utils/withWidth';
 
 interface StateProps {
     selectedDistrictId?: number;
@@ -24,13 +25,26 @@ interface DispatchProps {
     onResize: (width: number, height: number) => void;
 }
 
-type ClassKey = 'sidebar';
+interface State {
+    isSearchFocused: boolean;
+}
+
+type ClassKey =
+    | 'sidebar'
+    | 'introContainer';
 
 type Props = StateProps & DispatchProps;
 type PropsWithRoute = Props & RouteComponentProps<{}>;
-type PropsWithStyles = PropsWithRoute & WithStyles<ClassKey>;
+type PropsWithStyles = PropsWithRoute & WithStyles<ClassKey> & WithWidthProps;
 
-class Sidebar extends Component<PropsWithStyles> {
+class Sidebar extends Component<PropsWithStyles, State> {
+
+    introContainer: HTMLElement | null;
+
+    constructor(props: PropsWithStyles) {
+        super(props);
+        this.state = { isSearchFocused: false };
+    }
 
     render() {
         const { classes, onResize } = this.props;
@@ -42,9 +56,17 @@ class Sidebar extends Component<PropsWithStyles> {
                         children={
                             (
                                 <>
-                                    {this.renderIntro()}
-                                    {this.renderDistrictInfo()}
-                                    {this.renderSearch()}
+                                    {!this.props.selectedDistrictId && (
+                                        <div ref={el => this.introContainer = el} className={classes.introContainer}>
+                                            <Intro/>
+                                        </div>
+                                    )}
+                                    {this.props.selectedDistrictId && (
+                                        <DistrictInfo onCloseInfoClicked={this.onCloseClicked}/>
+                                    )}
+                                    {!this.props.selectedDistrictId && (
+                                        <Search onSearchFocusChanged={this.onSearchFocusChanged}/>
+                                    )}
                                 </>
                             )
                         }
@@ -59,27 +81,26 @@ class Sidebar extends Component<PropsWithStyles> {
         );
     }
 
-    private renderIntro() {
-        return !this.props.selectedDistrictId && (
-            <Intro/>
-        );
-    }
-
-    private renderDistrictInfo() {
-        return this.props.selectedDistrictId && (
-            <DistrictInfo onCloseInfoClicked={this.onCloseClicked} />
-        );
-    }
-
-    private renderSearch() {
-        return !this.props.selectedDistrictId && (
-            <Search/>
-        );
+    componentDidUpdate() {
+        const isMobile = (this.props.width) === 'xs';
+        const hideIntroForMobile = this.state.isSearchFocused && isMobile;
+        if (this.introContainer) {
+            if (hideIntroForMobile) {
+                this.introContainer.style.marginTop = `${-this.introContainer.clientHeight}px`;
+            } else {
+                this.introContainer.style.marginTop = '0px';
+            }
+        }
     }
 
     @bind()
     private onCloseClicked() {
         this.props.onClearSelection();
+    }
+
+    @bind()
+    private onSearchFocusChanged(isFocused: boolean) {
+        this.setState({ isSearchFocused: isFocused });
     }
 }
 
@@ -112,6 +133,9 @@ const styles = (theme: Theme) => ({
         [theme.breakpoints.down('xs')]: {
             width: '100%'
         }
+    },
+    introContainer: {
+        transition: 'margin 300ms'
     }
 });
 
@@ -120,6 +144,6 @@ export default withRouter(
         mapStateToProps,
         mapDispatchToProps
     )(
-        withStyles(styles)<PropsWithRoute>(Sidebar)
+        withStyles(styles)<PropsWithRoute>(withWidth()(Sidebar))
     )
 );
