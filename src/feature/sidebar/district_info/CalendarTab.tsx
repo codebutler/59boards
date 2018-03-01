@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { CircularProgress, List, ListItem, ListItemText, ListSubheader, WithStyles } from 'material-ui';
+import { CircularProgress, List, ListItem, ListItemIcon, ListItemText, ListSubheader, WithStyles } from 'material-ui';
 import { Theme } from 'material-ui/styles';
 import withStyles from 'material-ui/styles/withStyles';
 import moment from 'moment';
@@ -8,6 +8,8 @@ import District from '../../../shared/models/District';
 import { Calendar } from '../../../shared/models/Calendar';
 import PropTypes from 'prop-types';
 import { SwipeableViewsChildContext } from '../../../shared/types/swipeable-views';
+import Divider from 'material-ui/Divider';
+import EventIcon from 'material-ui-icons/Event';
 
 interface Props {
     district: District;
@@ -19,12 +21,13 @@ type ClassKey =
     | 'eventAddress'
     | 'eventDate'
     | 'eventsHeader'
-    | 'loadingContainer';
+    | 'emptyListContainer';
 
 type PropsWithStyles = Props & WithStyles<ClassKey>;
 
 interface State {
     events?: CalendarEvent[];
+    gcalSubscribeUrl?: string;
 }
 
 interface Context {
@@ -58,46 +61,61 @@ class CalendarTab extends Component<PropsWithStyles, State> {
 
     render() {
         const { classes } = this.props;
-        const { events } = this.state;
+        const { events, gcalSubscribeUrl } = this.state;
         return (
-            <List classes={{root: classes.calendarList}}>
+            <div>
                 { events && events.length > 0 && (
-                    _(events)
-                        .groupBy((event) => moment(event.date).format('MMMM YYYY'))
-                        .map((monthEvents, month) => (
-                            <React.Fragment key={`fragment-${month}`}>
-                                <ListSubheader key={`header-${month}`}>{month}</ListSubheader>
-                                { monthEvents.map((event: CalendarEvent) => (
-                                    <ListItem key={`item-${event.id}`}>
-                                        <div className={classes.eventDate}>
-                                            <div>{moment(event.date).format('D')}</div>
-                                            <div>{moment(event.date).format('ddd')}</div>
-                                        </div>
-                                        <ListItemText
-                                            classes={{
-                                                root: classes.calendarListItemText,
-                                                secondary: classes.eventAddress
-                                            }}
-                                            primary={event.summary}
-                                            secondary={event.location}
-                                        />
-                                    </ListItem>)
-                                )}
-                            </React.Fragment>)
-                        )
-                        .value()
+                    <List classes={{root: classes.calendarList}}>
+                        <ListItem
+                            button={true}
+                            component="a"
+                            href={gcalSubscribeUrl}
+                            target="_blank"
+                        >
+                            <ListItemIcon>
+                                <EventIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary={'Add to Google Calendar'}/>
+                        </ListItem>
+                        <Divider/>
+                        {_(events)
+                            .groupBy((event) => moment(event.date).format('MMMM YYYY'))
+                            .map((monthEvents, month) => (
+                                <React.Fragment key={`fragment-${month}`}>
+                                    <ListSubheader key={`header-${month}`}>{month}</ListSubheader>
+                                    {monthEvents.map((event: CalendarEvent) => (
+                                        <ListItem key={`item-${event.id}`}>
+                                            <div className={classes.eventDate}>
+                                                <div>{moment(event.date).format('D')}</div>
+                                                <div>{moment(event.date).format('ddd')}</div>
+                                            </div>
+                                            <ListItemText
+                                                classes={{
+                                                    root: classes.calendarListItemText,
+                                                    secondary: classes.eventAddress
+                                                }}
+                                                primary={event.summary}
+                                                secondary={event.location}
+                                            />
+                                        </ListItem>)
+                                    )}
+                                </React.Fragment>)
+                            )
+                            .value()
+                        }
+                    </List>
                 )}
                 { events && events.length === 0 && (
-                    <ListItem>
-                        <ListItemText primary="No Events Found, check website."/>
-                    </ListItem>
+                    <div className={classes.emptyListContainer}>
+                        <p>No Events Found, check website.</p>
+                    </div>
                 )}
                 { !events && (
-                    <div className={classes.loadingContainer}>
+                    <div className={classes.emptyListContainer}>
                         <CircularProgress/>
                     </div>
                 )}
-            </List>
+            </div>
         );
     }
 
@@ -107,7 +125,7 @@ class CalendarTab extends Component<PropsWithStyles, State> {
             const cal = new Calendar(this.props.district.calendar);
             cal.events
                 .then((events) => {
-                    this.setState({events});
+                    this.setState({ events, gcalSubscribeUrl: cal.subscribeUrl });
                 })
                 .catch((err) => {
                     console.log('failed to get events', err);
@@ -138,7 +156,7 @@ const styles = (theme: Theme) => (
         eventDate: {
             alignSelf: 'flex-start' as 'flex-start'
         },
-        loadingContainer: {
+        emptyListContainer: {
             textAlign: 'center' as 'center',
             paddingTop: theme.spacing.unit * 3,
             paddingBottom: theme.spacing.unit,

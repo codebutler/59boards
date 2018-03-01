@@ -103,7 +103,7 @@ const styles = (theme: Theme) => (
             marginBottom: theme.spacing.unit
         },
         cardHeader: {
-            paddingBottom: 0
+            paddingBottom: 0,
         },
         cardContent: {
             padding: 0,

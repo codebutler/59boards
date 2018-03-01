@@ -33,11 +33,10 @@ export class Calendar {
         }
     }
 
-    get subscribeUrl(): string | null {
+    get subscribeUrl(): string | undefined {
         if (this.data.googleCalendarId) {
             return `https://calendar.google.com/calendar/r?cid=${this.data.googleCalendarId}`;
-        } else {
-            return null;
         }
+        return undefined;
     }
 }
