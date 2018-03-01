@@ -785,7 +785,11 @@
     "fax": "718-317-3251",
     "email": "",
     "website": "http://www.cb2si.com/",
-    "borough": "Staten Island"
+    "borough": "Staten Island",
+    "calendar": {
+      "web": "http://www.cb2si.com/calendar/",
+      "googleCalendarId": "communityboard2si@gmail.com"
+    }
   },
   "503": {
     "id": 503,
