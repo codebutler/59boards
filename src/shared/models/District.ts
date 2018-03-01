@@ -1,3 +1,5 @@
+import { CalendarData } from './Calendar';
+
 export default interface District {
     id: number;
     borough: string;
@@ -7,4 +9,6 @@ export default interface District {
     email?: string;
     phone?: string;
     website?: string;
+    calendarWebsite?: string;
+    calendar?: CalendarData;
 }

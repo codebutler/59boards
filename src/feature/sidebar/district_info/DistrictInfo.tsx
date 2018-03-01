@@ -6,9 +6,7 @@ import { Theme } from 'material-ui/styles';
 import withStyles from 'material-ui/styles/withStyles';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import React, { Component } from 'react';
-import { connect, Dispatch } from 'react-redux';
-import { fetchEvents } from '../../../shared/actions/fetch-events';
-import { RootAction } from '../../../shared/actions';
+import { connect } from 'react-redux';
 import DISTRICTS from '../../../shared/data/districts-info.json';
 import District from '../../../shared/models/District';
 import { RootState } from '../../../shared/models/RootState';
@@ -23,11 +21,6 @@ interface OwnProps {
 
 interface StateProps {
     district: District;
-    events?: CalendarEvent[];
-}
-
-interface DispatchProps {
-    fetchCalendarEvents: (districtId: number) => void;
 }
 
 type ClassKey =
@@ -36,7 +29,7 @@ type ClassKey =
     | 'cardContent'
     | 'title';
 
-type Props = OwnProps & StateProps & DispatchProps;
+type Props = OwnProps & StateProps;
 type PropsWithStyles = Props & WithStyles<ClassKey>;
 
 interface State {
@@ -45,17 +38,13 @@ interface State {
 
 class DistrictInfo extends Component<PropsWithStyles, State> {
 
-    state = {
-        selectedTab: 0
-    } as State;
-
     constructor(props: PropsWithStyles) {
         super(props);
-        this.props.fetchCalendarEvents(props.district.id);
+        this.state = { selectedTab: 0 };
     }
 
     render() {
-        const { classes, district, events } = this.props;
+        const { classes, district } = this.props;
         if (district) {
             return (
                 <Card className={classes.card}>
@@ -86,7 +75,7 @@ class DistrictInfo extends Component<PropsWithStyles, State> {
                             onChangeIndex={(index) => { this.setState({selectedTab: index}); }}
                         >
                             <ContactTab district={district}/>
-                            <CalendarTab events={events}/>
+                            <CalendarTab district={district}/>
                         </SwipeableViews>
                     </CardContent>
                 </Card>
@@ -133,20 +122,10 @@ const styles = (theme: Theme) => (
 const mapStateToProps = (state: RootState): StateProps => {
     const selectedDistrictId = districtIdFromRoute(state)!;
     return {
-        district: DISTRICTS[selectedDistrictId],
-        events: state.events
-    };
-};
-
-const mapDispatchToProps = (dispatch: Dispatch<RootAction>): DispatchProps => {
-    return {
-        fetchCalendarEvents: (districtId: number) => {
-            dispatch(fetchEvents(districtId));
-        }
+        district: DISTRICTS[selectedDistrictId]
     };
 };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(withStyles(styles)<Props>(DistrictInfo));

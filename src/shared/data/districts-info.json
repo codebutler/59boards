@@ -19,7 +19,11 @@
     "fax": "212-254-5102",
     "email": "cb2manhattan@nyc.rr.com",
     "website": "http://www.nyc.gov/manhattancb2",
-    "borough": "Manhattan"
+    "borough": "Manhattan",
+    "calendar": {
+      "web": "http://www.nyc.gov/html/mancb2/html/calendar/calendar_js.shtml",
+      "googleCalendarId": "communitybd2m@gmail.com"
+    }
   },
   "103": {
     "id": 103,
@@ -30,7 +34,10 @@
     "fax": "212-533-3659",
     "email": "info@cb3manhattan.org",
     "website": "http://www.nyc.gov/manhattancb3",
-    "borough": "Manhattan"
+    "borough": "Manhattan",
+    "calendar": {
+      "web": "http://www.nyc.gov/html/mancb3/html/calendar/calendar.shtml"
+    }
   },
   "104": {
     "id": 104,
@@ -41,7 +48,10 @@
     "fax": "212-947-9512",
     "email": "info@manhattancb4.org",
     "website": "http://www.nyc.gov/mcb4",
-    "borough": "Manhattan"
+    "borough": "Manhattan",
+    "calendar": {
+      "web": "http://www.nyc.gov/html/mancb4/html/calendar/calendarnew.shtml"
+    }
   },
   "105": {
     "id": 105,
@@ -52,7 +62,10 @@
     "fax": "212-465-1628",
     "email": "office@cb5.org",
     "website": "http://www.cb5.org",
-    "borough": "Manhattan"
+    "borough": "Manhattan",
+    "calendar": {
+      "web": "https://www.cb5.org/cb5/calendar/"
+    }
   },
   "106": {
     "id": 106,
@@ -63,7 +76,11 @@
     "fax": "212-319-3772",
     "email": "mn06@cb.nyc.gov",
     "website": "http://cbsix.org",
-    "borough": "Manhattan"
+    "borough": "Manhattan",
+    "calendar": {
+      "web": "http://cbsix.org/calendar/",
+      "googleCalendarId": "no646j6t8mv9p5n4ep59407ut4@group.calendar.google.com"
+    }
   },
   "107": {
     "id": 107,
@@ -74,7 +91,10 @@
     "fax": "212-595-9317",
     "email": "office@cb7.org",
     "website": "http://www.nyc.gov/mcb7",
-    "borough": "Manhattan"
+    "borough": "Manhattan",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/manhattancb7/meetings/calendar.page"
+    }
   },
   "108": {
     "id": 108,
@@ -85,7 +105,12 @@
     "fax": "212-758-4616",
     "email": "info@cb8m.com",
     "website": "http://www.cb8m.com/",
-    "borough": "Manhattan"
+    "borough": "Manhattan",
+    "calendar": {
+      "web": "https://www.cb8m.com/calendar/",
+      "ical": "https://www.cb8m.com/calendar/?ical=1&tribe_display=month",
+      "googleCalendarId": "924sjr4ftqvsj8hp8i68qcaqq4vpgmll@import.calendar.google.com"
+    }
   },
   "109": {
     "id": 109,
@@ -96,7 +121,11 @@
     "fax": "212-662-7396",
     "email": "nyc-cb9m@juno.com",
     "website": "http://www.cb9m.org",
-    "borough": "Manhattan"
+    "borough": "Manhattan",
+    "calendar": {
+      "web": "http://www.cb9m.org/cal_events",
+      "googleCalendarId": "g4b54u7hbpp1b6p63gp0n97448@group.calendar.google.com"
+    }
   },
   "110": {
     "id": 110,
@@ -107,7 +136,10 @@
     "fax": "212.662.4215",
     "email": "mn10@cb.nyc.gov",
     "website": "http://www.nyc.gov/html/mancb10/html/home/home.shtml",
-    "borough": "Manhattan"
+    "borough": "Manhattan",
+    "calendar": {
+      "web": "http://www.nyc.gov/html/mancb10/html/calendar/calendar.shtml"
+    }
   },
   "111": {
     "id": 111,
@@ -118,7 +150,12 @@
     "fax": "212-369-3571",
     "email": "mn11@cb.nyc.gov",
     "website": "http://www.cb11m.org/",
-    "borough": "Manhattan"
+    "borough": "Manhattan",
+    "calendar": {
+      "web": "http://www.cb11m.org/calender/",
+      "ical": "http://www.cb11m.org/?plugin=all-in-one-event-calendar&controller=ai1ec_exporter_controller&action=export_events&no_html=true",
+      "googleCalendarId": "njq8oou8i8okjkg3bme23o6mlde24000@import.calendar.google.com"
+    }
   },
   "112": {
     "id": 112,
@@ -129,7 +166,10 @@
     "fax": "212-740-8197",
     "email": "",
     "website": "http://www.nyc.gov/html/mancb12/html/home/home.shtml",
-    "borough": "Manhattan"
+    "borough": "Manhattan",
+    "calendar": {
+      "web": "http://www.nyc.gov/html/mancb12/html/meetings/meetings.shtml"
+    }
   },
   "201": {
     "id": 201,
@@ -140,7 +180,10 @@
     "fax": "718-292-0558",
     "email": "brxcb1@optonline.net",
     "website": "http://www.nyc.gov/html/bxcb1/html/home/home.shtml",
-    "borough": "Bronx"
+    "borough": "Bronx",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/bronxcb1/calendar/calendar.page"
+    }
   },
   "202": {
     "id": 202,
@@ -151,7 +194,10 @@
     "fax": "718-991-4974",
     "email": "brxcb2@optonline.net",
     "website": "http://www.bronxmall.com/commboards/cd2.html",
-    "borough": "Bronx"
+    "borough": "Bronx",
+    "calendar": {
+      "web": "http://www.bronxmall.com/commboards/monthcalendar2.html"
+    }
   },
   "203": {
     "id": 203,
@@ -162,7 +208,10 @@
     "fax": "718-378-8188",
     "email": "Brxcomm3@optonline.net",
     "website": "http://www.bronxmall.com/commboards/cd3.html",
-    "borough": "Bronx"
+    "borough": "Bronx",
+    "calendar": {
+      "web": "http://www.bronxmall.com/commboards/monthcalendar3.html"
+    }
   },
   "204": {
     "id": 204,
@@ -173,7 +222,10 @@
     "fax": "718-294-7870",
     "email": "bx04@cb.nyc.gov",
     "website": "http://www.nyc.gov/html/bxcb4/html/home/home.shtml",
-    "borough": "Bronx"
+    "borough": "Bronx",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/bronxcb4/calendar/calendar.page"
+    }
   },
   "205": {
     "id": 205,
@@ -184,7 +236,10 @@
     "fax": "718-220-1767",
     "email": "brxcb5@optonline.net",
     "website": "http://www.nyc.gov/html/bxcb5/html/home/home.shtml",
-    "borough": "Bronx"
+    "borough": "Bronx",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/bronxcb5/calendar/calendar.page"
+    }
   },
   "206": {
     "id": 206,
@@ -195,7 +250,10 @@
     "fax": "718-579-6875",
     "email": "brxcb6@optonline.net",
     "website": "http://www.bronxmall.com/commboards/cd6.html",
-    "borough": "Bronx"
+    "borough": "Bronx",
+    "calendar": {
+      "web": "http://www.bronxmall.com/commboards/monthcalendar6.html"
+    }
   },
   "207": {
     "id": 207,
@@ -206,50 +264,68 @@
     "fax": "718-933-1829",
     "email": "info@BronxCB7.info",
     "website": "http://www.bronxcb7.info/",
-    "borough": "Bronx"
+    "borough": "Bronx",
+    "calendar": {
+      "web": "http://www.bronxcb7.info/calendar/",
+      "ical": "https://ics.teamup.com/feed/ks2bkup94s6whycve3/0.ics",
+      "googleCalendarId": "g94jer9nk18r56tkdclq1hmgot01e6h9@import.calendar.google.com"
+    }
   },
   "208": {
     "id": 208,
     "number": 8,
-    "neighborhoods": "Allerton, Bronx Park East, Eastchester Gardens, Indian Village, Morris Park, Olinville, Parkside, Pelham Gardens, Pelham Parkway, Van Nest, and Westchester Heights",
-    "address": "1741 Colden Avenue,\nBronx, NY 10462",
-    "phone": "718-892-6262",
-    "fax": "",
-    "email": "",
-    "website": "http://www.nyc.gov/bxcb11",
-    "borough": "Bronx"
-  },
-  "209": {
-    "id": 209,
-    "number": 9,
     "neighborhoods": "Fieldston, Kingsbridge, Kingsbridge Heights, Marble Hill, Riverdale, Spuyten Duyvil, Van Cortlandt Village",
     "address": "5676 Riverdale Avenue,\nBronx, NY 10471",
     "phone": "718-884-3959",
     "fax": "718-796-2763",
     "email": "bx08@cb.nyc.gov",
     "website": "http://www.nyc.gov/bronxcb8",
-    "borough": "Bronx"
+    "borough": "Bronx",
+    "calendar": {
+      "web": "http://www.nyc.gov/html/bxcb8/html/calendar/calendar.shtml"
+    }
   },
-  "210": {
-    "id": 210,
-    "number": 10,
+  "209": {
+    "id": 209,
+    "number": 9,
     "neighborhoods": "Parkchester, Unionport, Soundview, Castle Hill, Bruckner, Harding Park, Bronx River and Clason Point",
     "address": "1967 Turnbull Avenue, Rm. 7\nBronx, NY 10473",
     "phone": "718-823-3034",
     "fax": "718-823-6461",
     "email": "bxbrd09@optonline.net",
-    "website": "http://www.nyc.gov/html/bxcb9/html/home/home.shtml",
-    "borough": "Bronx"
+    "website": "http://www1.nyc.gov/site/bronxcb9/index.page",
+    "borough": "Bronx",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/bronxcb9/calendar/calendar.page"
+    }
   },
-  "211": {
-    "id": 211,
-    "number": 11,
+  "210": {
+    "id": 210,
+    "number": 10,
     "neighborhoods": "Co-op City, City Island, Spencer Estates, Throggs Neck, Country Club, Zerega, Westchester Square, Pelham Bay, Eastchester Bay, Schuylerville, Edgewater, Locust Point, and Silver Beach",
     "address": "3165 East Tremont Avenue,\nBronx, NY 10461",
     "phone": "718-892-1161",
     "fax": "718-863-6860",
     "email": "bx10@cb.nyc.gov",
-    "borough": "Bronx"
+    "website": "http://www.nyc.gov/html/bxcb10/html/home/home.shtml",
+    "borough": "Bronx",
+    "calendar": {
+      "website": "http://www.nyc.gov/html/bxcb10/html/calendar/calendar.shtml"
+    }
+  },
+  "211": {
+    "id": 211,
+    "number": 11,
+    "neighborhoods": "Allerton, Bronx Park East, Eastchester Gardens, Indian Village, Morris Park, Olinville, Parkside, Pelham Gardens, Pelham Parkway, Van Nest, and Westchester Heights",
+    "address": "1741 Colden Avenue,\nBronx, NY 10462",
+    "phone": "718-892-6262",
+    "fax": "",
+    "email": "",
+    "borough": "Bronx",
+    "website": "http://www.nyc.gov/bxcb11",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/bronxcb11/meetings/calendar.page"
+    }
   },
   "212": {
     "id": 212,
@@ -260,7 +336,10 @@
     "fax": "718-231-0635",
     "email": "gtorres@cb.nyc.gov",
     "website": "http://www.nyc.gov/bronxcb12",
-    "borough": "Bronx"
+    "borough": "Bronx",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/bronxcb12/calendar/calendar.page"
+    }
   },
   "301": {
     "id": 301,
@@ -271,7 +350,10 @@
     "fax": "718-389-0098",
     "email": "bk01@cb.nyc.gov",
     "website": "http://www.nyc.gov/brooklyncb1",
-    "borough": "Brooklyn"
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www.nyc.gov/html/bkncb1/html/calendar/calendar.shtml"
+    }
   },
   "302": {
     "id": 302,
@@ -282,40 +364,53 @@
     "fax": "718-852-1461",
     "email": "cb2k@nyc.rr.com",
     "website": "http://www.nyc.gov/html/bkncb2/html/home/home.shtml",
-    "borough": "Brooklyn"
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www.nyc.gov/html/bkncb2/html/calendar/calendar.shtml"
+    }
   },
   "303": {
     "id": 303,
     "number": 3,
     "neighborhoods": "Bedford-Stuyvesant, Stuyvesant Heights, and Ocean Hill",
-    "address": "1360",
+    "address": "1360 Fulton Street, Brooklyn, NY 11216",
     "phone": "718-622-6601",
     "fax": "718-857-5774",
     "email": "bk03@cb.nyc.gov",
     "website": "http://cb3brooklyn.org",
-    "borough": "Brooklyn"
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/brooklyncb3/meetings/calendar.page"
+    }
   },
   "304": {
     "id": 304,
     "number": 4,
-    "neighborhoods": "East New York, Cypress Hills, Highland Park, New Lots, City Line, Starrett City, and Ridgewood",
-    "address": "127",
-    "phone": "718-498-5711",
-    "fax": "718-345-0501",
-    "email": "",
-    "website": "",
-    "borough": "Brooklyn"
-  },
-  "305": {
-    "id": 305,
-    "number": 5,
     "neighborhoods": "Bushwick",
     "address": "1420 Bushwick Avenue, Suite 370\nBrooklyn, NY 11207-1422",
     "phone": "718-628-8400",
     "fax": "718-628-8619",
     "email": "bk04@cb.nyc.gov",
     "website": "http://www.nyc.gov/brooklyncb4",
-    "borough": "Brooklyn"
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/brooklyncb4/calendar/calendar.page"
+    }
+  },
+  "305": {
+    "id": 305,
+    "number": 5,
+    "neighborhoods": "East New York, Cypress Hills, Highland Park, New Lots, City Line, Starrett City, and Ridgewood",
+    "address": "127",
+    "phone": "718-498-5711",
+    "fax": "718-345-0501",
+    "email": "",
+    "website": "http://www.brooklyncb5.org",
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www.brooklyncb5.org/calendar/",
+      "googleCalendarId": "bkcb5cc@gmail.com"
+    }
   },
   "306": {
     "id": 306,
@@ -326,7 +421,10 @@
     "fax": "718-624-8410",
     "email": "info@brooklyncb6.org",
     "website": "http://www.brooklyncb6.org/",
-    "borough": "Brooklyn"
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/brooklyncb6/calendar/calendar.page"
+    }
   },
   "307": {
     "id": 307,
@@ -337,7 +435,10 @@
     "fax": "718-436-1142",
     "email": "bk07@cb.nyc.gov",
     "website": "http://www.brooklyncb7.org/",
-    "borough": "Brooklyn"
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/brooklyncb7/calendar/calendar.page"
+    }
   },
   "308": {
     "id": 308,
@@ -353,17 +454,6 @@
   "309": {
     "id": 309,
     "number": 9,
-    "neighborhoods": "Coney Island, Brighton Beach, Bensonhurst, Gravesend, and Seagate",
-    "address": "1201 Surf Avenue, 3rd",
-    "phone": "718-266-3001",
-    "fax": "",
-    "email": "",
-    "website": "http://www.nyc.gov/html/bkncb13/html/home/home.shtml",
-    "borough": "Brooklyn"
-  },
-  "310": {
-    "id": 310,
-    "number": 10,
     "neighborhoods": "Crown Heights, Prospect Lefferts Gardens, and Wingate",
     "address": "890 Nostrand Avenue,\nBrooklyn, NY 11225",
     "phone": "718-778-9279",
@@ -372,64 +462,65 @@
     "website": "http://www.communitybrd9bklyn.org/",
     "borough": "Brooklyn"
   },
-  "311": {
-    "id": 311,
-    "number": 11,
+  "310": {
+    "id": 310,
+    "number": 10,
     "neighborhoods": "Bay Ridge, Dyker Heights, and Fort Hamilton",
     "address": "8119 5th Avenue\nBrooklyn, New York 11209",
     "phone": "718-745-6827",
     "fax": "718-836-2447",
     "email": "communitybd10@nyc.rr.com",
     "website": "http://www.bkcb10.org/",
-    "borough": "Brooklyn"
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/brooklyncb10/calendar/meeting-calendar.page"
+    }
   },
-  "312": {
-    "id": 312,
-    "number": 12,
+  "311": {
+    "id": 311,
+    "number": 11,
     "neighborhoods": "Bath Beach, Gravesend, Mapleton, and Bensonhurst",
     "address": "2214 Bath Avenue,\nBrooklyn, NY 11214",
     "phone": "718-266-8800",
     "fax": "718-266-8821",
     "email": "info@brooklyncb11.org",
     "website": "http://www.brooklyncb11.org/",
-    "borough": "Brooklyn"
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www.brooklyncb11.org/calendar/"
+    }
   },
-  "313": {
-    "id": 313,
-    "number": 13,
-    "neighborhoods": "East Flatbush, Remsen Village, Farragut, Rugby, Erasmus and Ditmas Village",
-    "address": "4112",
-    "phone": "718-467-3536",
-    "fax": "718-467-4113",
-    "email": "",
-    "website": "",
-    "borough": "Brooklyn"
-  },
-  "314": {
-    "id": 314,
-    "number": 14,
+  "312": {
+    "id": 312,
+    "number": 12,
     "neighborhoods": "Boro Park, Kensington, Ocean Parkway, and Midwood",
     "address": "5910 13th Avenue,\nBrooklyn, NY 11219",
     "phone": "718-851-0800",
     "fax": "718-851-4140",
     "email": "BKCB12@gmail.com",
     "website": "http://www.brooklyncb12.org",
-    "borough": "Brooklyn"
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://cb12.lifeofmh.com/meetings/"
+    }
   },
-  "315": {
-    "id": 315,
-    "number": 15,
-    "neighborhoods": "Canarsie, Bergen Beach, Mill Basin, Flatlands, Marine Park, Georgetown, and Mill Island",
-    "address": "1097 Bergen Avenue\nBrooklyn, NY 11234-4841",
-    "phone": "718-241-0422",
-    "fax": "718-531-3199",
-    "email": "",
-    "website": "",
-    "borough": "Brooklyn"
+  "313": {
+    "id": 313,
+    "number": 13,
+    "neighborhoods": "Coney Island, Brighton Beach, Bensonhurst, Gravesend, and Seagate",
+    "address": "1201 Surf Avenue, 3rd",
+    "phone": "718-266-3001",
+    "fax": "718-266-3920",
+    "email": "edmark@cb.nyc.gov",
+    "website": "http://www1.nyc.gov/site/brooklyncb13/",
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/brooklyncb13/calendar/calendar.page"
+    }
   },
-  "316": {
-    "id": 316,
-    "number": 16,
+  "314": {
+    "id": 314,
+    "number": 14,
     "neighborhoods": "Flatbush, Midwood, Kensington, and Ocean Parkway",
     "address": "810 East 16th Street,\nBrooklyn, NY 11230-3010",
     "phone": "718-859-6357",
@@ -438,26 +529,59 @@
     "website": "http://www.cb14brooklyn.com",
     "borough": "Brooklyn"
   },
-  "317": {
-    "id": 317,
-    "number": 17,
+  "315": {
+    "id": 315,
+    "number": 15,
     "neighborhoods": "Sheepshead Bay, Manhattan Beach, Kings Bay, Gerritsen Beach, Kings Highway, East Gravesend, Madison, Homecrest, and Plum Beach",
     "address": "Kingsboro Community College,\n2001 Oriental Boulevard, C Cluster,\nRoom C124\nBrooklyn, NY 11235",
     "phone": "718-332-3008",
     "fax": "718-648-7232",
     "email": "bklcb15@verizon.net",
     "website": "http://www.nyc.gov/brooklyncb15",
-    "borough": "Brooklyn"
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/brooklyncb15/calendar/calendar.page"
+    }
   },
-  "318": {
-    "id": 318,
-    "number": 18,
+  "316": {
+    "id": 316,
+    "number": 16,
     "neighborhoods": "Brownsville and Ocean Hill",
     "address": "444 Thomas Boyland Street, Rm. 103\nBrooklyn, NY 11212",
     "phone": "718-385-0323",
     "fax": "718-342-6714",
     "email": "bk16@cb.nyc.gov",
     "website": "http://www.brooklyncb16.org/",
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/brooklyncb16/about/calendar.page"
+    }
+  },
+  "317": {
+    "id": 317,
+    "number": 17,
+    "neighborhoods": "East Flatbush, Remsen Village, Farragut, Rugby, Erasmus and Ditmas Village",
+    "address": "4112 Farragut Road\nBrooklyn, New York 11210",
+    "phone": "718-434-3072",
+    "fax": "718-434-3801",
+    "email": "",
+    "website": "http://cb17brooklyn.org/",
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://cb17brooklyn.org/events/",
+      "ical": "http://cb17brooklyn.org/events/?ical=1&tribe_display=month",
+      "googleCalendarId": "9a4c5488jttj38i3o7njtmt627jogppu@import.calendar.google.com"
+    }
+  },
+  "318": {
+    "id": 318,
+    "number": 18,
+    "neighborhoods": "Canarsie, Bergen Beach, Mill Basin, Flatlands, Marine Park, Georgetown, and Mill Island",
+    "address": "1097 Bergen Avenue\nBrooklyn, NY 11234-4841",
+    "phone": "718-241-0422",
+    "fax": "718-531-3199",
+    "email": "bkbrd18@optonline.net",
+    "website": "",
     "borough": "Brooklyn"
   },
   "401": {
@@ -469,7 +593,10 @@
     "fax": "718-626-1072",
     "email": "qn01@cb.nyc.gov",
     "website": "http://www.nyc.gov/html/qnscb1/html/home/home.shtml",
-    "borough": "Queens"
+    "borough": "Queens",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/queenscb1/calendar/calendar.page"
+    }
   },
   "402": {
     "id": 402,
@@ -480,7 +607,10 @@
     "fax": "718-533-8777",
     "email": "qn02@cb.nyc.gov",
     "website": "http://www.nyc.gov/html/qnscb2/html/home/home.shtml",
-    "borough": "Queens"
+    "borough": "Queens",
+    "calendar": {
+      "web": "http://www.nyc.gov/html/qnscb2/html/calendar/calendar.shtml"
+    }
   },
   "403": {
     "id": 403,
@@ -491,7 +621,10 @@
     "fax": "718-458-3316",
     "email": "communityboard3@nyc.rr.com",
     "website": "http://www.cb3qn.nyc.gov/",
-    "borough": "Queens"
+    "borough": "Queens",
+    "calendar": {
+      "web": "http://www.cb3qn.nyc.gov/?p=1623"
+    }
   },
   "404": {
     "id": 404,
@@ -507,33 +640,37 @@
   "405": {
     "id": 405,
     "number": 5,
-    "neighborhoods": "Flushing, Bay Terrace, College Point, Whitestone, Malba, Beechhurst, Queensboro Hill, and Willets Point",
-    "address": "133-32 41st Road - Suite 3B",
-    "phone": "718-359-2800",
-    "fax": "718-463-3891",
-    "email": "",
-    "website": "",
-    "borough": "Queens"
-  },
-  "406": {
-    "id": 406,
-    "number": 6,
     "neighborhoods": "Ridgewood, Glendale, Middle Village, Maspeth, and Liberty Park",
     "address": "61-23 Myrtle Avenue\nGlendale, NY 11385",
     "phone": "718.366.1834",
     "fax": "718.417.5799",
-    "email": "",
-    "borough": "Queens"
+    "email": "qnscb5@nyc.rr.com",
+    "website": "http://www1.nyc.gov/site/queenscb5/index.page",
+    "borough": "Queens",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/queenscb5/calendar/calendar.page"
+    }
   },
-  "407": {
-    "id": 407,
-    "number": 7,
+  "406": {
+    "id": 406,
+    "number": 6,
     "neighborhoods": "Forest Hills and Rego Park",
     "address": "104-01 Metropolitan Avenue",
     "phone": "718-263-9250",
     "fax": "718-263-2211",
     "email": "cb6q@nyc.rr.com",
     "website": "http://queenscb6.org/",
+    "borough": "Queens"
+  },
+  "407": {
+    "id": 407,
+    "number": 7,
+    "neighborhoods": "Flushing, Bay Terrace, College Point, Whitestone, Malba, Beechhurst, Queensboro Hill, and Willets Point",
+    "address": "133-32 41st Road - Suite 3B",
+    "phone": "718-359-2800",
+    "fax": "718-463-3891",
+    "email": "",
+    "website": "",
     "borough": "Queens"
   },
   "408": {
@@ -545,7 +682,10 @@
     "fax": "718-264-7910",
     "email": "qn08@cb.nyc.gov",
     "website": "http://www.nyc.gov/html/qnscb8",
-    "borough": "Queens"
+    "borough": "Queens",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/queenscb8/calendar/calendar.page"
+    }
   },
   "409": {
     "id": 409,
@@ -556,7 +696,10 @@
     "fax": "718-286-2685",
     "email": "communitybd9@nyc.rr.com",
     "website": "http://www.nyc.gov/queenscb9",
-    "borough": "Queens"
+    "borough": "Queens",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/queenscb9/calendar/calendar.page"
+    }
   },
   "410": {
     "id": 410,
@@ -589,7 +732,10 @@
     "fax": "718-739-6997",
     "email": "qn12@cb.nyc.gov",
     "website": "http://www.nyc.gov/qcb12",
-    "borough": "Queens"
+    "borough": "Queens",
+    "calendar": {
+      "web": "http://www.nyc.gov/html/qnscb12/html/calendar/cb12-calendar.shtml"
+    }
   },
   "413": {
     "id": 413,
@@ -600,7 +746,10 @@
     "fax": "718-264-2739",
     "email": "larry.cbthirteen@verizon.net",
     "website": "http://www.nyc.gov/html/qnscb13/html/home/home.shtml",
-    "borough": "Queens"
+    "borough": "Queens",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/queenscb13/calendar/calendar.page"
+    }
   },
   "414": {
     "id": 414,
@@ -611,7 +760,10 @@
     "fax": "718-868-2657",
     "email": "cbrock14@nyc.rr.com",
     "website": "http://www.queenscb14.org",
-    "borough": "Queens"
+    "borough": "Queens",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/queenscb14/calendar/calendar.page"
+    }
   },
   "501": {
     "id": 501,

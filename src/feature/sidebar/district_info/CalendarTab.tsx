@@ -4,24 +4,63 @@ import { CircularProgress, List, ListItem, ListItemText, ListSubheader, WithStyl
 import { Theme } from 'material-ui/styles';
 import withStyles from 'material-ui/styles/withStyles';
 import moment from 'moment';
+import District from '../../../shared/models/District';
+import { Calendar } from '../../../shared/models/Calendar';
+import PropTypes from 'prop-types';
+import { SwipeableViewsChildContext } from '../../../shared/types/swipeable-views';
 
 interface Props {
-    events?: CalendarEvent[];
+    district: District;
 }
 
 type ClassKey =
+    | 'calendarList'
+    | 'calendarListItemText'
     | 'eventAddress'
     | 'eventDate'
-    | 'eventsHeader';
+    | 'eventsHeader'
+    | 'loadingContainer';
 
 type PropsWithStyles = Props & WithStyles<ClassKey>;
 
-class CalendarTab extends Component<PropsWithStyles> {
+interface State {
+    events?: CalendarEvent[];
+}
+
+interface Context {
+    swipeableViews: SwipeableViewsChildContext;
+}
+
+class CalendarTab extends Component<PropsWithStyles, State> {
+
+    static contextTypes = {
+        swipeableViews: PropTypes.object.isRequired,
+    };
+
+    context: Context;
+
+    constructor(props: PropsWithStyles) {
+        super(props);
+        this.state = {};
+    }
+
+    componentDidMount() {
+        this.fetchEvents();
+    }
+
+    componentDidUpdate(prevProps: PropsWithStyles, prevState: State) {
+        if (this.props.district !== prevProps.district) {
+            this.fetchEvents();
+        }
+
+        this.context.swipeableViews.slideUpdateHeight();
+    }
 
     render() {
-        const { classes, events } = this.props;
+        const { classes } = this.props;
+        const { events } = this.state;
         return (
-            <List>
+            <List classes={{root: classes.calendarList}}>
                 { events && events.length > 0 && (
                     _(events)
                         .groupBy((event) => moment(event.date).format('MMMM YYYY'))
@@ -36,10 +75,11 @@ class CalendarTab extends Component<PropsWithStyles> {
                                         </div>
                                         <ListItemText
                                             classes={{
+                                                root: classes.calendarListItemText,
                                                 secondary: classes.eventAddress
                                             }}
-                                            primary={event.title}
-                                            secondary={event.address.join('\n')}
+                                            primary={event.summary}
+                                            secondary={event.location}
                                         />
                                     </ListItem>)
                                 )}
@@ -53,15 +93,42 @@ class CalendarTab extends Component<PropsWithStyles> {
                     </ListItem>
                 )}
                 { !events && (
-                    <CircularProgress/>
+                    <div className={classes.loadingContainer}>
+                        <CircularProgress/>
+                    </div>
                 )}
             </List>
         );
+    }
+
+    private fetchEvents() {
+        this.setState({events: undefined});
+        if (this.props.district.calendar) {
+            const cal = new Calendar(this.props.district.calendar);
+            cal.events
+                .then((events) => {
+                    this.setState({events});
+                })
+                .catch((err) => {
+                    console.log('failed to get events', err);
+                    this.setState({ events: [] });
+                });
+        } else {
+            this.setState({ events: [] });
+        }
     }
 }
 
 const styles = (theme: Theme) => (
     {
+        // FIXME: First two styles are copy/pasted...
+        calendarList: {
+            overflow: 'hidden' as 'hidden',
+            whiteSpace: 'nowrap' as 'nonowrap',
+        },
+        calendarListItemText: {
+            maskImage: 'linear-gradient(left, white 80%, rgba(255,255,255,0) 100%)'
+        },
         eventsHeader: {
             color: theme.palette.text.secondary
         },
@@ -70,6 +137,11 @@ const styles = (theme: Theme) => (
         },
         eventDate: {
             alignSelf: 'flex-start' as 'flex-start'
+        },
+        loadingContainer: {
+            textAlign: 'center' as 'center',
+            paddingTop: theme.spacing.unit * 3,
+            paddingBottom: theme.spacing.unit,
         }
     }
 );

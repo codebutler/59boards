@@ -1,5 +1,4 @@
 import Location from '../models/Location';
-import { FetchedEventsAction } from './fetch-events';
 import { push } from 'react-router-redux';
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
@@ -9,7 +8,6 @@ import DISTRICTS_GEOJSON from '../../shared/data/districts-geo.json';
 
 export enum ActionType {
     SELECT_LOCATION = 'SELECT_LOCATION',
-    FETCHED_EVENTS = 'FETCHED_EVENTS',
     COMPONENT_RESIZED = 'COMPONENT_RESIZED',
 }
 
@@ -26,7 +24,6 @@ interface ComponentResizedAction {
 
 export type RootAction =
     | SelectLocationAction
-    | FetchedEventsAction
     | ComponentResizedAction;
 
 export const selectDistrict = (districtId: number) => {
