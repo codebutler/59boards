@@ -19,6 +19,7 @@ import MapMouseEvent = mapboxgl.MapMouseEvent;
 import Marker = mapboxgl.Marker;
 import Point = mapboxgl.Point;
 import LngLatBoundsLike = mapboxgl.LngLatBoundsLike;
+import { isMobileSafari } from '../../shared/utils/device';
 
 mapboxgl.accessToken = MAPBOX_TOKEN;
 
@@ -110,9 +111,7 @@ class Map extends Component<PropsWithStyles, State> {
         });
 
         // https://stackoverflow.com/a/46051711
-        const userAgent = window.navigator.userAgent;
-        const isMobileSafari = userAgent.match(/Mobile/i) && userAgent.match(/Safari/i);
-        if (!isMobileSafari) {
+        if (!isMobileSafari()) {
             map.on('mouseenter', 'district-fills', () => {
                 map.getCanvas().style.cursor = 'pointer';
             });

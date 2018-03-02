@@ -15,6 +15,7 @@ import { Route, RouteComponentProps, Switch, withRouter } from 'react-router';
 import Status from './status/Status';
 import districtIdFromRoute from '../../shared/selectors/district-id-from-route';
 import withWidth, { WithWidthProps } from 'material-ui/utils/withWidth';
+import { isMobileSafari } from '../../shared/utils/device';
 
 interface StateProps {
     selectedDistrictId?: number;
@@ -83,7 +84,7 @@ class Sidebar extends Component<PropsWithStyles, State> {
 
     componentDidUpdate() {
         const isMobile = (this.props.width) === 'xs';
-        const hideIntroForMobile = this.state.isSearchFocused && isMobile;
+        const hideIntroForMobile = this.state.isSearchFocused && isMobile && !isMobileSafari();
         if (this.introContainer) {
             if (hideIntroForMobile) {
                 this.introContainer.style.marginTop = `${-this.introContainer.clientHeight}px`;
