@@ -449,7 +449,11 @@
     "fax": "718-778-2979",
     "email": "info@brooklyncb8.org",
     "website": "http://www.brooklyncb8.org/",
-    "borough": "Brooklyn"
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www.brooklyncb8.org/meetings/",
+      "googleCalendarId": "u0jm9q72uejq6doel8n061pngs@group.calendar.google.com"
+    }
   },
   "309": {
     "id": 309,
