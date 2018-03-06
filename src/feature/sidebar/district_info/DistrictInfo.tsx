@@ -14,6 +14,7 @@ import SwipeableViews from 'react-swipeable-views';
 import districtIdFromRoute from '../../../shared/selectors/district-id-from-route';
 import ContactTab from './ContactTab';
 import CalendarTab from './CalendarTab';
+import LeadershipTab from './LeadershipTab';
 
 interface OwnProps {
     onCloseInfoClicked: () => void;
@@ -27,7 +28,8 @@ type ClassKey =
     | 'card'
     | 'cardHeader'
     | 'cardContent'
-    | 'title';
+    | 'title'
+    | 'tab';
 
 type Props = OwnProps & StateProps;
 type PropsWithStyles = Props & WithStyles<ClassKey>;
@@ -64,10 +66,11 @@ class DistrictInfo extends Component<PropsWithStyles, State> {
                             onChange={(event, value) => this.setState({ selectedTab: value })}
                             indicatorColor="primary"
                             textColor="primary"
-                            centered={true}
+                            fullWidth={true}
                         >
-                            <Tab label="Contact" />
-                            <Tab label="Calendar" />
+                            <Tab classes={{root: classes.tab}} label="Contact" />
+                            <Tab classes={{root: classes.tab}} label="Leadership"/>
+                            <Tab classes={{root: classes.tab}} label="Calendar" />
                         </Tabs>
                         <SwipeableViews
                             animateHeight={true}
@@ -75,6 +78,7 @@ class DistrictInfo extends Component<PropsWithStyles, State> {
                             onChangeIndex={(index) => { this.setState({selectedTab: index}); }}
                         >
                             <ContactTab district={district}/>
+                            <LeadershipTab district={district}/>
                             <CalendarTab district={district}/>
                         </SwipeableViews>
                     </CardContent>
@@ -115,6 +119,11 @@ const styles = (theme: Theme) => (
             marginBottom: 16,
             fontSize: 14,
             color: theme.palette.text.secondary
+        },
+        tab: {
+            [theme.breakpoints.up('md')]: {
+                minWidth: 'inherit',
+            },
         }
     }
 );

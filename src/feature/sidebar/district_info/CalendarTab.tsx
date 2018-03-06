@@ -107,7 +107,7 @@ class CalendarTab extends Component<PropsWithStyles, State> {
                 )}
                 { events && events.length === 0 && (
                     <div className={classes.emptyListContainer}>
-                        <p>No Events Found, check website.</p>
+                        <p>Events currently unavailable, check website.</p>
                     </div>
                 )}
                 { !events && (
