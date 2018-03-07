@@ -145,7 +145,7 @@
     "id": 111,
     "number": 11,
     "neighborhoods": "East Harlem",
-    "address": "1664",
+    "address": "1664 Park Avenue, Ground floor\nNew York, NY 10035",
     "phone": "212-831-8929",
     "fax": "212-369-3571",
     "email": "mn11@cb.nyc.gov",
@@ -366,7 +366,10 @@
     "website": "http://www.nyc.gov/html/bkncb2/html/home/home.shtml",
     "borough": "Brooklyn",
     "calendar": {
-      "web": "http://www.nyc.gov/html/bkncb2/html/calendar/calendar.shtml"
+      "web": "http://www.nyc.gov/html/bkncb2/html/calendar/calendar.shtml",
+      "json": "/scraper-data/brooklyn-cb2.json",
+      "ical": "/scraper-data/brooklyn-cb2.ical",
+      "scraped": true
     }
   },
   "303": {
@@ -423,7 +426,10 @@
     "website": "http://www.brooklyncb6.org/",
     "borough": "Brooklyn",
     "calendar": {
-      "web": "http://www1.nyc.gov/site/brooklyncb6/calendar/calendar.page"
+      "web": "http://www1.nyc.gov/site/brooklyncb6/calendar/calendar.page",
+      "json": "/scraper-data/brooklyn-cb6.json",
+      "ical": "/scraper-data/brooklyn-cb6.ical",
+      "scraped": true
     }
   },
   "307": {
@@ -613,7 +619,10 @@
     "website": "http://www.nyc.gov/html/qnscb2/html/home/home.shtml",
     "borough": "Queens",
     "calendar": {
-      "web": "http://www.nyc.gov/html/qnscb2/html/calendar/calendar.shtml"
+      "web": "http://www.nyc.gov/html/qnscb2/html/calendar/calendar.shtml",
+      "json": "/scraper-data/queens-cb2.json",
+      "ical": "/scraper-data/queens-cb2.ical",
+      "scraped": true
     }
   },
   "403": {

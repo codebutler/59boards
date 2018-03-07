@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
 import { SwipeableViewsChildContext } from '../../../shared/types/swipeable-views';
 import Divider from 'material-ui/Divider';
 import EventIcon from 'material-ui-icons/Event';
+import WarningIcon from 'material-ui-icons/Warning';
+import { amber } from 'material-ui/colors';
 
 interface Props {
     district: District;
@@ -78,6 +80,18 @@ class CalendarTab extends Component<PropsWithStyles, State> {
                             <ListItemText primary={'Add to Google Calendar'}/>
                         </ListItem>
                         <Divider/>
+                        {this.props.district.calendar!.scraped && (
+                            <ListItem>
+                                <ListItemIcon>
+                                    <WarningIcon style={{color: amber[700]}}/>
+                                </ListItemIcon>
+                                <ListItemText
+                                    style={{color: amber[700], whiteSpace: 'normal'}}
+                                    disableTypography={true}
+                                    primary={'Unofficial event list, check website to confirm.'}
+                                />
+                            </ListItem>
+                        )}
                         {_(events)
                             .groupBy((event) => moment(event.date).format('MMMM YYYY'))
                             .map((monthEvents, month) => (
@@ -125,7 +139,7 @@ class CalendarTab extends Component<PropsWithStyles, State> {
             const cal = new Calendar(this.props.district.calendar);
             cal.events
                 .then((events) => {
-                    this.setState({ events, gcalSubscribeUrl: cal.subscribeUrl });
+                    this.setState({ events, gcalSubscribeUrl: cal.gcalSubscribeUrl });
                 })
                 .catch((err) => {
                     console.log('failed to get events', err);

@@ -11,7 +11,7 @@ import reducer from './shared/reducers/index';
 import registerServiceWorker from './app/registerServiceWorker';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import createHashHistory from 'history/createHashHistory';
+import createBrowserHistory from 'history/createBrowserHistory';
 
 // Pollyfills
 import 'core-js/es7/promise';
@@ -19,7 +19,7 @@ import 'core-js/es7/promise';
 const LOGGING = false;
 const CACHING = false;
 
-const history = createHashHistory();
+const history = createBrowserHistory();
 
 const middlewares = [];
 middlewares.push(thunk);

@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-export module GoogleCalendar {
+export module GCalApi {
     // https://developers.google.com/google-apps/calendar/v3/reference/events/list
     export interface EventsList {
         items: EventsItem[];
@@ -29,7 +29,7 @@ export module GoogleCalendar {
                 }
                 return resp.json();
             })
-            .then((json) => json as GoogleCalendar.EventsList)
+            .then((json) => json as GCalApi.EventsList)
             .then((list) => list.items
                 .map((item) => ({
                     id: item.id,

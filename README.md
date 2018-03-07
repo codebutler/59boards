@@ -5,15 +5,16 @@ todo: stuff goes here.
 ## frontend
 
 ```
+$ cd cbmap-frontend
 $ npm install
 $ npm start
 ```
 
 ## scrapers
 ```
-$ cd scrapers
+$ cd cbmap-scrapers
 $ pip install virtualenv
-$ virtualenv -p python3 venv
+$ virtualenv venv
 $ . venv/bin/activate
 $ pip install pipenv
 $ pipenv install

@@ -64,9 +64,11 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'cbmap.pipelines.CbmapPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'cbmap.pipelines.IdPipeline': 300,
+    'cbmap.pipelines.JsonWriterPipeline': 400,
+    'cbmap.pipelines.ICalWriterPipeline': 500,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html

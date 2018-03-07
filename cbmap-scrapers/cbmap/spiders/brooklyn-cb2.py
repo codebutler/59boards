@@ -1,6 +1,4 @@
 import calendar
-import hashlib
-import json
 import re
 from datetime import datetime
 
@@ -8,6 +6,8 @@ import scrapy
 from bs4 import BeautifulSoup
 from bs4 import Tag
 from bs4.element import NavigableString
+
+from cbmap.items import CalEventItem
 
 DAY_NAMES = list(calendar.day_name)
 MONTH_NAMES = list(calendar.month_name)[1:]
@@ -37,8 +37,6 @@ class BrooklynCb2Spider(scrapy.Spider):
 
         lines = [line.strip() for line in lines if line.strip()]
 
-        results = []
-
         current_month = None
         current_day = None
         current_year = None
@@ -57,13 +55,13 @@ class BrooklynCb2Spider(scrapy.Spider):
             else:
                 text_buffer.append(text)
             if (is_date or is_year or is_last) and text_buffer:
-                results.append({
-                    'date': int(datetime(year=current_year, month=current_month, day=current_day).strftime('%s')),
-                    'text': text_buffer
-                })
+                title = text_buffer[0]
+                location = text_buffer[1]
+                yield CalEventItem(
+                    date=datetime(year=current_year, month=current_month, day=current_day),
+                    summary=title,
+                    location=location
+                )
                 text_buffer = []
 
-        for result in results:
-            result['id'] = hashlib.md5(json.dumps(result).encode('utf-8')).hexdigest()
-            yield result
 

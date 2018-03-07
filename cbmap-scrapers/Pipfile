@@ -11,6 +11,9 @@ bleach = "*"
 scrapy = "*"
 "bs4" = "*"
 parsedatetime = "*"
+icalendar = "*"
+pytz = "*"
+schedule = "*"
 
 
 [dev-packages]

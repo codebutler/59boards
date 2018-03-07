@@ -12,6 +12,7 @@ import District from '../../../shared/models/District';
 import _ from 'lodash';
 import red from 'material-ui/colors/red';
 import green from 'material-ui/colors/green';
+import orange from 'material-ui/colors/orange';
 import withStyles, { ClassNameMap } from 'material-ui/styles/withStyles';
 import GridList from 'material-ui/GridList';
 
@@ -22,7 +23,8 @@ interface DispatchProps {
 type ClassKey =
     | 'cardContentRoot'
     | 'tileBad'
-    | 'tileGood';
+    | 'tileGood'
+    | 'titleMediocre';
 
 type Props = DispatchProps;
 type PropsWithStyles = Props & WithStyles<ClassKey>;
@@ -30,8 +32,10 @@ type PropsWithStyles = Props & WithStyles<ClassKey>;
 class Status extends Component<PropsWithStyles> {
 
     private static classForTile(district: District, classes: ClassNameMap<ClassKey>): string {
-        const isGood = !!(district.calendar && district.calendar.googleCalendarId);
-        return isGood ? classes.tileGood : classes.tileBad;
+        const isGood = !!(district.calendar
+            && (district.calendar.ical || district.calendar.googleCalendarId));
+        const isScraped = district.calendar && district.calendar.scraped;
+        return isGood ? (isScraped ? classes.titleMediocre : classes.tileGood) : classes.tileBad;
     }
 
     render() {
@@ -44,7 +48,7 @@ class Status extends Component<PropsWithStyles> {
                             <CloseIcon/>
                         </IconButton>
                     )}
-                    title="Calendar Scraper Status"
+                    title="Calendar Status"
                 />
                 <CardContent classes={{root: classes.cardContentRoot}}>
                     <GridList
@@ -102,6 +106,18 @@ const styles = (theme: Theme) => ({
         backgroundColor: red[300],
         '&:hover': {
             backgroundColor: red[400],
+        }
+    },
+    titleMediocre: {
+        // FIXME: how to avoid copy/paste??
+        display: 'flex',
+        justifyContent: 'center' as 'center',
+        alignItems: 'center' as 'center',
+        cursor: 'pointer',
+
+        backgroundColor: orange[300],
+        '&:hover': {
+            backgroundColor: orange[400],
         }
     }
 });
