@@ -2,7 +2,7 @@ import { Component, default as React } from 'react';
 import Dialog, { DialogActions, DialogContent, DialogContentText, DialogTitle } from 'material-ui/Dialog';
 import Button from 'material-ui/Button';
 import { connect } from 'react-redux';
-import { RootAction } from '../../shared/actions/index';
+import { RootAction } from '../../shared/actions';
 import { Dispatch } from 'redux';
 import { push } from 'react-router-redux';
 import { bind } from 'lodash-decorators/bind';
@@ -42,7 +42,7 @@ class About extends Component<PropsWithStyles, State> {
                         <br/>
                         <a href="https://twitter.com/codebutler" target="_blank">@codebutler</a>
                         <br/>
-                        <a href="https://github.com/codebutler/cbmap" target="_blank">GitHub</a>
+                        <a href="https://github.com/codebutler/59boards" target="_blank">GitHub</a>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

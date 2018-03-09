@@ -1,18 +1,18 @@
-# cbmap
+# 59Boards: NYC Community Board Map
 
 todo: stuff goes here.
 
 ## frontend
 
 ```
-$ cd cbmap-frontend
+$ cd frontend
 $ npm install
 $ npm start
 ```
 
 ## scrapers
 ```
-$ cd cbmap-scrapers
+$ cd scrapers
 $ pip install virtualenv
 $ virtualenv venv
 $ . venv/bin/activate

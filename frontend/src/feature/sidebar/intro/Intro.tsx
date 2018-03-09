@@ -8,7 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 import { bind } from 'lodash-decorators/bind';
 import { connect } from 'react-redux';
-import { RootAction } from '../../../shared/actions/index';
+import { RootAction } from '../../../shared/actions';
 import { Dispatch } from 'redux';
 import { push } from 'react-router-redux';
 

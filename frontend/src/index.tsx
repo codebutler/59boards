@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import 'typeface-roboto';
 import App from './app/App';
 import './index.css';
-import reducer from './shared/reducers/index';
+import reducer from './shared/reducers';
 import registerServiceWorker from './app/registerServiceWorker';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';

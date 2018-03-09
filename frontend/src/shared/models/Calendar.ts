@@ -41,7 +41,7 @@ export class Calendar {
 
     get icalUrl(): string | undefined {
         if (this.data.ical) {
-            return this.data.ical;
+            return new URL(this.data.ical, window.location.href).toString();
         } else if (this.data.googleCalendarId) {
             const cidComponent = encodeURIComponent(this.data.googleCalendarId);
             return `https://calendar.google.com/calendar/ical/${cidComponent}/public/basic.ics`;
@@ -53,7 +53,7 @@ export class Calendar {
         if (this.data.googleCalendarId) {
             return `https://calendar.google.com/calendar/r?cid=${this.data.googleCalendarId}`;
         } else if (this.data.ical) {
-            return `https://calendar.google.com/calendar/r?cid=${this.data.ical}`;
+            return `https://calendar.google.com/calendar/r?cid=${this.icalUrl}`;
         }
         return undefined;
     }
