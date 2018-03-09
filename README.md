@@ -18,6 +18,5 @@ $ virtualenv venv
 $ . venv/bin/activate
 $ pip install pipenv
 $ pipenv install
-$ rehash
-$ scrapy crawl brooklyncb6 -o brooklyncb6.json
+$ python main.py --all
 ```
