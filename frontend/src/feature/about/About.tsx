@@ -7,7 +7,7 @@ import { Dispatch } from 'redux';
 import { push } from 'react-router-redux';
 import { bind } from 'lodash-decorators/bind';
 import Html from '../../shared/components/Html';
-import AboutHtml from './about.html';
+import AboutHtml from './about.md';
 
 interface DispatchProps {
     onDialogExited: () => void;

@@ -368,7 +368,7 @@
     "calendar": {
       "web": "http://www.nyc.gov/html/bkncb2/html/calendar/calendar.shtml",
       "json": "/scraper-data/brooklyn-cb2.json",
-      "ical": "/scraper-data/brooklyn-cb2.ical",
+      "ical": "/scraper-data/brooklyn-cb2.ics",
       "scraped": true
     }
   },
@@ -428,7 +428,7 @@
     "calendar": {
       "web": "http://www1.nyc.gov/site/brooklyncb6/calendar/calendar.page",
       "json": "/scraper-data/brooklyn-cb6.json",
-      "ical": "/scraper-data/brooklyn-cb6.ical",
+      "ical": "/scraper-data/brooklyn-cb6.ics",
       "scraped": true
     }
   },
@@ -621,7 +621,7 @@
     "calendar": {
       "web": "http://www.nyc.gov/html/qnscb2/html/calendar/calendar.shtml",
       "json": "/scraper-data/queens-cb2.json",
-      "ical": "/scraper-data/queens-cb2.ical",
+      "ical": "/scraper-data/queens-cb2.ics",
       "scraped": true
     }
   },
