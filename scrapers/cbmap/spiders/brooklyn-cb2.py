@@ -15,6 +15,7 @@ MONTH_NAMES = list(calendar.month_name)[1:]
 
 class BrooklynCb2Spider(scrapy.Spider):
     name = 'brooklyn-cb2'
+    title = 'Brooklyn CB2'
     start_urls = [
         'http://www.nyc.gov/html/bkncb2/html/calendar/calendar.shtml'
     ]

@@ -9,7 +9,8 @@ from cbmap.items import CalEventItem
 
 
 class BrooklynCb6Spider(scrapy.Spider):
-    name = "brooklyn-cb6"
+    name = 'brooklyn-cb6'
+    title = 'Brooklyn CB6'
     start_urls = [
         'http://www1.nyc.gov/site/brooklyncb6/calendar/calendar.page'
     ]
@@ -26,8 +27,7 @@ class BrooklynCb6Spider(scrapy.Spider):
     @staticmethod
     def __parse_date(text: str) -> datetime:
         return datetime.strptime(text, '%B %d, %I:%M%p') \
-            .replace(year=datetime.now().year) \
-            .astimezone(timezone('US/Eastern'))
+            .replace(year=datetime.now().year, tzinfo=timezone('US/Eastern'))
 
     @staticmethod
     def __clean_html(html: str) -> Optional[str]:

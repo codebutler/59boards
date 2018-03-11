@@ -57,8 +57,9 @@ class ICalWriterPipeline(object):
 
     def open_spider(self, spider):
         self.cal = Calendar()
-        self.cal.add('summary', spider.name)
-        self.cal.add('prodid', '-//CBMap//CBMap//EN')
+        self.cal.add('X-WR-CALNAME', spider.title)
+        self.cal.add('summary', spider.title)
+        self.cal.add('prodid', '-//59Boards//59Boards//EN')
         self.cal.add('version', '2.0')
 
     def process_item(self, item: CalEventItem, spider):

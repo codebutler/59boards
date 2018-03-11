@@ -13,6 +13,7 @@ from cbmap.items import CalEventItem
 
 class QueensCb2Spider(scrapy.Spider):
     name = 'queens-cb2'
+    title = 'Queens CB2'
     start_urls = [
         'http://www.nyc.gov/html/qnscb2/includes/scripts/calendar.js'
     ]
@@ -34,7 +35,7 @@ class QueensCb2Spider(scrapy.Spider):
 
                 if event_time:
                     event_dt = datetime.combine(event_date, event_time) \
-                        .astimezone(timezone('US/Eastern'))
+                        .replace(tzinfo=timezone('US/Eastern'))
                 else:
                     event_dt = event_date
 

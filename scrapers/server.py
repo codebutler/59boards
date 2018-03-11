@@ -22,7 +22,7 @@ def scraper_job():
 
 print("cbmap scraper startup!")
 
-schedule.every(1).hour.do(scraper_job)
+schedule.every(6).hours.do(scraper_job)
 
 schedule_thread = ScheduleThread()
 schedule_thread.start()
