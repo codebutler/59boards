@@ -24,7 +24,6 @@ class ContactTab extends Component<PropsWithStyles> {
         const { classes, district } = this.props;
         return (
             <List
-                dense={true}
                 classes={{root: classes.contactList}}
                 component="div"
             >

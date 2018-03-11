@@ -12,6 +12,7 @@ $ npm start
 
 ## scrapers
 ```
+$ ln -s ../../scrapers/output frontend/public/scraper-data
 $ cd scrapers
 $ pip install virtualenv
 $ virtualenv venv

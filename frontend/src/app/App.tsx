@@ -12,6 +12,14 @@ import { componentResized, RootAction } from '../shared/actions';
 import { Dispatch } from 'redux';
 import { Route, RouteComponentProps, withRouter } from 'react-router';
 import About from '../feature/about/About';
+import { create } from 'jss';
+import JssProvider from 'react-jss/lib/JssProvider';
+import { createGenerateClassName, jssPreset } from 'material-ui/styles';
+import jssExtend from 'jss-extend';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import createMuiTheme from 'material-ui/styles/createMuiTheme';
+import indigo from 'material-ui/colors/indigo';
+import deepOrange from 'material-ui/colors/deepOrange';
 
 const mapboxClient = new MapboxClient(MAPBOX_TOKEN);
 
@@ -25,6 +33,19 @@ interface DispatchProps {
 
 type Props = DispatchProps;
 type PropsWithRoute = Props & RouteComponentProps<{}>;
+
+// Configure JSS
+const jss = create({ plugins: [jssExtend(), ...jssPreset().plugins] });
+
+// Custom Material-UI class name generator.
+const generateClassName = createGenerateClassName();
+
+const theme = createMuiTheme({
+    palette: {
+        primary: {...indigo},
+        secondary: {...deepOrange}
+    }
+});
 
 class App extends Component<PropsWithRoute> {
 
@@ -43,17 +64,21 @@ class App extends Component<PropsWithRoute> {
 
     render() {
         return (
-            <div className="App">
-                <Reboot/>
-                <Sidebar/>
-                <Map/>
-                <Route exact={true} path="/about" component={About} />
-                <ReactResizeDetector
-                    handleWidth={true}
-                    handleHeight={true}
-                    onResize={this.props.onResize}
-                />
-            </div>
+            <JssProvider jss={jss} generateClassName={generateClassName}>
+                <MuiThemeProvider theme={theme}>
+                    <div className="App">
+                        <Reboot/>
+                        <Sidebar/>
+                        <Map/>
+                        <Route exact={true} path="/about" component={About} />
+                        <ReactResizeDetector
+                            handleWidth={true}
+                            handleHeight={true}
+                            onResize={this.props.onResize}
+                        />
+                    </div>
+                </MuiThemeProvider>
+            </JssProvider>
         );
     }
 }

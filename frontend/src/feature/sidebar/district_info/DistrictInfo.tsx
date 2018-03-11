@@ -13,7 +13,7 @@ import { RootState } from '../../../shared/models/RootState';
 import SwipeableViews from 'react-swipeable-views';
 import districtIdFromRoute from '../../../shared/selectors/district-id-from-route';
 import ContactTab from './ContactTab';
-import CalendarTab from './CalendarTab';
+import CalendarTab from './calendar/CalendarTab';
 import LeadershipTab from './LeadershipTab';
 
 interface OwnProps {
@@ -70,7 +70,7 @@ class DistrictInfo extends Component<PropsWithStyles, State> {
                         >
                             <Tab classes={{root: classes.tab}} label="Contact" />
                             <Tab classes={{root: classes.tab}} label="Leadership"/>
-                            <Tab classes={{root: classes.tab}} label="Calendar" />
+                            <Tab classes={{root: classes.tab}} label="Meetings" />
                         </Tabs>
                         <SwipeableViews
                             animateHeight={true}

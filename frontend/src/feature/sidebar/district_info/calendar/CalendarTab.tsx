@@ -4,14 +4,15 @@ import { CircularProgress, List, ListItem, ListItemIcon, ListItemText, ListSubhe
 import { Theme } from 'material-ui/styles';
 import withStyles from 'material-ui/styles/withStyles';
 import moment from 'moment';
-import District from '../../../shared/models/District';
-import { Calendar } from '../../../shared/models/Calendar';
+import District from '../../../../shared/models/District';
+import { Calendar } from '../../../../shared/models/Calendar';
 import PropTypes from 'prop-types';
-import { SwipeableViewsChildContext } from '../../../shared/types/swipeable-views';
+import { SwipeableViewsChildContext } from '../../../../shared/types/swipeable-views';
 import Divider from 'material-ui/Divider';
 import EventIcon from 'material-ui-icons/Event';
 import WarningIcon from 'material-ui-icons/Warning';
 import { amber } from 'material-ui/colors';
+import SubscribeDialog from './SubscribeDialog';
 
 interface Props {
     district: District;
@@ -29,6 +30,7 @@ type PropsWithStyles = Props & WithStyles<ClassKey>;
 
 interface State {
     events?: CalendarEvent[];
+    isSubscribeDialogOpen: boolean;
     gcalSubscribeUrl?: string;
 }
 
@@ -46,7 +48,7 @@ class CalendarTab extends Component<PropsWithStyles, State> {
 
     constructor(props: PropsWithStyles) {
         super(props);
-        this.state = {};
+        this.state = { isSubscribeDialogOpen: false };
     }
 
     componentDidMount() {
@@ -63,21 +65,19 @@ class CalendarTab extends Component<PropsWithStyles, State> {
 
     render() {
         const { classes } = this.props;
-        const { events, gcalSubscribeUrl } = this.state;
+        const { events } = this.state;
         return (
             <div>
                 { events && events.length > 0 && (
                     <List classes={{root: classes.calendarList}}>
                         <ListItem
                             button={true}
-                            component="a"
-                            href={gcalSubscribeUrl}
-                            target="_blank"
+                            onClick={() => this.setState({ isSubscribeDialogOpen: true })}
                         >
                             <ListItemIcon>
                                 <EventIcon/>
                             </ListItemIcon>
-                            <ListItemText primary={'Add to Google Calendar'}/>
+                            <ListItemText primary={'Add to Calendar'}/>
                         </ListItem>
                         <Divider/>
                         {this.props.district.calendar!.scraped && (
@@ -128,6 +128,12 @@ class CalendarTab extends Component<PropsWithStyles, State> {
                     <div className={classes.emptyListContainer}>
                         <CircularProgress/>
                     </div>
+                )}
+                { this.state.isSubscribeDialogOpen && (
+                    <SubscribeDialog
+                        subscribeUrl={this.state.gcalSubscribeUrl!}
+                        onDialogExited={() => this.setState({ isSubscribeDialogOpen: false })}
+                    />
                 )}
             </div>
         );

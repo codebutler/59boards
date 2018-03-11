@@ -81,15 +81,19 @@ const mapDispatchToProps = (dispatch: Dispatch<RootAction>): DispatchProps => {
     };
 };
 
+const tileStyle = {
+    display: 'flex',
+    justifyContent: 'center' as 'center',
+    alignItems: 'center' as 'center',
+    cursor: 'pointer',
+};
+
 const styles = (theme: Theme) => ({
     cardContentRoot: {
         paddingTop: 0
     },
     tileGood: {
-        display: 'flex',
-        justifyContent: 'center' as 'center',
-        alignItems: 'center' as 'center',
-        cursor: 'pointer',
+        extend: tileStyle,
 
         backgroundColor: green[300],
         '&:hover': {
@@ -97,11 +101,7 @@ const styles = (theme: Theme) => ({
         }
     },
     tileBad: {
-        // FIXME: how to avoid copy/paste??
-        display: 'flex',
-        justifyContent: 'center' as 'center',
-        alignItems: 'center' as 'center',
-        cursor: 'pointer',
+        extend: tileStyle,
 
         backgroundColor: red[300],
         '&:hover': {
@@ -109,11 +109,7 @@ const styles = (theme: Theme) => ({
         }
     },
     titleMediocre: {
-        // FIXME: how to avoid copy/paste??
-        display: 'flex',
-        justifyContent: 'center' as 'center',
-        alignItems: 'center' as 'center',
-        cursor: 'pointer',
+        extend: tileStyle,
 
         backgroundColor: orange[300],
         '&:hover': {

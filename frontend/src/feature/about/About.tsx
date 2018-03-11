@@ -6,29 +6,27 @@ import { RootAction } from '../../shared/actions';
 import { Dispatch } from 'redux';
 import { push } from 'react-router-redux';
 import { bind } from 'lodash-decorators/bind';
-import { withStyles } from 'material-ui/styles';
-import { Theme, WithStyles } from 'material-ui';
+import Html from '../../shared/components/Html';
+import AboutHtml from './about.html';
 
 interface DispatchProps {
     onDialogExited: () => void;
 }
 
 type Props = DispatchProps;
-type PropsWithStyles = Props & WithStyles<'dialogContentTextRoot'>;
 
 interface State {
     isOpen: boolean;
 }
 
-class About extends Component<PropsWithStyles, State> {
+class About extends Component<Props, State> {
 
-    constructor(props: PropsWithStyles) {
+    constructor(props: Props) {
         super(props);
         this.state = { isOpen: true };
     }
 
     render() {
-        const { classes } = this.props;
         return (
             <Dialog
                 open={this.state.isOpen}
@@ -37,12 +35,8 @@ class About extends Component<PropsWithStyles, State> {
             >
                 <DialogTitle>About</DialogTitle>
                 <DialogContent>
-                    <DialogContentText classes={{ root: classes.dialogContentTextRoot }}>
-                        Created By Eric Butler
-                        <br/>
-                        <a href="https://twitter.com/codebutler" target="_blank">@codebutler</a>
-                        <br/>
-                        <a href="https://github.com/codebutler/59boards" target="_blank">GitHub</a>
+                    <DialogContentText>
+                        <Html html={AboutHtml} />
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -66,19 +60,7 @@ const mapDispatchToProps = (dispatch: Dispatch<RootAction>): DispatchProps => {
     };
 };
 
-const styles = (theme: Theme) => ({
-    dialogContentTextRoot: {
-        '& a': {
-            color: theme.palette.secondary.main,
-            textDecoration: 'none',
-            '&:hover': {
-                textDecoration: 'underline',
-            }
-        }
-    }
-});
-
 export default connect(
     null,
     mapDispatchToProps
-)(withStyles(styles)<Props>(About));
+)(About);
