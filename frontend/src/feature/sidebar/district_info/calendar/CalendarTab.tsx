@@ -31,7 +31,7 @@ type PropsWithStyles = Props & WithStyles<ClassKey>;
 interface State {
     events?: CalendarEvent[];
     isSubscribeDialogOpen: boolean;
-    gcalSubscribeUrl?: string;
+    calendar?: Calendar;
 }
 
 interface Context {
@@ -131,7 +131,7 @@ class CalendarTab extends Component<PropsWithStyles, State> {
                 )}
                 { this.state.isSubscribeDialogOpen && (
                     <SubscribeDialog
-                        subscribeUrl={this.state.gcalSubscribeUrl!}
+                        subscribeUrl={this.state.calendar!.icalUrl!}
                         onDialogExited={() => this.setState({ isSubscribeDialogOpen: false })}
                     />
                 )}
@@ -145,7 +145,7 @@ class CalendarTab extends Component<PropsWithStyles, State> {
             const cal = new Calendar(this.props.district.calendar);
             cal.events
                 .then((events) => {
-                    this.setState({ events, gcalSubscribeUrl: cal.gcalSubscribeUrl });
+                    this.setState({ events, calendar: cal });
                 })
                 .catch((err) => {
                     console.log('failed to get events', err);

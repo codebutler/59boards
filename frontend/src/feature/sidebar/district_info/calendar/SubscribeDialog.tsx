@@ -20,6 +20,8 @@ interface State {
 
 class SubscribeDialog extends Component<Props, State> {
 
+    private inputEl: HTMLInputElement;
+
     constructor(props: Props) {
         super(props);
         this.state = { isOpen: true };
@@ -38,13 +40,16 @@ class SubscribeDialog extends Component<Props, State> {
                         <Html html={SubscribeText} />
                     </DialogContentText>
                     <TextField
+                        inputRef={el => this.inputEl = el}
                         fullWidth={true}
-                        disabled={true}
                         value={this.props.subscribeUrl}
+                        inputProps={{
+                            readOnly: true,
+                        }}
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">
-                                    <IconButton>
+                                    <IconButton onClick={this.onCopyClicked}>
                                         <ContentCopyIcon />
                                     </IconButton>
                                 </InputAdornment>
@@ -57,6 +62,14 @@ class SubscribeDialog extends Component<Props, State> {
                 </DialogActions>
             </Dialog>
         );
+    }
+
+    @bind()
+    private onCopyClicked() {
+        if (this.inputEl) {
+            this.inputEl.select();
+            document.execCommand('copy');
+        }
     }
 
     @bind()
