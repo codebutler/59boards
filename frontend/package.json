@@ -26,6 +26,7 @@
     "moment": "^2.21.0",
     "npm": "^5.7.1",
     "promised-location": "^1.0.1",
+    "raven-js": "^3.23.1",
     "react": "^16.2.0",
     "react-autosuggest": "^9.3.4",
     "react-dom": "^16.2.0",

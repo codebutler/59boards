@@ -12,10 +12,12 @@ import registerServiceWorker from './app/registerServiceWorker';
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createBrowserHistory from 'history/createBrowserHistory';
-
-// Pollyfills
-import 'core-js/es7/promise';
+import './shared/polyfills';
 import { googleAnalytics } from './shared/reactGAMiddlewares';
+import Raven from 'raven-js';
+
+Raven.config('https://e2202585cda74a63ae066e88f237596d@sentry.io/302432')
+    .install();
 
 const LOGGING = false;
 const CACHING = false;
