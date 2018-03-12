@@ -15,6 +15,7 @@ import createBrowserHistory from 'history/createBrowserHistory';
 
 // Pollyfills
 import 'core-js/es7/promise';
+import { googleAnalytics } from './shared/reactGAMiddlewares';
 
 const LOGGING = false;
 const CACHING = false;
@@ -24,6 +25,7 @@ const history = createBrowserHistory();
 const middlewares = [];
 middlewares.push(thunk);
 middlewares.push(routerMiddleware(history));
+middlewares.push(googleAnalytics);
 if (LOGGING) {
     middlewares.push(createLogger({
         diff: true

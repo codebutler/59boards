@@ -22,6 +22,7 @@ import indigo from 'material-ui/colors/indigo';
 import deepOrange from 'material-ui/colors/deepOrange';
 import withStyles from 'material-ui/styles/withStyles';
 import { WithStyles } from 'material-ui';
+import ReactGA from 'react-ga';
 
 const mapboxClient = new MapboxClient(MAPBOX_TOKEN);
 
@@ -49,6 +50,8 @@ const theme = createMuiTheme({
         secondary: {...deepOrange}
     }
 });
+
+ReactGA.initialize('UA-115583455-1');
 
 class App extends Component<PropsWithRouteAndStyle> {
 

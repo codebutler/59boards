@@ -29,6 +29,7 @@
     "react": "^16.2.0",
     "react-autosuggest": "^9.3.4",
     "react-dom": "^16.2.0",
+    "react-ga": "^2.4.1",
     "react-redux": "^5.0.7",
     "react-resize-detector": "^2.2.0",
     "react-router-dom": "^4.2.2",
