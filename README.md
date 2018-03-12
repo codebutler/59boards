@@ -21,3 +21,7 @@ $ pip install pipenv
 $ pipenv install
 $ python main.py --all
 ```
+
+## License
+
+This project is licensed under the terms of the [MIT license](/LICENSE).
