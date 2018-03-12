@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
+import _, { Dictionary } from 'lodash';
 import { CircularProgress, List, ListItem, ListItemIcon, ListItemText, ListSubheader, WithStyles } from 'material-ui';
 import { Theme } from 'material-ui/styles';
 import withStyles from 'material-ui/styles/withStyles';
@@ -32,10 +32,36 @@ interface State {
     events?: CalendarEvent[];
     isSubscribeDialogOpen: boolean;
     calendar?: Calendar;
+    calendarWebUrl?: string;
 }
 
 interface Context {
     swipeableViews: SwipeableViewsChildContext;
+}
+
+enum RenderEventsState {
+    LOADING,
+    HAS_EVENTS,
+    NO_EVENTS
+}
+
+interface RenderData {
+    isScraped: boolean;
+    calendarWebUrl?: string;
+    calendarIcalUrl?: string;
+    eventsState: RenderEventsState;
+    eventsByMonth?: Dictionary<EventRenderData[]>;
+}
+
+interface EventRenderData {
+    groupKey: string;
+    monthText: string;
+    dayText: string;
+    primaryText: string;
+    secondaryText: string;
+    fragmentKey: string;
+    listItemKey: string;
+
 }
 
 class CalendarTab extends Component<PropsWithStyles, State> {
@@ -65,10 +91,16 @@ class CalendarTab extends Component<PropsWithStyles, State> {
 
     render() {
         const { classes } = this.props;
-        const { events } = this.state;
+        const { isSubscribeDialogOpen } = this.state;
+        const data = this.createRenderData();
         return (
             <div>
-                { events && events.length > 0 && (
+                { data.eventsState === RenderEventsState.LOADING && (
+                    <div className={classes.emptyListContainer}>
+                        <CircularProgress/>
+                    </div>
+                )}
+                { data.eventsState === RenderEventsState.HAS_EVENTS && (
                     <List classes={{root: classes.calendarList}}>
                         <ListItem
                             button={true}
@@ -80,7 +112,7 @@ class CalendarTab extends Component<PropsWithStyles, State> {
                             <ListItemText primary={'Add to Calendar'}/>
                         </ListItem>
                         <Divider/>
-                        {this.props.district.calendar!.scraped && (
+                        {data.isScraped && (
                             <ListItem>
                                 <ListItemIcon>
                                     <WarningIcon style={{color: amber[700]}}/>
@@ -92,24 +124,23 @@ class CalendarTab extends Component<PropsWithStyles, State> {
                                 />
                             </ListItem>
                         )}
-                        {_(events)
-                            .groupBy((event) => moment(event.date).format('MMMM YYYY'))
+                        {_(data.eventsByMonth)
                             .map((monthEvents, month) => (
                                 <React.Fragment key={`fragment-${month}`}>
                                     <ListSubheader key={`header-${month}`}>{month}</ListSubheader>
-                                    {monthEvents.map((event: CalendarEvent) => (
-                                        <ListItem key={`item-${event.id}`}>
+                                    {monthEvents.map((event: EventRenderData) => (
+                                        <ListItem key={event.listItemKey}>
                                             <div className={classes.eventDate}>
-                                                <div>{moment(event.date).format('D')}</div>
-                                                <div>{moment(event.date).format('ddd')}</div>
+                                                <div>{event.monthText}</div>
+                                                <div>{event.dayText}</div>
                                             </div>
                                             <ListItemText
                                                 classes={{
                                                     root: classes.calendarListItemText,
                                                     secondary: classes.eventAddress
                                                 }}
-                                                primary={event.summary}
-                                                secondary={event.location}
+                                                primary={event.primaryText}
+                                                secondary={event.secondaryText}
                                             />
                                         </ListItem>)
                                     )}
@@ -119,19 +150,15 @@ class CalendarTab extends Component<PropsWithStyles, State> {
                         }
                     </List>
                 )}
-                { events && events.length === 0 && (
+                { data.eventsState === RenderEventsState.NO_EVENTS && (
                     <div className={classes.emptyListContainer}>
-                        <p>Events currently unavailable, check website.</p>
+                        <p>Events currently unavailable,
+                            check <a href={data.calendarWebUrl} target="_blank">website</a>.</p>
                     </div>
                 )}
-                { !events && (
-                    <div className={classes.emptyListContainer}>
-                        <CircularProgress/>
-                    </div>
-                )}
-                { this.state.isSubscribeDialogOpen && (
+                { isSubscribeDialogOpen && (
                     <SubscribeDialog
-                        subscribeUrl={this.state.calendar!.icalUrl!}
+                        subscribeUrl={data.calendarIcalUrl!}
                         onDialogExited={() => this.setState({ isSubscribeDialogOpen: false })}
                     />
                 )}
@@ -155,11 +182,47 @@ class CalendarTab extends Component<PropsWithStyles, State> {
             this.setState({ events: [] });
         }
     }
+
+    private createRenderData(): RenderData {
+        const { district } = this.props;
+        const { events, calendar } = this.state;
+
+        const getEventState = (): RenderEventsState => {
+            if (!events) {
+                return RenderEventsState.LOADING;
+            } else if (events && events.length > 0) {
+                return RenderEventsState.HAS_EVENTS;
+            } else {
+                return RenderEventsState.NO_EVENTS;
+            }
+        };
+
+        return {
+            isScraped: !!(district.calendar && district.calendar.scraped),
+            calendarWebUrl: district.calendar ? district.calendar.web : district.website,
+            calendarIcalUrl: calendar && calendar.icalUrl,
+            eventsState: getEventState(),
+            eventsByMonth: events && _(events)
+                .map((event) => {
+                    const eventMoment = moment(event.date);
+                    return {
+                        groupKey: eventMoment.format('MMMM YYYY'),
+                        monthText: eventMoment.format('D'),
+                        dayText: eventMoment.format('ddd'),
+                        primaryText: event.summary,
+                        secondaryText: event.location,
+                        fragmentKey: `fragment-${event.id}`,
+                        listItemKey: `item-${event.id}`
+                    } as EventRenderData;
+                })
+                .groupBy((event) => event.groupKey)
+                .value()
+        };
+    }
 }
 
 const styles = (theme: Theme) => (
     {
-        // FIXME: First two styles are copy/pasted...
         calendarList: {
             overflow: 'hidden' as 'hidden',
             whiteSpace: 'nowrap' as 'nonowrap',

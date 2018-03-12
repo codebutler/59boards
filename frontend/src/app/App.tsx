@@ -20,6 +20,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import createMuiTheme from 'material-ui/styles/createMuiTheme';
 import indigo from 'material-ui/colors/indigo';
 import deepOrange from 'material-ui/colors/deepOrange';
+import withStyles from 'material-ui/styles/withStyles';
+import { WithStyles } from 'material-ui';
 
 const mapboxClient = new MapboxClient(MAPBOX_TOKEN);
 
@@ -33,6 +35,7 @@ interface DispatchProps {
 
 type Props = DispatchProps;
 type PropsWithRoute = Props & RouteComponentProps<{}>;
+type PropsWithRouteAndStyle = PropsWithRoute & WithStyles<'@global'>;
 
 // Configure JSS
 const jss = create({ plugins: [jssExtend(), ...jssPreset().plugins] });
@@ -47,13 +50,13 @@ const theme = createMuiTheme({
     }
 });
 
-class App extends Component<PropsWithRoute> {
+class App extends Component<PropsWithRouteAndStyle> {
 
     static childContextTypes = {
         mapboxClient: PropTypes.instanceOf(MapboxClient).isRequired
     };
 
-    constructor(props: PropsWithRoute) {
+    constructor(props: PropsWithRouteAndStyle) {
         super(props);
         this.state = {};
     }
@@ -91,7 +94,23 @@ const mapDispatchToProps = (dispatch: Dispatch<RootAction>): DispatchProps => {
     };
 };
 
-export default withRouter(connect(
-    null,
-    mapDispatchToProps
-)<PropsWithRoute>(App));
+const styles = () => ({
+    '@global': {
+        'a': {
+            color: theme.palette.secondary.main,
+            textDecoration: 'none',
+            '&:hover': {
+                textDecoration: 'underline',
+            }
+        }
+    }
+});
+
+export default withRouter(
+    connect(
+        null,
+        mapDispatchToProps
+    )(
+        withStyles(styles)<PropsWithRoute>(App)
+    )
+);

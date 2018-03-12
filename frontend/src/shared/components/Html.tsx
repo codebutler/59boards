@@ -25,13 +25,6 @@ class Html extends Component<PropsWithStyles> {
 
 const styles = (theme: Theme) => ({
     root: {
-        '& a': {
-            color: theme.palette.secondary.main,
-            textDecoration: 'none',
-            '&:hover': {
-                textDecoration: 'underline',
-            }
-        },
         '& ul': {
             paddingLeft: theme.spacing.unit * 2,
         }

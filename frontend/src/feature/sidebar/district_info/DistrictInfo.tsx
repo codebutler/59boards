@@ -38,6 +38,8 @@ interface State {
     selectedTab: number;
 }
 
+const SHOW_LEADERSHIP = false; // This feature isn't quite ready
+
 class DistrictInfo extends Component<PropsWithStyles, State> {
 
     constructor(props: PropsWithStyles) {
@@ -69,18 +71,29 @@ class DistrictInfo extends Component<PropsWithStyles, State> {
                             fullWidth={true}
                         >
                             <Tab classes={{root: classes.tab}} label="Contact" />
-                            <Tab classes={{root: classes.tab}} label="Leadership"/>
+                            {SHOW_LEADERSHIP && <Tab classes={{root: classes.tab}} label="Leadership"/>}
                             <Tab classes={{root: classes.tab}} label="Meetings" />
                         </Tabs>
-                        <SwipeableViews
-                            animateHeight={true}
-                            index={this.state.selectedTab}
-                            onChangeIndex={(index) => { this.setState({selectedTab: index}); }}
-                        >
-                            <ContactTab district={district}/>
-                            <LeadershipTab district={district}/>
-                            <CalendarTab district={district}/>
-                        </SwipeableViews>
+                        {SHOW_LEADERSHIP ? (
+                            <SwipeableViews
+                                animateHeight={true}
+                                index={this.state.selectedTab}
+                                onChangeIndex={(index) => { this.setState({selectedTab: index}); }}
+                            >
+                                <ContactTab district={district}/>
+                                <LeadershipTab district={district}/>
+                                <CalendarTab district={district}/>
+                            </SwipeableViews>
+                        ) : (
+                            <SwipeableViews
+                                animateHeight={true}
+                                index={this.state.selectedTab}
+                                onChangeIndex={(index) => { this.setState({selectedTab: index}); }}
+                            >
+                                <ContactTab district={district}/>
+                                <CalendarTab district={district}/>
+                            </SwipeableViews>
+                        )}
                     </CardContent>
                 </Card>
             );
