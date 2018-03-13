@@ -56,11 +56,12 @@ class BrooklynCb2Spider(scrapy.Spider):
             else:
                 text_buffer.append(text)
             if (is_date or is_year or is_last) and text_buffer:
-                title = text_buffer[0]
-                location = text_buffer[1]
+                summary = text_buffer[0]
+                location = text_buffer[1] if len(text_buffer) > 1 else None
                 yield CalEventItem(
                     date=datetime(year=current_year, month=current_month, day=current_day),
-                    summary=title,
+                    summary=summary,
+                    description=None,
                     location=location
                 )
                 text_buffer = []
