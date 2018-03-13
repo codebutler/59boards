@@ -93,7 +93,10 @@
     "website": "http://www.nyc.gov/mcb7",
     "borough": "Manhattan",
     "calendar": {
-      "web": "http://www1.nyc.gov/site/manhattancb7/meetings/calendar.page"
+      "web": "http://www1.nyc.gov/site/manhattancb7/meetings/calendar.page",
+      "json": "/scraper-data/manhattan-cb7.json",
+      "ical": "/scraper-data/manhattan-cb7.ics",
+      "scraped": true
     }
   },
   "108": {
