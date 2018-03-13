@@ -38,8 +38,7 @@ class Intro extends Component<PropsWithStyles, State> {
                         <IconButton onClick={this.onShowMenuButtonClick}>
                             <MoreVertIcon />
                         </IconButton>}
-                    title="59boards.nyc"
-                    subheader="NYC Community Boards"
+                    title="59Boards.nyc"
                 />
                 <Menu
                     id="simple-menu"
