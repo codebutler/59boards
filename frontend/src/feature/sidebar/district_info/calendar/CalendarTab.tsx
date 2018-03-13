@@ -209,7 +209,7 @@ class CalendarTab extends Component<PropsWithStyles, State> {
                         groupKey: eventMoment.format('MMMM YYYY'),
                         monthText: eventMoment.format('D'),
                         dayText: eventMoment.format('ddd'),
-                        primaryText: event.summary,
+                        primaryText: `[${eventMoment.format('h:mma')}] ${event.summary}`,
                         secondaryText: event.location,
                         fragmentKey: `fragment-${event.id}`,
                         listItemKey: `item-${event.id}`
