@@ -669,7 +669,10 @@
     "website": "http://www1.nyc.gov/site/queenscb5/index.page",
     "borough": "Queens",
     "calendar": {
-      "web": "http://www1.nyc.gov/site/queenscb5/calendar/calendar.page"
+      "web": "http://www1.nyc.gov/site/queenscb5/calendar/calendar.page",
+      "json": "/scraper-data/queens-cb5.json",
+      "ical": "/scraper-data/queens-cb5.ics",
+      "scraped": true
     }
   },
   "406": {
