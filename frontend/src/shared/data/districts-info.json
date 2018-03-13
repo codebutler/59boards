@@ -503,7 +503,9 @@
     "website": "http://www.brooklyncb11.org/",
     "borough": "Brooklyn",
     "calendar": {
-      "web": "http://www.brooklyncb11.org/calendar/"
+      "web": "http://www.brooklyncb11.org/calendar/",
+      "ical": "http://www.brooklyncb11.org/calendar/?ical=1&tribe_display=month",
+      "googleCalendarId": "rqbr8hduf3jkdupjd5oerch0vag8n7pn@import.calendar.google.com"
     }
   },
   "312": {
