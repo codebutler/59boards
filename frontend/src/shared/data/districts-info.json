@@ -299,7 +299,10 @@
     "website": "http://www1.nyc.gov/site/bronxcb9/index.page",
     "borough": "Bronx",
     "calendar": {
-      "web": "http://www1.nyc.gov/site/bronxcb9/calendar/calendar.page"
+      "web": "http://www1.nyc.gov/site/bronxcb9/calendar/calendar.page",
+      "json": "/scraper-data/bronx-cb9.json",
+      "ical": "/scraper-data/bronx-cb9.ics",
+      "scraped": true
     }
   },
   "210": {
