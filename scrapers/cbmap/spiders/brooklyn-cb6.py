@@ -26,8 +26,8 @@ class BrooklynCb6Spider(scrapy.Spider):
 
     @staticmethod
     def __parse_date(text: str) -> datetime:
-        return datetime.strptime(text, '%B %d, %I:%M%p') \
-            .replace(year=datetime.now().year, tzinfo=timezone('US/Eastern'))
+        return timezone('US/Eastern').localize(
+            datetime.strptime(text, '%B %d, %I:%M%p').replace(year=datetime.now().year))
 
     @staticmethod
     def __clean_html(html: str) -> Optional[str]:

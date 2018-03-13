@@ -352,7 +352,10 @@
     "website": "http://www.nyc.gov/brooklyncb1",
     "borough": "Brooklyn",
     "calendar": {
-      "web": "http://www.nyc.gov/html/bkncb1/html/calendar/calendar.shtml"
+      "web": "http://www.nyc.gov/html/bkncb1/html/calendar/calendar.shtml",
+      "json": "/scraper-data/brooklyn-cb1.json",
+      "ical": "/scraper-data/brooklyn-cb1.ics",
+      "scraped": true
     }
   },
   "302": {
