@@ -192,14 +192,17 @@
     "id": 202,
     "number": 2,
     "neighborhoods": "Hunts Point, Longwood, Morrisania",
-    "address": "1029 E. 163rd Street, Suite 202\nBronx, NY 10459",
-    "phone": "718-328-9125 / 718-328-9126",
+    "address": "1029 East 163rd Street, Rm. 202\nBronx, New York  10459",
+    "phone": "718-328-9125",
     "fax": "718-991-4974",
     "email": "brxcb2@optonline.net",
-    "website": "http://www.bronxmall.com/commboards/cd2.html",
+    "website": "http://bxcb2.org/",
     "borough": "Bronx",
     "calendar": {
-      "web": "http://www.bronxmall.com/commboards/monthcalendar2.html"
+      "web": "http://bxcb2.org/events/",
+      "ical": "http://bxcb2.org/events/?ical=1&tribe_display=month",
+      "googleCalendarId": "4u4552ju27jeppltbtkhe9fos5a4n228@import.calendar.google.com"
+
     }
   },
   "203": {
@@ -316,7 +319,7 @@
     "website": "http://www.nyc.gov/html/bxcb10/html/home/home.shtml",
     "borough": "Bronx",
     "calendar": {
-      "website": "http://www.nyc.gov/html/bxcb10/html/calendar/calendar.shtml"
+      "web": "http://www.nyc.gov/html/bxcb10/html/calendar/calendar.shtml"
     }
   },
   "211": {
