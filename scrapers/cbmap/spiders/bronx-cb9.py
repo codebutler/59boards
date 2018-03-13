@@ -2,7 +2,6 @@ from datetime import datetime
 
 import scrapy
 from bs4 import BeautifulSoup
-from parsedatetime import parsedatetime
 
 from cbmap.items import CalEventItem
 
@@ -13,8 +12,6 @@ class BronxCb9Spider(scrapy.Spider):
     start_urls = [
         'http://www1.nyc.gov/site/bronxcb9/calendar/calendar.page'
     ]
-
-    cal = parsedatetime.Calendar()
 
     def parse(self, response):
         soup = BeautifulSoup(response.text, 'lxml')

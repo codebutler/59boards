@@ -213,10 +213,10 @@
     "phone": "718-378-8054",
     "fax": "718-378-8188",
     "email": "Brxcomm3@optonline.net",
-    "website": "http://www.bronxmall.com/commboards/cd3.html",
+    "website": "http://www.nyc.gov/html/bxcb3/html/home/home.shtml",
     "borough": "Bronx",
     "calendar": {
-      "web": "http://www.bronxmall.com/commboards/monthcalendar3.html"
+      "web": "http://www.nyc.gov/html/bxcb3/html/calendar/calendar.shtml"
     }
   },
   "204": {
@@ -258,10 +258,10 @@
     "phone": "718-579-6990",
     "fax": "718-579-6875",
     "email": "brxcb6@optonline.net",
-    "website": "http://www.bronxmall.com/commboards/cd6.html",
+    "website": "http://bronxcb6.org/",
     "borough": "Bronx",
     "calendar": {
-      "web": "http://www.bronxmall.com/commboards/monthcalendar6.html"
+      "web": "http://bronxcb6.org/index.php/events-2/"
     }
   },
   "207": {
@@ -319,10 +319,10 @@
     "phone": "718-892-1161",
     "fax": "718-863-6860",
     "email": "bx10@cb.nyc.gov",
-    "website": "http://www.nyc.gov/html/bxcb10/html/home/home.shtml",
+    "website": "http://www1.nyc.gov/site/bronxcb10/index.page",
     "borough": "Bronx",
     "calendar": {
-      "web": "http://www.nyc.gov/html/bxcb10/html/calendar/calendar.shtml"
+      "web": "http://www1.nyc.gov/site/bronxcb10/calendar/calendar.page"
     }
   },
   "211": {
@@ -343,7 +343,7 @@
     "id": 212,
     "number": 12,
     "neighborhoods": "Edenwald, Wakefield, Williamsbridge, Woodlawn, Fish Bay, Eastchester, Olinville, and Baychester",
-    "address": "4101 White",
+    "address": "4101 White Plains Rd\nBronx, New York 10466",
     "phone": "718-881-4455",
     "fax": "718-231-0635",
     "email": "gtorres@cb.nyc.gov",
@@ -693,18 +693,27 @@
     "fax": "718-263-2211",
     "email": "cb6q@nyc.rr.com",
     "website": "http://queenscb6.org/",
-    "borough": "Queens"
+    "borough": "Queens",
+    "calendar": {
+      "web": "http://www1.nyc.gov/site/queenscb6/news/upcoming-events.page",
+      "json": "/scraper-data/queens-cb6.json",
+      "ical": "/scraper-data/queens-cb6.ics",
+      "scraped": true
+    }
   },
   "407": {
     "id": 407,
     "number": 7,
     "neighborhoods": "Flushing, Bay Terrace, College Point, Whitestone, Malba, Beechhurst, Queensboro Hill, and Willets Point",
-    "address": "133-32 41st Road - Suite 3B",
+    "address": "133-32 41st Road - Room 3B\nFlushing, N.Y. 11355",
     "phone": "718-359-2800",
     "fax": "718-463-3891",
-    "email": "",
-    "website": "",
-    "borough": "Queens"
+    "email": "qn07@cb.nyc.gov",
+    "website": "http://www.nyc.gov/html/qnscb7/html/home/home.shtml",
+    "borough": "Queens",
+    "calendar": {
+      "web": "http://www.nyc.gov/html/qnscb7/html/meetings/announcements.shtml"
+    }
   },
   "408": {
     "id": 408,
