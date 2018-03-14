@@ -24,6 +24,8 @@ $ pipenv install
 $ python main.py --all
 ```
 
+You'll also need [tabula-server](https://github.com/codebutler/tabula-server/) running on localhost:4000 for the PDF scrapers to work.
+
 ## License
 
 This project is licensed under the terms of the [MIT license](/LICENSE).

@@ -398,7 +398,10 @@
     "website": "http://cb3brooklyn.org",
     "borough": "Brooklyn",
     "calendar": {
-      "web": "http://www1.nyc.gov/site/brooklyncb3/meetings/calendar.page"
+      "web": "http://www1.nyc.gov/site/brooklyncb3/meetings/calendar.page",
+      "json": "/scraper-data/brooklyn-cb3.json",
+      "ical": "/scraper-data/brooklyn-cb3.ics",
+      "scraped": true
     }
   },
   "304": {

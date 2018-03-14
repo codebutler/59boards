@@ -52,9 +52,9 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'cbmap.middlewares.CbmapDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'cbmap.jwtauth.JWTAuthMiddleware': 100
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
