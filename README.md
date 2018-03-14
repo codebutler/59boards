@@ -1,4 +1,4 @@
-# 59Boards: NYC Community Board Map
+# 59Boards: NYC Community Board Map & Meetings Calendar Scraper
 
 New York City's government includes a system of 59 community board districts that offer a way for the public to get involved with local politics. Many New Yorkers don't know they exist, and the process to get involved can seem overwhelming.
 
