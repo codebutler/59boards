@@ -4,6 +4,9 @@ New York City's government includes a system of 59 community board districts tha
 
 Most boards don't provide an easy way to get notified of upcoming meetings, making participation difficult. 59Boards [scrapes](https://en.wikipedia.org/wiki/Web_scraping) event information from board websites and provides a feed for your calendar app's subscription feature.
 
+## Chat
+Join us in `#app-59boards` on the [Beta NYC Slack](http://slack.beta.nyc/).
+
 ## frontend
 
 ```
