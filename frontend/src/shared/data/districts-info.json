@@ -199,8 +199,7 @@
     "calendar": {
       "web": "http://bxcb2.org/events/",
       "ical": "http://bxcb2.org/events/?ical=1&tribe_display=month",
-      "googleCalendarId": "4u4552ju27jeppltbtkhe9fos5a4n228@import.calendar.google.com"
-
+      "scraperId": "bronx-cb2"
     }
   },
   "203": {
