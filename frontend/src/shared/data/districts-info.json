@@ -474,7 +474,11 @@
     "fax": "718-467-0994",
     "email": "bk09@cb.nyc.gov",
     "website": "http://www.communitybrd9bklyn.org/",
-    "borough": "Brooklyn"
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www.communitybrd9bklyn.org/meetings/",
+      "scraperId": "brooklyn-cb9"
+    }
   },
   "310": {
     "id": 310,
