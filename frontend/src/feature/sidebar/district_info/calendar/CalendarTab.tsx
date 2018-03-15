@@ -198,7 +198,7 @@ class CalendarTab extends Component<PropsWithStyles, State> {
         };
 
         return {
-            isScraped: !!(district.calendar && district.calendar.scraped),
+            isScraped: !!(district.calendar && district.calendar.scraperId),
             calendarWebUrl: district.calendar ? district.calendar.web : district.website,
             calendarIcalUrl: calendar && calendar.icalUrl,
             eventsState: getEventState(),

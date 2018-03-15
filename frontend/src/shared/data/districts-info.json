@@ -94,9 +94,7 @@
     "borough": "Manhattan",
     "calendar": {
       "web": "http://www1.nyc.gov/site/manhattancb7/meetings/calendar.page",
-      "json": "/scraper-data/manhattan-cb7.json",
-      "ical": "/scraper-data/manhattan-cb7.ics",
-      "scraped": true
+      "scraperId": "manhattan-cb7"
     }
   },
   "108": {
@@ -245,9 +243,7 @@
     "borough": "Bronx",
     "calendar": {
       "web": "http://www1.nyc.gov/site/bronxcb5/calendar/calendar.page",
-      "json": "/scraper-data/bronx-cb5.json",
-      "ical": "/scraper-data/bronx-cb5.ics",
-      "scraped": true
+      "scraperId": "bronx-cb5"
     }
   },
   "206": {
@@ -306,9 +302,7 @@
     "borough": "Bronx",
     "calendar": {
       "web": "http://www1.nyc.gov/site/bronxcb9/calendar/calendar.page",
-      "json": "/scraper-data/bronx-cb9.json",
-      "ical": "/scraper-data/bronx-cb9.ics",
-      "scraped": true
+      "scraperId": "bronx-cb9"
     }
   },
   "210": {
@@ -365,9 +359,7 @@
     "borough": "Brooklyn",
     "calendar": {
       "web": "http://www.nyc.gov/html/bkncb1/html/calendar/calendar.shtml",
-      "json": "/scraper-data/brooklyn-cb1.json",
-      "ical": "/scraper-data/brooklyn-cb1.ics",
-      "scraped": true
+      "scraperId": "brooklyn-cb1"
     }
   },
   "302": {
@@ -382,9 +374,7 @@
     "borough": "Brooklyn",
     "calendar": {
       "web": "http://www.nyc.gov/html/bkncb2/html/calendar/calendar.shtml",
-      "json": "/scraper-data/brooklyn-cb2.json",
-      "ical": "/scraper-data/brooklyn-cb2.ics",
-      "scraped": true
+      "scraperId": "brooklyn-cb2"
     }
   },
   "303": {
@@ -399,9 +389,7 @@
     "borough": "Brooklyn",
     "calendar": {
       "web": "http://www1.nyc.gov/site/brooklyncb3/meetings/calendar.page",
-      "json": "/scraper-data/brooklyn-cb3.json",
-      "ical": "/scraper-data/brooklyn-cb3.ics",
-      "scraped": true
+      "scraperId": "brooklyn-cb3"
     }
   },
   "304": {
@@ -445,9 +433,7 @@
     "borough": "Brooklyn",
     "calendar": {
       "web": "http://www1.nyc.gov/site/brooklyncb6/calendar/calendar.page",
-      "json": "/scraper-data/brooklyn-cb6.json",
-      "ical": "/scraper-data/brooklyn-cb6.ics",
-      "scraped": true
+      "scraperId": "brooklyn-cb6"
     }
   },
   "307": {
@@ -640,9 +626,7 @@
     "borough": "Queens",
     "calendar": {
       "web": "http://www.nyc.gov/html/qnscb2/html/calendar/calendar.shtml",
-      "json": "/scraper-data/queens-cb2.json",
-      "ical": "/scraper-data/queens-cb2.ics",
-      "scraped": true
+      "scraperId": "queens-cb2"
     }
   },
   "403": {
@@ -682,9 +666,7 @@
     "borough": "Queens",
     "calendar": {
       "web": "http://www1.nyc.gov/site/queenscb5/calendar/calendar.page",
-      "json": "/scraper-data/queens-cb5.json",
-      "ical": "/scraper-data/queens-cb5.ics",
-      "scraped": true
+      "scraperId": "queens-cb5"
     }
   },
   "406": {
@@ -699,9 +681,7 @@
     "borough": "Queens",
     "calendar": {
       "web": "http://www1.nyc.gov/site/queenscb6/news/upcoming-events.page",
-      "json": "/scraper-data/queens-cb6.json",
-      "ical": "/scraper-data/queens-cb6.ics",
-      "scraped": true
+      "scraperId": "queens-cb6"
     }
   },
   "407": {

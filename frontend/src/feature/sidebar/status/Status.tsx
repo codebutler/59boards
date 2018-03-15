@@ -34,7 +34,7 @@ class Status extends Component<PropsWithStyles> {
     private static classForTile(district: District, classes: ClassNameMap<ClassKey>): string {
         const isGood = !!(district.calendar
             && (district.calendar.ical || district.calendar.googleCalendarId));
-        const isScraped = district.calendar && district.calendar.scraped;
+        const isScraped = district.calendar && district.calendar.scraperId;
         return isGood ? (isScraped ? classes.titleMediocre : classes.tileGood) : classes.tileBad;
     }
 
