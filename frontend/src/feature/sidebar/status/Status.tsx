@@ -24,7 +24,7 @@ type ClassKey =
     | 'cardContentRoot'
     | 'tileBad'
     | 'tileGood'
-    | 'titleMediocre';
+    | 'tileMediocre';
 
 type Props = DispatchProps;
 type PropsWithStyles = Props & WithStyles<ClassKey>;
@@ -33,9 +33,9 @@ class Status extends Component<PropsWithStyles> {
 
     private static classForTile(district: District, classes: ClassNameMap<ClassKey>): string {
         const isGood = !!(district.calendar
-            && (district.calendar.ical || district.calendar.googleCalendarId));
+            && (district.calendar.scraperId || district.calendar.googleCalendarId));
         const isScraped = district.calendar && district.calendar.scraperId;
-        return isGood ? (isScraped ? classes.titleMediocre : classes.tileGood) : classes.tileBad;
+        return isGood ? (isScraped ? classes.tileMediocre : classes.tileGood) : classes.tileBad;
     }
 
     render() {
@@ -108,7 +108,7 @@ const styles = (theme: Theme) => ({
             backgroundColor: red[400],
         }
     },
-    titleMediocre: {
+    tileMediocre: {
         extend: tileStyle,
 
         backgroundColor: orange[300],
