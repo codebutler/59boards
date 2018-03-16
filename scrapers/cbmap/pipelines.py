@@ -65,8 +65,8 @@ class ICalWriterPipeline(object):
     def process_item(self, item: CalEventItem, spider):
         event = Event()
         event.add('uid', item['id'])
-        event.add('summary', item['summary'])
-        event.add('description', item['description'])
+        event.add('summary', self.__add_disclaimer_summary(item['summary']))
+        event.add('description', self.__add_disclaimer_description(item['description']))
         event.add('location', item['location'])
         event.add('dtstamp', datetime.utcnow())
         event.add('dtstart', item['date'])
@@ -79,3 +79,14 @@ class ICalWriterPipeline(object):
         file = open(os.path.join(OUTPUT_DIR, f'{spider.name}.ics'), 'wb')
         file.write(self.cal.to_ical())
         file.close()
+
+    @staticmethod
+    def __add_disclaimer_summary(text: str) -> str:
+        return ' '.join((x for x in (text, '[CHECK WEBSITE]') if x))
+
+    @staticmethod
+    def __add_disclaimer_description(text: str) -> str:
+        disclaimer = 'NOTE: This event was automatically generated, check website to verify.' \
+                     '\nReport issues at https://github.com/codebutler/59boards/issues'
+        return '\n'.join((x for x in (text, disclaimer) if x))
+
