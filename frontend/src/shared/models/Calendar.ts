@@ -3,7 +3,6 @@ import moment from 'moment';
 
 export interface CalendarData {
     ical?: string;
-    json?: string;
     web?: string;
     scraperId?: string;
     googleCalendarId?: string;
@@ -21,10 +20,8 @@ export class Calendar {
         if (this.data.googleCalendarId) {
             return GCalApi.fetchFeed(this.data.googleCalendarId);
         }
-        const url = this.data.scraperId
-            ? `/scraper-data/${this.data.scraperId}.json`
-            : this.data.json;
-        if (url) {
+        if (this.data.scraperId) {
+            const url = `/scraper-data/${this.data.scraperId}.json`;
             return fetch(url)
                 .then((resp) => {
                     if (!resp.ok) {
