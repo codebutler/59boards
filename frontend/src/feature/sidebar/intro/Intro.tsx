@@ -46,8 +46,9 @@ class Intro extends Component<PropsWithStyles, State> {
                     open={Boolean(menuAnchorEl)}
                     onClose={this.onMenuClose}
                 >
-                    <MenuItem onClick={this.onStatusItemClick}>Status</MenuItem>
-                    <MenuItem onClick={this.onAboutItemClick}>About</MenuItem>
+                    <MenuItem onClick={this.onReportIssueItemClick}>Report Issue</MenuItem>
+                    <MenuItem onClick={this.onStatusItemClick}>Calendar Status</MenuItem>
+                    <MenuItem onClick={this.onAboutItemClick}>About 59Boards</MenuItem>
                 </Menu>
                 <CardContent style={{ paddingTop: 0 }}>
                     <Html html={IntroHtml} classes={{root: classes.introText}} />
@@ -59,6 +60,11 @@ class Intro extends Component<PropsWithStyles, State> {
     @bind()
     private onShowMenuButtonClick(event: MouseEvent<HTMLElement>) {
         this.setState({ menuAnchorEl: event.currentTarget });
+    }
+
+    @bind()
+    private onReportIssueItemClick(event: MouseEvent<HTMLElement>) {
+        window.open('https://github.com/codebutler/59boards/issues', '_blank');
     }
 
     @bind()
