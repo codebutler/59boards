@@ -3,7 +3,7 @@ import _, { Dictionary } from 'lodash';
 import { CircularProgress, List, ListItem, ListItemIcon, ListItemText, ListSubheader, WithStyles } from 'material-ui';
 import { Theme } from 'material-ui/styles';
 import withStyles from 'material-ui/styles/withStyles';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 import District from '../../../../shared/models/District';
 import { Calendar } from '../../../../shared/models/Calendar';
 import PropTypes from 'prop-types';
@@ -13,6 +13,8 @@ import EventIcon from 'material-ui-icons/Event';
 import WarningIcon from 'material-ui-icons/Warning';
 import { amber } from 'material-ui/colors';
 import SubscribeDialog from './SubscribeDialog';
+import Typography from 'material-ui/Typography';
+import Grid from 'material-ui/Grid';
 
 interface Props {
     district: District;
@@ -23,6 +25,8 @@ type ClassKey =
     | 'calendarListItemText'
     | 'eventAddress'
     | 'eventDate'
+    | 'eventDateDom'
+    | 'eventDateDow'
     | 'eventsHeader'
     | 'emptyListContainer';
 
@@ -56,12 +60,13 @@ interface RenderData {
 interface EventRenderData {
     groupKey: string;
     monthText: string;
-    dayText: string;
+    domText: string;
+    dowText: string;
     primaryText: string;
     secondaryText: string;
     fragmentKey: string;
     listItemKey: string;
-
+    isFirstForDay: boolean;
 }
 
 class CalendarTab extends Component<PropsWithStyles, State> {
@@ -130,18 +135,34 @@ class CalendarTab extends Component<PropsWithStyles, State> {
                                     <ListSubheader key={`header-${month}`}>{month}</ListSubheader>
                                     {monthEvents.map((event: EventRenderData) => (
                                         <ListItem key={event.listItemKey}>
-                                            <div className={classes.eventDate}>
-                                                <div>{event.monthText}</div>
-                                                <div>{event.dayText}</div>
-                                            </div>
-                                            <ListItemText
-                                                classes={{
-                                                    root: classes.calendarListItemText,
-                                                    secondary: classes.eventAddress
-                                                }}
-                                                primary={event.primaryText}
-                                                secondary={event.secondaryText}
-                                            />
+                                            <Grid container={true} spacing={0} wrap={'nowrap'}>
+                                                <Grid
+                                                    item={true}
+                                                    className={classes.eventDate}
+                                                    style={{visibility: event.isFirstForDay ? 'visible' : 'hidden'}}
+                                                >
+                                                    <Typography
+                                                        className={classes.eventDateDom}
+                                                    >
+                                                        {event.domText}
+                                                    </Typography>
+                                                    <Typography
+                                                        className={classes.eventDateDow}
+                                                    >
+                                                        {event.dowText}
+                                                    </Typography>
+                                                </Grid>
+                                                <Grid item={true} style={{ flex: 1, overflow: 'hidden' as 'hidden'}}>
+                                                    <ListItemText
+                                                        classes={{
+                                                            root: classes.calendarListItemText,
+                                                            secondary: classes.eventAddress
+                                                        }}
+                                                        primary={event.primaryText}
+                                                        secondary={event.secondaryText}
+                                                    />
+                                                </Grid>
+                                            </Grid>
                                         </ListItem>)
                                     )}
                                 </React.Fragment>)
@@ -197,22 +218,41 @@ class CalendarTab extends Component<PropsWithStyles, State> {
             }
         };
 
+        const getSecondaryText = (event: CalendarEvent, eventMoment: Moment): string => {
+            const eventTime = eventMoment.format('h:mma');
+            if (event.location) {
+                return `${eventTime} at ${event.location}`;
+            } else {
+                return eventTime;
+            }
+        };
+
+        const getIsFirstForDay = (list: ArrayLike<CalendarEvent>, index: number): boolean => {
+            if (index === 0) {
+                return true;
+            }
+            const prevEvent = list[index - 1];
+            const thisEvent = list[index];
+            return !moment(prevEvent.date).isSame(moment(thisEvent.date), 'day');
+        };
+
         return {
             isScraped: !!(district.calendar && district.calendar.scraperId),
             calendarWebUrl: district.calendar ? district.calendar.web : district.website,
             calendarIcalUrl: calendar && calendar.icalUrl,
             eventsState: getEventState(),
             eventsByMonth: events && _(events)
-                .map((event) => {
+                .map((event, index, list) => {
                     const eventMoment = moment(event.date);
                     return {
                         groupKey: eventMoment.format('MMMM YYYY'),
-                        monthText: eventMoment.format('D'),
-                        dayText: eventMoment.format('ddd'),
-                        primaryText: `[${eventMoment.format('h:mma')}] ${event.summary}`,
-                        secondaryText: event.location,
+                        domText: eventMoment.format('D'),
+                        dowText: eventMoment.format('ddd'),
+                        primaryText: event.summary,
+                        secondaryText: getSecondaryText(event, eventMoment),
                         fragmentKey: `fragment-${event.id}`,
-                        listItemKey: `item-${event.id}`
+                        listItemKey: `item-${event.id}`,
+                        isFirstForDay: getIsFirstForDay(list, index)
                     } as EventRenderData;
                 })
                 .groupBy((event) => event.groupKey)
@@ -237,7 +277,13 @@ const styles = (theme: Theme) => (
             whiteSpace: 'pre' as 'pre'
         },
         eventDate: {
-            alignSelf: 'flex-start' as 'flex-start'
+            marginRight: theme.spacing.unit * 2
+        },
+        eventDateDom: {
+            fontSize: '1.2rem'
+        },
+        eventDateDow: {
+            fontSize: '0.8rem'
         },
         emptyListContainer: {
             textAlign: 'center' as 'center',
