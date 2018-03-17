@@ -546,7 +546,12 @@
     "fax": "718-421-6077",
     "email": "info@cb14brooklyn.com",
     "website": "http://www.cb14brooklyn.com",
-    "borough": "Brooklyn"
+    "borough": "Brooklyn",
+    "calendar": {
+      "web": "http://www.cb14brooklyn.com/category/meetings/",
+      "ical": "webcal://www.cb14brooklyn.com/?ec3_ical",
+      "googleCalendarId": "fdnp27905iqi26rhjl3cgvs9qri1gfig@import.calendar.google.com"
+    }
   },
   "315": {
     "id": 315,
