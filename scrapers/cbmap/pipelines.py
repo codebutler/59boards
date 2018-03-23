@@ -27,6 +27,12 @@ class IdPipeline(object):
         return item
 
 
+class MissingSummaryPipeline(object):
+    def process_item(self, item, spider):
+        if item.get('summary', None) is None:
+            item['summary'] = f'{spider.title} Meeting'
+        return item
+
 class JsonWriterPipeline(object):
 
     file: IO = None

@@ -19,6 +19,7 @@ EXTENSIONS = {
 
 ITEM_PIPELINES = {
     'cbmap.pipelines.IdPipeline': 300,
+    'cbmap.pipelines.MissingSummaryPipeline': 350,
     'cbmap.pipelines.JsonWriterPipeline': 400,
     'cbmap.pipelines.ICalWriterPipeline': 500,
 }
