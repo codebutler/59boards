@@ -8,6 +8,7 @@ export default interface District {
     address?: string;
     email?: string;
     phone?: string;
+    twitter?: string;
     website?: string;
     calendar?: CalendarData;
 }

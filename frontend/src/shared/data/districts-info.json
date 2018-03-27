@@ -8,6 +8,7 @@
     "fax": "212-442-5055",
     "email": "man01@cb.nyc.gov",
     "website": "http://www.nyc.gov/html/mancb1/html/home/home.shtml",
+    "twitter": "CommunityBoard1",
     "borough": "Manhattan"
   },
   "102": {
@@ -34,6 +35,7 @@
     "fax": "212-533-3659",
     "email": "info@cb3manhattan.org",
     "website": "http://www.nyc.gov/manhattancb3",
+    "twitter": "CB3Man",
     "borough": "Manhattan",
     "calendar": {
       "web": "http://www.nyc.gov/html/mancb3/html/calendar/calendar.shtml"
@@ -48,6 +50,7 @@
     "fax": "212-947-9512",
     "email": "info@manhattancb4.org",
     "website": "http://www.nyc.gov/mcb4",
+    "twitter": "ManhattanBoard4",
     "borough": "Manhattan",
     "calendar": {
       "web": "http://www.nyc.gov/html/mancb4/html/calendar/calendarnew.shtml"
@@ -62,6 +65,7 @@
     "fax": "212-465-1628",
     "email": "office@cb5.org",
     "website": "http://www.cb5.org",
+    "twitter": "manhattancb5",
     "borough": "Manhattan",
     "calendar": {
       "web": "https://www.cb5.org/cb5/calendar/"
@@ -76,6 +80,7 @@
     "fax": "212-319-3772",
     "email": "office@cbsix.org",
     "website": "http://cbsix.org",
+    "twitter": "cbsix",
     "borough": "Manhattan",
     "calendar": {
       "web": "http://cbsix.org/calendar/",
@@ -91,6 +96,7 @@
     "fax": "212-595-9317",
     "email": "office@cb7.org",
     "website": "http://www.nyc.gov/mcb7",
+    "twitter": "CB7Manhattan",
     "borough": "Manhattan",
     "calendar": {
       "web": "http://www1.nyc.gov/site/manhattancb7/meetings/calendar.page",
@@ -106,6 +112,7 @@
     "fax": "212-758-4616",
     "email": "info@cb8m.com",
     "website": "http://www.cb8m.com/",
+    "twitter": "cb8m",
     "borough": "Manhattan",
     "calendar": {
       "web": "https://www.cb8m.com/calendar/",
@@ -122,6 +129,7 @@
     "fax": "212-662-7396",
     "email": "nyc-cb9m@juno.com",
     "website": "http://www.cb9m.org",
+    "twitter": "cb9manhattan",
     "borough": "Manhattan",
     "calendar": {
       "web": "http://www.cb9m.org/cal_events",
@@ -137,6 +145,7 @@
     "fax": "212.662.4215",
     "email": "mn10@cb.nyc.gov",
     "website": "http://www.nyc.gov/html/mancb10/html/home/home.shtml",
+    "twitter": "mancb10",
     "borough": "Manhattan",
     "calendar": {
       "web": "http://www.nyc.gov/html/mancb10/html/calendar/calendar.shtml"
@@ -151,6 +160,7 @@
     "fax": "212-369-3571",
     "email": "mn11@cb.nyc.gov",
     "website": "http://www.cb11m.org/",
+    "twitter": "manhattancb11",
     "borough": "Manhattan",
     "calendar": {
       "web": "http://www.cb11m.org/calender/",
@@ -167,6 +177,7 @@
     "fax": "212-740-8197",
     "email": "",
     "website": "http://www.nyc.gov/html/mancb12/html/home/home.shtml",
+    "twitter": "mancb12",
     "borough": "Manhattan",
     "calendar": {
       "web": "http://www.nyc.gov/html/mancb12/html/meetings/meetings.shtml"
@@ -195,6 +206,7 @@
     "fax": "718-991-4974",
     "email": "brxcb2@optonline.net",
     "website": "http://bxcb2.org/",
+    "twitter": "BxCB2",
     "borough": "Bronx",
     "calendar": {
       "web": "http://bxcb2.org/events/",
@@ -225,6 +237,7 @@
     "fax": "718-294-7870",
     "email": "bx04@cb.nyc.gov",
     "website": "http://www.nyc.gov/html/bxcb4/html/home/home.shtml",
+    "twitter": "bronxcb4",
     "borough": "Bronx",
     "calendar": {
       "web": "http://www1.nyc.gov/site/bronxcb4/calendar/calendar.page"
@@ -254,6 +267,7 @@
     "fax": "718-579-6875",
     "email": "brxcb6@optonline.net",
     "website": "http://bronxcb6.org/",
+    "twitter": "bronxcb6",
     "borough": "Bronx",
     "calendar": {
       "web": "http://bronxcb6.org/index.php/events-2/"
@@ -268,6 +282,7 @@
     "fax": "718-933-1829",
     "email": "info@BronxCB7.info",
     "website": "http://www.bronxcb7.info/",
+    "twitter": "bronxcb7",
     "borough": "Bronx",
     "calendar": {
       "web": "http://www.bronxcb7.info/calendar/",
@@ -284,6 +299,7 @@
     "fax": "718-796-2763",
     "email": "bx08@cb.nyc.gov",
     "website": "http://www.nyc.gov/bronxcb8",
+    "twitter": "bxcb8",
     "borough": "Bronx",
     "calendar": {
       "web": "http://www.nyc.gov/html/bxcb8/html/calendar/calendar.shtml"
@@ -298,6 +314,7 @@
     "fax": "718-823-6461",
     "email": "bxbrd09@optonline.net",
     "website": "http://www1.nyc.gov/site/bronxcb9/index.page",
+    "twitter": "BronxCB9",
     "borough": "Bronx",
     "calendar": {
       "web": "http://www1.nyc.gov/site/bronxcb9/calendar/calendar.page",
@@ -429,6 +446,7 @@
     "fax": "718-624-8410",
     "email": "info@brooklyncb6.org",
     "website": "http://www.brooklyncb6.org/",
+    "twitter": "brooklyncb6",
     "borough": "Brooklyn",
     "calendar": {
       "web": "http://www1.nyc.gov/site/brooklyncb6/calendar/calendar.page",
@@ -444,6 +462,7 @@
     "fax": "718-436-1142",
     "email": "bk07@cb.nyc.gov",
     "website": "http://www.brooklyncb7.org/",
+    "twitter": "bkcb7",
     "borough": "Brooklyn",
     "calendar": {
       "web": "http://www1.nyc.gov/site/brooklyncb7/calendar/calendar.page"
@@ -518,6 +537,7 @@
     "fax": "718-851-4140",
     "email": "BKCB12@gmail.com",
     "website": "http://www.brooklyncb12.org",
+    "twitter": "brooklyncb12",
     "borough": "Brooklyn",
     "calendar": {
       "web": "http://cb12.lifeofmh.com/meetings/"
@@ -546,6 +566,7 @@
     "fax": "718-421-6077",
     "email": "info@cb14brooklyn.com",
     "website": "http://www.cb14brooklyn.com",
+    "twitter": "cb14brooklyn",
     "borough": "Brooklyn",
     "calendar": {
       "web": "http://www.cb14brooklyn.com/category/meetings/",
@@ -590,6 +611,7 @@
     "fax": "718-434-3801",
     "email": "",
     "website": "http://cb17brooklyn.org/",
+    "twitter": "bkcb17",
     "borough": "Brooklyn",
     "calendar": {
       "web": "http://cb17brooklyn.org/events/",
@@ -617,6 +639,7 @@
     "fax": "718-626-1072",
     "email": "qn01@cb.nyc.gov",
     "website": "http://www.nyc.gov/html/qnscb1/html/home/home.shtml",
+    "twitter": "cb1queens",
     "borough": "Queens",
     "calendar": {
       "web": "http://www1.nyc.gov/site/queenscb1/calendar/calendar.page"
@@ -646,6 +669,7 @@
     "fax": "718-458-3316",
     "email": "communityboard3@nyc.rr.com",
     "website": "http://www.cb3qn.nyc.gov/",
+    "twitter": "communityboard3",
     "borough": "Queens",
     "calendar": {
       "web": "http://www.cb3qn.nyc.gov/?p=1623"
@@ -660,6 +684,7 @@
     "fax": "718-760-5971",
     "email": "QN04@cb.nyc.gov",
     "website": "http://www.nyc.gov/html/qnscb4/html/home/home.shtml",
+    "twitter": "queenscb4",
     "borough": "Queens"
   },
   "405": {
@@ -818,6 +843,7 @@
     "fax": "718-317-3251",
     "email": "",
     "website": "http://www.cb2si.com/",
+    "twitter": "cb2si",
     "borough": "Staten Island",
     "calendar": {
       "web": "http://www.cb2si.com/calendar/",

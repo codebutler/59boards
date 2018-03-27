@@ -3,6 +3,7 @@ import LinkIcon from 'material-ui-icons/Link';
 import PhoneIcon from 'material-ui-icons/Phone';
 import PlaceIcon from 'material-ui-icons/Place';
 import EmailIcon from 'material-ui-icons/Email';
+import TwitterIcon from '../../../shared/icons/Twitter';
 import { List, ListItem, ListItemIcon, ListItemText, WithStyles } from 'material-ui';
 import withStyles from 'material-ui/styles/withStyles';
 import { Theme } from 'material-ui/styles';
@@ -56,6 +57,22 @@ class ContactTab extends Component<PropsWithStyles> {
                         <ListItemText
                             classes={{root: classes.contactListItemText}}
                             primary={district.website}
+                        />
+                    </ListItem>
+                )}
+                { district.twitter && (
+                    <ListItem
+                        button={true}
+                        component="a"
+                        href={`https://twitter.com/${district.twitter}`}
+                        target="_blank"
+                    >
+                        <ListItemIcon>
+                            <TwitterIcon/>
+                        </ListItemIcon>
+                        <ListItemText
+                            classes={{root: classes.contactListItemText}}
+                            primary={`@${district.twitter}`}
                         />
                     </ListItem>
                 )}
