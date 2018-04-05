@@ -68,7 +68,8 @@
     "twitter": "manhattancb5",
     "borough": "Manhattan",
     "calendar": {
-      "web": "https://www.cb5.org/cb5/calendar/"
+      "web": "https://www.cb5.org/cb5/calendar/",
+      "scraperId": "manhattan-cb5"
     }
   },
   "106": {

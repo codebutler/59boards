@@ -5,6 +5,7 @@ import scrapy
 from bs4 import BeautifulSoup
 from pytz import timezone
 
+from cbmap import utils
 from cbmap.items import CalEventItem
 
 
@@ -38,7 +39,7 @@ class BrooklynCb9(scrapy.Spider):
         if not date_str or not time_str:
             return
 
-        date_str = re.sub(r'(?<=\d)(?:th|rd|nd|st)', '', date_str)
+        date_str = utils.strip_date_ords(date_str)
         time_str = time_str.replace('.', '')
 
         event_date = datetime.strptime(date_str, '%B %d, %Y').date()

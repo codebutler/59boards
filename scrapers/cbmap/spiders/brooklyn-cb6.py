@@ -1,11 +1,10 @@
 from datetime import datetime
-from typing import Optional
 
-import bleach
 import scrapy
 from bs4 import BeautifulSoup
 from pytz import timezone
 
+from cbmap import utils
 from cbmap.items import CalEventItem
 
 
@@ -44,7 +43,7 @@ class BrooklynCb6Spider(scrapy.Spider):
                                    if t.name == 'p' and all(c.name != 'b' for c in t.children)), None)
 
             # Find first <ul> sibling and capture entire html.
-            event_description = next((self.__clean_html(str(t)) for t in event_tags if t.name == 'ul'), None)
+            event_description = next((utils.clean_html(str(t)) for t in event_tags if t.name == 'ul'), None)
 
             yield CalEventItem(
                 date=event_date,
@@ -57,9 +56,3 @@ class BrooklynCb6Spider(scrapy.Spider):
     def __parse_date(text: str) -> datetime:
         return timezone('US/Eastern').localize(
             datetime.strptime(text, '%B %d, %I:%M%p').replace(year=datetime.now().year))
-
-    @staticmethod
-    def __clean_html(html: str) -> Optional[str]:
-        if html:
-            return bleach.clean(html)
-        return None
