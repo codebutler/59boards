@@ -20,7 +20,6 @@ OUTPUT_DIR = os.path.join(os.path.realpath(os.path.dirname(__file__)), '../outpu
 
 
 class IdPipeline(object):
-
     def process_item(self, item, spider):
         if 'id' not in item:
             item['id'] = hashlib.md5(json.dumps(dict(item), default=json_default).encode('utf-8')).hexdigest()
@@ -33,8 +32,22 @@ class MissingSummaryPipeline(object):
             item['summary'] = f'{spider.title} Meeting'
         return item
 
-class JsonWriterPipeline(object):
 
+class CounterPipeline(object):
+    count = 0
+
+    def open_spider(self, spider):
+        self.count = 0
+
+    def process_item(self, item, spider):
+        self.count = self.count + 1
+
+    def close_spider(self, spider):
+        if self.count == 0:
+            raise Exception(f'No events found for spider: {spider.name}')
+
+
+class JsonWriterPipeline(object):
     file: IO = None
     exporter: JsonItemExporter = None
 
@@ -58,7 +71,6 @@ class JsonWriterPipeline(object):
 
 
 class ICalWriterPipeline(object):
-
     cal: Calendar = None
 
     def open_spider(self, spider):

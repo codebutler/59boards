@@ -14,7 +14,8 @@ parsedatetime = "*"
 icalendar = "*"
 pytz = "*"
 schedule = "*"
-scrapy-sentry = "*"
+requests = "*"
+raven = "*"
 
 
 [dev-packages]
