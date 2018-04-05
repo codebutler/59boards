@@ -36,7 +36,7 @@ class BrooklynCb9(scrapy.Spider):
         venue = data['Venue']
         address = data['Address']
 
-        if not date_str or not time_str:
+        if not date_str or not time_str or time_str == 'CANCELLED':
             return
 
         date_str = utils.strip_date_ords(date_str)

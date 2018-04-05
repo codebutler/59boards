@@ -17,7 +17,7 @@ class QueensCb6Spider(scrapy.Spider):
 
     def parse(self, response):
         soup = BeautifulSoup(response.text, 'lxml')
-        title_elms = soup.select('.about-description h2')
+        title_elms = soup.select('.about-description h2, .about-description h3')
 
         for elm in title_elms:
             siblings = list(itertools.islice(
@@ -62,4 +62,6 @@ class QueensCb6Spider(scrapy.Spider):
     def __parse_time(time_text):
         if '-' in time_text:
             time_text = time_text.split('-')[0].strip()
+        if ' ' in time_text:
+            time_text = time_text.split(' ')[0].strip()
         return datetime.strptime(time_text, '%I:%M%p').time()

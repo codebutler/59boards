@@ -23,6 +23,9 @@ class BronxCb9Spider(scrapy.Spider):
             datetime_text = ''.join(title_elm.find_previous_siblings(text=True)).strip()
             location = ''.join(title_elm.find_next_siblings(text=True)).strip()
 
+            if '-' in datetime_text:
+                datetime_text = datetime_text.split('-')[0].strip()
+
             event_dt = datetime.strptime(datetime_text, '%A, %B %d, %I%p').replace(year=datetime.now().year)
 
             yield CalEventItem(
