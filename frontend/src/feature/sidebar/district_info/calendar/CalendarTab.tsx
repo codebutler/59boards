@@ -15,6 +15,7 @@ import { amber } from 'material-ui/colors';
 import SubscribeDialog from './SubscribeDialog';
 import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
+import EventDialog from './EventDialog';
 
 interface Props {
     district: District;
@@ -37,6 +38,7 @@ interface State {
     isSubscribeDialogOpen: boolean;
     calendar?: Calendar;
     calendarWebUrl?: string;
+    selectedEvent?: CalendarEvent;
 }
 
 interface Context {
@@ -58,6 +60,7 @@ interface RenderData {
 }
 
 interface EventRenderData {
+    event: CalendarEvent;
     groupKey: string;
     monthText: string;
     domText: string;
@@ -134,7 +137,11 @@ class CalendarTab extends Component<PropsWithStyles, State> {
                                 <React.Fragment key={`fragment-${month}`}>
                                     <ListSubheader key={`header-${month}`}>{month}</ListSubheader>
                                     {monthEvents.map((event: EventRenderData) => (
-                                        <ListItem key={event.listItemKey}>
+                                        <ListItem
+                                            key={event.listItemKey}
+                                            button={true}
+                                            onClick={() => this.setState({ selectedEvent: event.event })}
+                                        >
                                             <Grid container={true} spacing={0} wrap={'nowrap'}>
                                                 <Grid
                                                     item={true}
@@ -168,6 +175,12 @@ class CalendarTab extends Component<PropsWithStyles, State> {
                                 </React.Fragment>)
                             )
                             .value()
+                        }
+                        {this.state.selectedEvent &&
+                            <EventDialog
+                                event={this.state.selectedEvent}
+                                onDialogExited={() => this.setState({selectedEvent: undefined})}
+                            />
                         }
                     </List>
                 )}
@@ -245,6 +258,7 @@ class CalendarTab extends Component<PropsWithStyles, State> {
                 .map((event, index, list) => {
                     const eventMoment = moment(event.date);
                     return {
+                        event: event,
                         groupKey: eventMoment.format('MMMM YYYY'),
                         domText: eventMoment.format('D'),
                         dowText: eventMoment.format('ddd'),
@@ -274,7 +288,7 @@ const styles = (theme: Theme) => (
             color: theme.palette.text.secondary
         },
         eventAddress: {
-            whiteSpace: 'pre' as 'pre'
+            whiteSpace: 'nowrap' as 'nowrap'
         },
         eventDate: {
             marginRight: theme.spacing.unit * 2
