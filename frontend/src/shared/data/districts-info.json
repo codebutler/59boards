@@ -287,8 +287,8 @@
     "borough": "Bronx",
     "calendar": {
       "web": "http://www.bronxcb7.info/calendar/",
-      "ical": "https://ics.teamup.com/feed/ks2bkup94s6whycve3/0.ics",
-      "googleCalendarId": "g94jer9nk18r56tkdclq1hmgot01e6h9@import.calendar.google.com"
+      "ical": "http://www.bronxcb7.info/?plugin=all-in-one-event-calendar&controller=ai1ec_exporter_controller&action=export_events&no_html=true",
+      "googleCalendarId": "5sk15jnh5mqv82kokulj1pir9l8im1nv@import.calendar.google.com"
     }
   },
   "208": {
@@ -673,7 +673,7 @@
     "twitter": "communityboard3",
     "borough": "Queens",
     "calendar": {
-      "web": "http://www.cb3qn.nyc.gov/?p=1623",
+      "web": "http://www.cb3qn.nyc.gov/calendar",
       "scraperId": "queens-cb3"
     }
   },
