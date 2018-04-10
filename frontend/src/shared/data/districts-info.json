@@ -673,7 +673,8 @@
     "twitter": "communityboard3",
     "borough": "Queens",
     "calendar": {
-      "web": "http://www.cb3qn.nyc.gov/?p=1623"
+      "web": "http://www.cb3qn.nyc.gov/?p=1623",
+      "scraperId": "queens-cb3"
     }
   },
   "404": {
