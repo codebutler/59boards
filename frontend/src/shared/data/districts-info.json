@@ -164,9 +164,9 @@
     "twitter": "manhattancb11",
     "borough": "Manhattan",
     "calendar": {
-      "web": "http://www.cb11m.org/calender/",
-      "ical": "http://www.cb11m.org/?plugin=all-in-one-event-calendar&controller=ai1ec_exporter_controller&action=export_events&no_html=true",
-      "googleCalendarId": "njq8oou8i8okjkg3bme23o6mlde24000@import.calendar.google.com"
+      "web": "http://www.cb11m.org/pm-calendar/",
+      "ical": "http://www.cb11m.org/?rhc_action=get_icalendar_events&post_type[]=events&calendar=meetings",
+      "googleCalendarId": "861vgismc70jd1ns85rftjs0s27dt1da@import.calendar.google.com"
     }
   },
   "112": {
