@@ -22,9 +22,9 @@ class BrooklynCb9(scrapy.Spider):
         soup = BeautifulSoup(response.text, 'lxml')
         more_info_links = soup.select('.meeting_info a')
         for link in more_info_links:
-            yield scrapy.Request(response.urljoin(link['href']), callback=self.parseEvent)
+            yield scrapy.Request(response.urljoin(link['href']), callback=self.parse_event)
 
-    def parseEvent(self, response):
+    def parse_event(self, response):
         soup = BeautifulSoup(response.text, 'lxml')
 
         elems = soup.select('.meeting_wrap p')
@@ -43,7 +43,7 @@ class BrooklynCb9(scrapy.Spider):
         time_str = time_str.replace('.', '')
 
         event_date = datetime.strptime(date_str, '%B %d, %Y').date()
-        event_time = datetime.strptime(time_str, '%I:%M %p').time()
+        event_time = self.__parse_time(time_str)
 
         event_dt = timezone('US/Eastern').localize(datetime.combine(event_date, event_time))
         event_summary = soup.select('.et_main_title')[0].text.strip()
@@ -56,3 +56,10 @@ class BrooklynCb9(scrapy.Spider):
             description=event_description,
             location=event_location
         )
+
+    @staticmethod
+    def __parse_time(time_str):
+        try:
+            return datetime.strptime(time_str, '%I:%M %p').time()
+        except ValueError:
+            return datetime.strptime(time_str, '%I:%M%p').time()

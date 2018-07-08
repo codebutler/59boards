@@ -7,6 +7,7 @@ name = "pypi"
 
 [packages]
 
+twisted = { git = "https://github.com/twisted/twisted.git", ref="9384-remove-async-param" }
 bleach = "*"
 scrapy = "*"
 "bs4" = "*"
