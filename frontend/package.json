@@ -16,7 +16,7 @@
     "html-loader": "^0.5.5",
     "immutable": "^3.8.2",
     "jss-extend": "^6.2.0",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.19",
     "lodash-decorators": "latest",
     "mapbox": "^1.0.0-beta9",
     "mapbox-gl": "^0.44.1",
