@@ -23,7 +23,7 @@
     "markdown-loader": "^2.0.2",
     "material-ui": "^1.0.0-beta.36",
     "material-ui-icons": "^1.0.0-beta.36",
-    "moment": "^2.21.0",
+    "moment": "^2.29.4",
     "npm": "^5.7.1",
     "promised-location": "^1.0.1",
     "raven-js": "^3.23.1",
